@@ -124,7 +124,7 @@ namespace Library
         {
             if (string.IsNullOrEmpty(name) || name.Split(' ').Length != 3)
             {
-                MessageBox.Show("Введите ФИО в формате 'Фамилия Имя Отчество'", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Введите ФИО в формате \"Фамилия Имя Отчество\"", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             else if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
