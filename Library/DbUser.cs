@@ -1,0 +1,516 @@
+﻿  using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+
+namespace Library
+{
+    internal class DbUser
+    {
+        //Регистрация
+        public static int Login(string login, string password)
+        {
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "SELECT role_id FROM users WHERE login = @login AND password = @password";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@password", password);
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    int roleId = Convert.ToInt32(result);
+                    MessageBox.Show("Успешный вход", "Вход", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return roleId;
+                }
+                else if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
+                {
+                    MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return -1;
+                }
+                else
+                {
+                    MessageBox.Show("Неправильный логин или пароль", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return -1; // Возвращаем -1 в случае ошибки входа
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка входа: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public static bool Register(string name, string login, string email, string password, string passwordRepeat)
+        {
+            if (string.IsNullOrEmpty(name) || name.Split(' ').Length != 3)
+            {
+                MessageBox.Show("Введите ФИО в формате 'Фамилия Имя Отчество'", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(passwordRepeat) || string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (password != passwordRepeat)
+            {
+                MessageBox.Show("Пароли не совпадают", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (!Regex.IsMatch(email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
+            {
+                MessageBox.Show("Email введен некорректно", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string checkQueryLogin = "SELECT COUNT(*) FROM users WHERE login = @login";
+                MySqlCommand checkCommandLogin = new MySqlCommand(checkQueryLogin, conn);
+                checkCommandLogin.Parameters.AddWithValue("@login", login);
+                int countLogin = Convert.ToInt32(checkCommandLogin.ExecuteScalar());
+                if (countLogin > 0)
+                {
+                    MessageBox.Show("Пользователь с таким логином уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+                string checkQueryEmail = "SELECT COUNT(*) FROM users WHERE email = @email";
+                MySqlCommand checkCommandEmail = new MySqlCommand(checkQueryEmail, conn);
+                checkCommandEmail.Parameters.AddWithValue("@email", email);
+                int count = Convert.ToInt32(checkCommandEmail.ExecuteScalar());
+                if (count > 0)
+                {
+                    MessageBox.Show("Пользователь с таким email уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+
+                string query = "INSERT INTO users (name, login, email, password, role_id) VALUES (@name, @login, @email, @password, 3)";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@password", password);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Успешная регистрация", "Регистрация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при регистрации", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при регистрации: " + ex.Message, "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public static bool Register(string name, string login, string email, string password, int roleId)
+        {
+            if (string.IsNullOrEmpty(name) || name.Split(' ').Length != 3)
+            {
+                MessageBox.Show("Введите ФИО в формате 'Фамилия Имя Отчество'", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (!Regex.IsMatch(email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
+            {
+                MessageBox.Show("Email введен некорректно", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string checkQueryLogin = "SELECT COUNT(*) FROM users WHERE login = @login";
+                MySqlCommand checkCommandLogin = new MySqlCommand(checkQueryLogin, conn);
+                checkCommandLogin.Parameters.AddWithValue("@login", login);
+                int countLogin = Convert.ToInt32(checkCommandLogin.ExecuteScalar());
+                if (countLogin > 0)
+                {
+                    MessageBox.Show("Пользователь с таким логином уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+
+                string checkQueryEmail = "SELECT COUNT(*) FROM users WHERE email = @email";
+                MySqlCommand checkCommandEmail = new MySqlCommand(checkQueryEmail, conn);
+                checkCommandEmail.Parameters.AddWithValue("@email", email);
+                int count = Convert.ToInt32(checkCommandEmail.ExecuteScalar());
+                if (count > 0)
+                {
+                    MessageBox.Show("Пользователь с таким email уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+
+                string query = "INSERT INTO users (name, login, email, password, role_id) VALUES (@name, @login, @email, @password, @roleId)";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@password", password);
+                command.Parameters.AddWithValue("@roleId", roleId);
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Пользователь добавлен", "Добавление пользователя", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при добавлении пользоватлея", "Добавление пользователя", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при добавлении пользоватлея: " + ex.Message, "Добавление пользователя", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        //Редактирование и удаление
+        public static bool DeleteUser(int userId)
+        {
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "DELETE FROM users WHERE id = @userId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@userId", userId);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true; // Пользователь успешно удален
+                }
+                else
+                {
+                    return false; // Пользователь не найден или произошла ошибка при удалении
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении пользователя: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public static bool EditUserInfo(int userId, string name, string login, string email, int roleId)
+        {
+            MySqlConnection conn = GetConnection();
+
+
+            try
+            {
+                string checkQueryLogin = "SELECT COUNT(*) FROM users WHERE login = @login";
+                MySqlCommand checkCommandLogin = new MySqlCommand(checkQueryLogin, conn);
+                checkCommandLogin.Parameters.AddWithValue("@login", login);
+                int countLogin = Convert.ToInt32(checkCommandLogin.ExecuteScalar());
+                if (countLogin > 0)
+                {
+                    MessageBox.Show("Пользователь с таким логином уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+
+                string checkQueryEmail = "SELECT COUNT(*) FROM users WHERE email = @email";
+                MySqlCommand checkCommandEmail = new MySqlCommand(checkQueryEmail, conn);
+                checkCommandEmail.Parameters.AddWithValue("@email", email);
+                int count = Convert.ToInt32(checkCommandEmail.ExecuteScalar());
+                if (count > 0)
+                {
+                    MessageBox.Show("Пользователь с таким email уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+
+                string query = "UPDATE users SET name = @name, login = @login, email = @email,role_id = @roleId WHERE id = @userId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@userId", userId);
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@roleId", roleId);
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при редактировании пользователя: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public static bool EditUserInfo(int id, string login, string email)
+        {
+
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (!Regex.IsMatch(email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
+            {
+                MessageBox.Show("Email введен некорректно", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string checkQueryLogin = "SELECT COUNT(*) FROM users WHERE login = @login";
+                MySqlCommand checkCommandLogin = new MySqlCommand(checkQueryLogin, conn);
+                checkCommandLogin.Parameters.AddWithValue("@login", login);
+                int countLogin = Convert.ToInt32(checkCommandLogin.ExecuteScalar());
+                if (countLogin > 0)
+                {
+                    MessageBox.Show("Пользователь с таким логином уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+                string checkQueryEmail = "SELECT COUNT(*) FROM users WHERE email = @email";
+                MySqlCommand checkCommandEmail = new MySqlCommand(checkQueryEmail, conn);
+                checkCommandEmail.Parameters.AddWithValue("@email", email);
+                int count = Convert.ToInt32(checkCommandEmail.ExecuteScalar());
+                if (count > 0)
+                {
+                    MessageBox.Show("Пользователь с таким email уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+
+                string query = "UPDATE users SET login = @login, email = @email WHERE id = @id";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@email", email);
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Информация обновлена", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Registration.UserInfo.Login = login;
+                    Registration.UserInfo.Email = email;
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при изменении профиля", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при изменении профиля: " + ex.Message, "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        //Проверка
+        public static bool CheckEmail(string email)
+        {
+            MySqlConnection conn = GetConnection();
+            try
+            {
+
+                string query = "SELECT COUNT(*) FROM users WHERE email = @email";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@email", email);
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при проверке email: " + ex.Message, "Ошибка");
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        //Get
+        public static MySqlConnection GetConnection()
+        {
+            string sql = "datasource=localhost;port=3306;Username=root;password=root;database=library;";
+            MySqlConnection conn = new MySqlConnection(sql);
+            try
+            {
+                conn.Open();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("MySqlConnection" + ex.Message, "Error", MessageBoxButtons.OK);
+            }
+            return conn;
+        }
+        public static Dictionary<int, Dictionary<string, object>> GetAllUsers()
+        {
+            Dictionary<int, Dictionary<string, object>> usersDict = new Dictionary<int, Dictionary<string, object>>();
+
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "SELECT users.id, users.name, users.login, users.email, roles.name AS role FROM users INNER JOIN roles ON users.role_id = roles.id";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        string name = reader.GetString("name");
+                        string login = reader.GetString("login");
+                        string email = reader.GetString("email");
+                        string role = reader.GetString("role");
+
+                        Dictionary<string, object> userData = new Dictionary<string, object>
+                            {
+                                { "id", id },
+                                { "name", name },
+                                { "login", login },
+                                { "email", email },
+                                { "role", role }
+                            };
+
+                        usersDict.Add(id, userData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при получении пользователей: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return usersDict;
+        }
+        public static UserInfo GetUserInfoByLogin(string login)
+        {
+            UserInfo userInfo = new UserInfo();
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "SELECT id, name, email, password FROM users WHERE login = @login";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@login", login);
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        string name = reader.GetString("name");
+                        string email = reader.GetString("email");
+                        string password = reader.GetString("password");
+                        userInfo.Id = id;
+                        userInfo.Name = name;
+                        userInfo.Login = login;
+                        userInfo.Email = email;
+                        userInfo.Password = password;
+                    }
+                };
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при проверке email: " + ex.Message, "Ошибка");
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return userInfo;
+
+        }
+        public static int GetRoleId(string roleName)
+        {
+            int roleId = -1;
+            MySqlConnection conn = GetConnection();
+            string query = "SELECT id FROM roles WHERE name = @roleName";
+            try
+            {
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@roleName", roleName);
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int id))
+                {
+                    roleId = id;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при получении ID роли: " + ex.Message, "Ошибка");
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return roleId;
+        }
+        public static string GetRoleName(int roleId)
+        {
+            string roleName = "";
+            MySqlConnection conn = GetConnection();
+            string query = "SELECT name FROM roles WHERE id = @roleId";
+            try
+            {
+
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@roleId", roleId);
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    roleName = result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при получении названия роли: " + ex.Message, "Ошибка");
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return roleName;
+        }
+    }
+}
