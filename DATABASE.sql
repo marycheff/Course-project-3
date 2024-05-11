@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
     FOREIGN KEY(role_id) REFERENCES roles(id)
 );
 INSERT INTO roles (name) VALUES ('Администратор'), ('Библиотекарь'), ('Читатель');
-INSERT INTO user (name, login, password, email, role_id) 
+INSERT INTO users (name, login, password, email, role_id) 
 VALUES 
     ('Сидоров Андрей Сергеевич', 'andsid23', 'klop0987', 'sid.and@example.com', 1), 
     ('Петрова Елена Николаевна', 'elenanik', 'qwerty123', 'petrova.elena@example.com', 1), 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.DB;
+using System;
 using System.Windows.Forms;
 
 namespace Library
@@ -17,7 +18,7 @@ namespace Library
         private void TabAuthButton_Click(object sender, EventArgs e)
         {
             string login = tabAuthTextLogin.Text;
-            string password = tabAuthTextPassword.Text;
+            string password = md5.hashPassword(tabAuthTextPassword.Text);
             int loggedIn = DbUser.Login(login, password);
             if (loggedIn == 3)
             {
@@ -47,8 +48,8 @@ namespace Library
             string name = tabRegTextName.Text.Trim();
             string login = tabRegTextLogin.Text.Trim();
             string email = tabRegTextEmail.Text.Trim();
-            string password = tabRegTextPassword.Text.Trim();
-            string passwordRepeat = tabRegTextPasswordRepeat.Text.Trim();
+            string password = md5.hashPassword(tabRegTextPassword.Text.Trim());
+            string passwordRepeat = md5.hashPassword(tabRegTextPasswordRepeat.Text.Trim());
             bool registered = DbUser.Register(name, login, email, password, passwordRepeat);
             if (registered)
             {

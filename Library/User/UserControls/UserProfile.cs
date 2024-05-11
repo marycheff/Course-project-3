@@ -5,8 +5,7 @@ namespace Library.User.UserControls
 {
     public partial class UserProfile : UserControl
     {
-        public string Name { get; private set; }
-        public string Login { get; private set; }
+     
         public string Email { get; private set; }
         public event EventHandler RefreshRequest;
         public UserProfile(string name, string login, string email)
@@ -15,6 +14,9 @@ namespace Library.User.UserControls
             textName.Text = name;
             textLogin.Text = login;
             textEmail.Text = email;
+
+            this.Email = email;
+ 
 
             textName.Enabled = false;
             textLogin.Enabled = false;
@@ -32,7 +34,16 @@ namespace Library.User.UserControls
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             UserInfo userInfo = Registration.UserInfo;
-            bool updated = DbUser.EditUserInfo(userInfo.Id, textLogin.Text.Trim(), textEmail.Text.Trim());
+            bool updated;
+            
+            if (Email != textEmail.Text.Trim())
+            {
+                updated = DbUser.EditUserInfo(userInfo.Id, textLogin.Text.Trim(), textEmail.Text.Trim());
+            }
+            else {
+                updated = DbUser.EditUserInfo(userInfo.Id, textLogin.Text.Trim());
+            }
+            
             if (updated)
             {
                 RefreshRequest?.Invoke(this, e);

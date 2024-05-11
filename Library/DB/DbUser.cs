@@ -342,6 +342,59 @@ namespace Library
                 conn.Close();
             }
         }
+
+        public static bool EditUserInfo(int id, string login)
+        {
+
+            if (string.IsNullOrEmpty(login))
+            {
+                MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+          
+
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string checkQueryLogin = "SELECT COUNT(*) FROM users WHERE login = @login";
+                MySqlCommand checkCommandLogin = new MySqlCommand(checkQueryLogin, conn);
+                checkCommandLogin.Parameters.AddWithValue("@login", login);
+                int countLogin = Convert.ToInt32(checkCommandLogin.ExecuteScalar());
+                if (countLogin > 0)
+                {
+                    MessageBox.Show("Пользователь с таким логином уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+             
+                string query = "UPDATE users SET login = @login WHERE id = @id";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@login", login);
+
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Информация обновлена", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Registration.UserInfo.Login = login;
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при изменении профиля", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при изменении профиля: " + ex.Message, "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         //Проверка
         public static bool CheckEmail(string email)
         {

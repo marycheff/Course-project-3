@@ -42,5 +42,10 @@ namespace Library
             SendClicked = true;
             // Close();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Обратитесь в библиотеку", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

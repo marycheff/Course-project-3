@@ -110,13 +110,14 @@
     <Compile Include="Admin\AdminMainWindow.Designer.cs">
       <DependentUpon>AdminMainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="DbUser.cs" />
+    <Compile Include="DB\DbUser.cs" />
     <Compile Include="Admin\UserControls\CheckUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Admin\UserControls\CheckUser.Designer.cs">
       <DependentUpon>CheckUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="DB\md5.cs" />
     <Compile Include="User\EditUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
