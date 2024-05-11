@@ -39,6 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnSaveChanges = new System.Windows.Forms.Button();
+            this.btnChangePassword = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textName
@@ -136,11 +137,26 @@
             this.btnSaveChanges.Visible = false;
             this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
             // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.AutoSize = true;
+            this.btnChangePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnChangePassword.Location = new System.Drawing.Point(700, 363);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(143, 28);
+            this.btnChangePassword.TabIndex = 10;
+            this.btnChangePassword.Text = "Изменить пароль";
+            this.btnChangePassword.UseVisualStyleBackColor = true;
+            this.btnChangePassword.Visible = false;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
+            this.Controls.Add(this.btnChangePassword);
             this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnChange);
@@ -171,5 +187,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button btnSaveChanges;
+        private System.Windows.Forms.Button btnChangePassword;
     }
 }

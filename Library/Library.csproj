@@ -146,6 +146,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\SendMail.cs" />
     <Compile Include="UserInfo.cs" />
+    <Compile Include="User\SetNewPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\SetNewPassword.Designer.cs">
+      <DependentUpon>SetNewPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="User\UserControls\UserProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     <EmbeddedResource Include="User\Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User\SetNewPassword.resx">
+      <DependentUpon>SetNewPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User\UserControls\UserProfile.resx">
       <DependentUpon>UserProfile.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +217,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Book\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

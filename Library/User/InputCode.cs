@@ -19,13 +19,12 @@ namespace Library
             InputedCode = textBox1.Text.Trim();
             if (ExpectedCode == InputedCode)
             {
-                MessageBox.Show("Коды совпадают");
                 CodesMatch = true;
                 Close();
             }
             else
             {
-                MessageBox.Show("Коды  НЕ совпадают");
+                MessageBox.Show("Вы ввели неверный код", "Сброс пароля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CodesMatch = false;
                 Close();
             }

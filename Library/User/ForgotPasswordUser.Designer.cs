@@ -52,7 +52,7 @@
             // textEmail
             // 
             this.textEmail.Location = new System.Drawing.Point(23, 204);
-            this.textEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textEmail.Name = "textEmail";
             this.textEmail.Size = new System.Drawing.Size(433, 26);
             this.textEmail.TabIndex = 4;
@@ -61,7 +61,7 @@
             // 
             this.btnSend.AutoSize = true;
             this.btnSend.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnSend.Location = new System.Drawing.Point(158, 295);
+            this.btnSend.Location = new System.Drawing.Point(158, 296);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(158, 34);
             this.btnSend.TabIndex = 6;
@@ -72,11 +72,11 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(340, 238);
+            this.button2.Location = new System.Drawing.Point(240, 238);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 25);
+            this.button2.Size = new System.Drawing.Size(222, 24);
             this.button2.TabIndex = 7;
-            this.button2.Text = "Нет доступа к email?";
+            this.button2.Text = "Нет доступа к email или забыли логин?";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -105,7 +105,7 @@
             // textLogin
             // 
             this.textLogin.Location = new System.Drawing.Point(23, 117);
-            this.textLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textLogin.Name = "textLogin";
             this.textLogin.Size = new System.Drawing.Size(433, 26);
             this.textLogin.TabIndex = 10;
@@ -124,7 +124,7 @@
             this.Controls.Add(this.textEmail);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(490, 380);
             this.MinimizeBox = false;

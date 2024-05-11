@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.User;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -27,12 +28,14 @@ namespace Library
             if (emailValid && loginValid && emailAssociatedWithLogin)
             {
                 string code = SendMail.ResetPassword(Email);
-                MessageBox.Show($"Код отправлен на {Email} \nЕсли у вас нет к нему доступа, обратитесь в библиотеку", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Код отправлен на {Email}", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 InputCode inputCode = new InputCode(code);
                 inputCode.ShowDialog();
                 if (inputCode.CodesMatch)
                 {
-
+                    SetNewPassword setNewPassword = new SetNewPassword();
+                    setNewPassword.SetLogin(Login);
+                    setNewPassword.ShowDialog();
                     Close();
                 }
                 else

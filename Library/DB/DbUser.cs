@@ -1,4 +1,4 @@
-﻿  using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -22,7 +22,6 @@ namespace Library
                 if (result != null)
                 {
                     int roleId = Convert.ToInt32(result);
-                    MessageBox.Show("Успешный вход", "Вход", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return roleId;
                 }
                 else if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
@@ -342,10 +341,7 @@ namespace Library
                 conn.Close();
             }
         }
-
-      //  public static bool Edit
-
-        public static bool EditUserInfo(int id, string login)
+        public static bool EditUserLogin(int id, string login)
         {
 
             if (string.IsNullOrEmpty(login))
@@ -353,7 +349,7 @@ namespace Library
                 MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-          
+
 
             MySqlConnection conn = GetConnection();
             try
@@ -367,7 +363,7 @@ namespace Library
                     MessageBox.Show("Пользователь с таким логином уже зарегистрирован", "Ошибка регистрации");
                     return false;
                 }
-             
+
                 string query = "UPDATE users SET login = @login WHERE id = @id";
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.AddWithValue("@id", id);
@@ -397,6 +393,99 @@ namespace Library
                 conn.Close();
             }
         }
+
+
+        public static bool EditUserEmail(int id, string email)
+        {
+
+            if (string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string checkQueryEmail = "SELECT COUNT(*) FROM users WHERE email = @email";
+                MySqlCommand checkCommandEmail = new MySqlCommand(checkQueryEmail, conn);
+                checkCommandEmail.Parameters.AddWithValue("@email", email);
+                int countEmail = Convert.ToInt32(checkCommandEmail.ExecuteScalar());
+                if (countEmail > 0)
+                {
+                    MessageBox.Show("Пользователь с таким email уже зарегистрирован", "Ошибка регистрации");
+                    return false;
+                }
+
+                string query = "UPDATE users SET email = @email WHERE id = @id";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@email", email);
+
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Информация обновлена", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Registration.UserInfo.Email = email;
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при изменении профиля", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при изменении профиля: " + ex.Message, "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static bool EditUserPasswordByLogin(string login, string password, string passwordRepeat)
+        {
+            if (password != passwordRepeat)
+            {
+                MessageBox.Show("Пароли не совпадают", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "UPDATE users SET password = @password WHERE login = @login";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@password", password);
+                command.Parameters.AddWithValue("@login", login);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Пароль успешно изменен", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при изменении пароля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при изменении пароля: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         //Проверка
         public static bool CheckEmail(string email)
         {
