@@ -343,6 +343,8 @@ namespace Library
             }
         }
 
+      //  public static bool Edit
+
         public static bool EditUserInfo(int id, string login)
         {
 
@@ -418,6 +420,52 @@ namespace Library
                 conn.Close();
             }
         }
+        public static bool CheckLogin(string login)
+        {
+            MySqlConnection conn = GetConnection();
+            try
+            {
+
+                string query = "SELECT COUNT(*) FROM users WHERE login = @login";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@login", login);
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при проверке login: " + ex.Message, "Ошибка");
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static bool EmailAssociatedWithLogin(string email, string login)
+        {
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "SELECT COUNT(*) FROM users WHERE email = @email AND login = @login";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@login", login);
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при проверке email и login: " + ex.Message, "Ошибка");
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         //Get
         public static MySqlConnection GetConnection()
         {

@@ -7,6 +7,7 @@ namespace Library
     public partial class ForgotPasswordUser : Form
     {
         public string Email { get; private set; }
+        public string Login { get; private set; }
         public bool SendClicked { get; private set; }
         public ForgotPasswordUser()
         {
@@ -16,16 +17,22 @@ namespace Library
         private void btnSend_Click(object sender, EventArgs e)
         {
             Email = textEmail.Text.Trim();
+            Login = textLogin.Text.Trim();
 
             bool emailValid = DbUser.CheckEmail(Email);
-            if (emailValid)
+            bool loginValid = DbUser.CheckLogin(Login);
+            bool emailAssociatedWithLogin = DbUser.EmailAssociatedWithLogin(Email, Login);
+
+            
+            if (emailValid && loginValid && emailAssociatedWithLogin)
             {
                 string code = SendMail.ResetPassword(Email);
-                MessageBox.Show("Код отправлен", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Код отправлен на {Email} \nЕсли у вас нет к нему доступа, обратитесь в библиотеку", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 InputCode inputCode = new InputCode(code);
                 inputCode.ShowDialog();
                 if (inputCode.CodesMatch)
                 {
+
                     Close();
                 }
                 else
@@ -34,9 +41,26 @@ namespace Library
                     btnSend.Location = new Point(btnSend.Location.X - 21, btnSend.Location.Y);
                 }
             }
-            else
+            else if (!emailValid && loginValid)
             {
                 MessageBox.Show("Такого email нет в базе данных", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textEmail.Text = string.Empty;
+            }
+            else if (emailValid && !loginValid)
+            {
+                MessageBox.Show("Такого логина нет в базе данных", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textLogin.Text = string.Empty;
+            }
+            else if (emailValid && loginValid && !emailAssociatedWithLogin)
+            {
+                MessageBox.Show("Логин и email не относятся к одному и тому же пользователю", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textLogin.Text = string.Empty;
+                textEmail.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("Таких email и логина нет в базе данных", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textLogin.Text = string.Empty;
                 textEmail.Text = string.Empty;
             }
             SendClicked = true;
@@ -46,6 +70,11 @@ namespace Library
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Обратитесь в библиотеку", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

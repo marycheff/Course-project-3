@@ -34,13 +34,15 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textLogin = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tabAuthLabelLogin
             // 
             this.tabAuthLabelLogin.AutoSize = true;
             this.tabAuthLabelLogin.ForeColor = System.Drawing.Color.DimGray;
-            this.tabAuthLabelLogin.Location = new System.Drawing.Point(19, 128);
+            this.tabAuthLabelLogin.Location = new System.Drawing.Point(19, 179);
             this.tabAuthLabelLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tabAuthLabelLogin.Name = "tabAuthLabelLogin";
             this.tabAuthLabelLogin.Size = new System.Drawing.Size(335, 20);
@@ -49,7 +51,7 @@
             // 
             // textEmail
             // 
-            this.textEmail.Location = new System.Drawing.Point(23, 153);
+            this.textEmail.Location = new System.Drawing.Point(23, 204);
             this.textEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textEmail.Name = "textEmail";
             this.textEmail.Size = new System.Drawing.Size(433, 26);
@@ -70,7 +72,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(340, 187);
+            this.button2.Location = new System.Drawing.Point(340, 238);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 25);
             this.button2.TabIndex = 7;
@@ -88,11 +90,33 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Восстановление пароля";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.Location = new System.Drawing.Point(19, 92);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(342, 20);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Введите логин, указанный при регистрации";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // textLogin
+            // 
+            this.textLogin.Location = new System.Drawing.Point(23, 117);
+            this.textLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textLogin.Name = "textLogin";
+            this.textLogin.Size = new System.Drawing.Size(433, 26);
+            this.textLogin.TabIndex = 10;
+            // 
             // ForgotPasswordUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 341);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textLogin);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnSend);
@@ -119,5 +143,7 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textLogin;
     }
 }
