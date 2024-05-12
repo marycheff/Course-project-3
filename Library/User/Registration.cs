@@ -54,8 +54,11 @@ namespace Library
             if (registered)
             {
                 UserMainWindow userMainWindow = new UserMainWindow();
+                UserInfo = DbUser.GetUserInfoByLogin(login);
                 userMainWindow.Closed += (s, args) => Close();
                 Hide();
+                
+
                 userMainWindow.Show();
             }
             else

@@ -161,13 +161,13 @@ namespace Library
                     return false;
                 }
 
-                string query = "INSERT INTO users (name, login, email, password, role_id) VALUES (@name, @login, @email, @password, @roleId)";
+                string query = "INSERT INTO users (name, login, email, password, role_id) VALUES (@name, @login, @email, @password, @id)";
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.AddWithValue("@name", name);
                 command.Parameters.AddWithValue("@email", email);
                 command.Parameters.AddWithValue("@login", login);
                 command.Parameters.AddWithValue("@password", password);
-                command.Parameters.AddWithValue("@roleId", roleId);
+                command.Parameters.AddWithValue("@id", roleId);
 
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
@@ -247,13 +247,13 @@ namespace Library
                     return false;
                 }
 
-                string query = "UPDATE users SET name = @name, login = @login, email = @email,role_id = @roleId WHERE id = @userId";
+                string query = "UPDATE users SET name = @name, login = @login, email = @email,role_id = @id WHERE id = @userId";
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.AddWithValue("@userId", userId);
                 command.Parameters.AddWithValue("@name", name);
                 command.Parameters.AddWithValue("@login", login);
                 command.Parameters.AddWithValue("@email", email);
-                command.Parameters.AddWithValue("@roleId", roleId);
+                command.Parameters.AddWithValue("@id", roleId);
 
                 int rowsAffected = command.ExecuteNonQuery();
                 if (rowsAffected > 0)
@@ -680,12 +680,12 @@ namespace Library
         {
             string roleName = "";
             MySqlConnection conn = GetConnection();
-            string query = "SELECT name FROM roles WHERE id = @roleId";
+            string query = "SELECT name FROM roles WHERE id = @id";
             try
             {
 
                 MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@roleId", roleId);
+                command.Parameters.AddWithValue("@id", roleId);
                 object result = command.ExecuteScalar();
                 if (result != null)
                 {

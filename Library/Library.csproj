@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.2.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
@@ -110,6 +113,14 @@
     <Compile Include="Admin\AdminMainWindow.Designer.cs">
       <DependentUpon>AdminMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Book\BookInfo.cs" />
+    <Compile Include="Book\UserControls\BookControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Book\UserControls\BookControl.Designer.cs">
+      <DependentUpon>BookControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DbBook.cs" />
     <Compile Include="DB\DbUser.cs" />
     <Compile Include="Admin\UserControls\CheckUser.cs">
       <SubType>UserControl</SubType>
@@ -173,6 +184,9 @@
     <EmbeddedResource Include="Admin\UserControls\CheckUser.resx">
       <DependentUpon>CheckUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Book\UserControls\BookControl.resx">
+      <DependentUpon>BookControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User\EditUserForm.resx">
       <DependentUpon>EditUserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,13 +198,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="User\Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,7 +228,34 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Book\" />
+    <None Include="Resources\61c012a02e0e5d8 %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HP1cover %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\harryPotter1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Covers\Harry Potter and the Philosopher%27s Stone.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DEFAULT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\default1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

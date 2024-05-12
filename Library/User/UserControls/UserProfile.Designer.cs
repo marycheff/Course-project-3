@@ -44,7 +44,7 @@
             // 
             // textName
             // 
-            this.textName.Location = new System.Drawing.Point(436, 167);
+            this.textName.Location = new System.Drawing.Point(432, 167);
             this.textName.Margin = new System.Windows.Forms.Padding(6);
             this.textName.Name = "textName";
             this.textName.Size = new System.Drawing.Size(407, 29);
@@ -64,7 +64,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label2.Location = new System.Drawing.Point(434, 216);
+            this.label2.Location = new System.Drawing.Point(430, 216);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 24);
             this.label2.TabIndex = 3;
@@ -72,7 +72,7 @@
             // 
             // textLogin
             // 
-            this.textLogin.Location = new System.Drawing.Point(436, 246);
+            this.textLogin.Location = new System.Drawing.Point(432, 246);
             this.textLogin.Margin = new System.Windows.Forms.Padding(6);
             this.textLogin.Name = "textLogin";
             this.textLogin.Size = new System.Drawing.Size(407, 29);
@@ -90,7 +90,7 @@
             // 
             // textEmail
             // 
-            this.textEmail.Location = new System.Drawing.Point(436, 325);
+            this.textEmail.Location = new System.Drawing.Point(432, 325);
             this.textEmail.Margin = new System.Windows.Forms.Padding(6);
             this.textEmail.Name = "textEmail";
             this.textEmail.Size = new System.Drawing.Size(407, 29);
@@ -100,7 +100,7 @@
             // 
             this.btnChange.AutoSize = true;
             this.btnChange.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnChange.Location = new System.Drawing.Point(540, 579);
+            this.btnChange.Location = new System.Drawing.Point(536, 579);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(200, 50);
             this.btnChange.TabIndex = 6;
@@ -128,7 +128,7 @@
             // 
             this.btnSaveChanges.AutoSize = true;
             this.btnSaveChanges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSaveChanges.Location = new System.Drawing.Point(527, 579);
+            this.btnSaveChanges.Location = new System.Drawing.Point(523, 579);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(222, 50);
             this.btnSaveChanges.TabIndex = 9;
@@ -142,7 +142,7 @@
             this.btnChangePassword.AutoSize = true;
             this.btnChangePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnChangePassword.Location = new System.Drawing.Point(700, 363);
+            this.btnChangePassword.Location = new System.Drawing.Point(696, 363);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(143, 28);
             this.btnChangePassword.TabIndex = 10;
@@ -169,7 +169,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UserProfile";
-            this.Size = new System.Drawing.Size(1277, 646);
+            this.Size = new System.Drawing.Size(1269, 642);
             this.ResumeLayout(false);
             this.PerformLayout();
 

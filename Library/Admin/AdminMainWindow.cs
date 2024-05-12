@@ -16,6 +16,7 @@ namespace Library
             {
                 Control currentControl = flowLayoutPanel1.Controls[0];
                 flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
                 currentControl.Dispose();
             }
 
@@ -30,6 +31,7 @@ namespace Library
             {
                 Control currentControl = flowLayoutPanel1.Controls[0];
                 flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
                 currentControl.Dispose(); // Освобождаем ресурсы
             }
 

@@ -1,4 +1,6 @@
-﻿using Library.User.UserControls;
+﻿using Library.Book.UserControls;
+using Library.DB;
+using Library.User.UserControls;
 using System;
 using System.Windows.Forms;
 
@@ -9,7 +11,11 @@ namespace Library
         public UserMainWindow()
         {
             InitializeComponent();
-
+        }
+        private void UserMainWindow_Load(object sender, EventArgs e)
+        {
+ 
+            btnBooksList.PerformClick();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -27,6 +33,7 @@ namespace Library
             {
                 Control currentControl = flowLayoutPanel1.Controls[0];
                 flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
                 currentControl.Dispose(); // Освобождаем ресурсы
             }
 
@@ -40,6 +47,27 @@ namespace Library
         private void MyUserControl_Refresh(object sender, EventArgs e)
         {
             btnProfile.PerformClick();
+        }
+
+        private void btnBooksList_Click(object sender, EventArgs e)
+        {
+            if (flowLayoutPanel1.Controls.Count > 0)
+            {
+                Control currentControl = flowLayoutPanel1.Controls[0];
+                flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
+                currentControl.Dispose();
+                
+            }
+
+
+            var allBooks = DbBook.GetAllBooks();
+            foreach (var book in allBooks)
+            {
+                BookControl bookControl = new BookControl(book);
+                flowLayoutPanel1.Controls.Add(bookControl);
+            }
+
         }
     }
 }
