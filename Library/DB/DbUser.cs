@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Library.DB;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -14,6 +15,8 @@ namespace Library
             MySqlConnection conn = GetConnection();
             try
             {
+                password = md5.hashPassword(password);
+
                 string query = "SELECT role_id FROM users WHERE login = @login AND password = @password";
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.AddWithValue("@login", login);
@@ -47,6 +50,7 @@ namespace Library
         }
         public static bool Register(string name, string login, string email, string password, string passwordRepeat)
         {
+            
             if (string.IsNullOrEmpty(name) || name.Split(' ').Length != 3)
             {
                 MessageBox.Show("Введите ФИО в формате 'Фамилия Имя Отчество'", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -70,6 +74,9 @@ namespace Library
             MySqlConnection conn = GetConnection();
             try
             {
+                password = md5.hashPassword(password);
+                passwordRepeat = md5.hashPassword(passwordRepeat);
+
                 string checkQueryLogin = "SELECT COUNT(*) FROM users WHERE login = @login";
                 MySqlCommand checkCommandLogin = new MySqlCommand(checkQueryLogin, conn);
                 checkCommandLogin.Parameters.AddWithValue("@login", login);
@@ -450,6 +457,8 @@ namespace Library
 
         public static bool EditUserPasswordByLogin(string login, string password, string passwordRepeat)
         {
+            password = md5.hashPassword(password);
+            passwordRepeat = md5.hashPassword(passwordRepeat);
             if (password != passwordRepeat)
             {
                 MessageBox.Show("Пароли не совпадают", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);

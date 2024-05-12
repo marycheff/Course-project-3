@@ -28,7 +28,7 @@ namespace Library.User
             bool passwordChanged = false;
             if (Login != null && Email == null)
             {
-               passwordChanged = DbUser.EditUserPasswordByLogin(Login, md5.hashPassword(textPassword.Text.Trim()), md5.hashPassword(textPasswordRepeat.Text.Trim()));
+               passwordChanged = DbUser.EditUserPasswordByLogin(Login, textPassword.Text.Trim(), textPasswordRepeat.Text.Trim());
             }
             else if (Email != null && Login == null) 
             {

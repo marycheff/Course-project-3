@@ -17,7 +17,7 @@ namespace Library
             string name = textName.Text.Trim();
             string login = textLogin.Text.Trim();
             string email = textEmail.Text.Trim();
-            string password = md5.hashPassword(textPassword.Text.Trim());
+            string password = textPassword.Text.Trim();
             int roleId = comboRole.SelectedIndex + 1;
 
             bool userAdded = DbUser.Register(name, login, email, password, roleId);
