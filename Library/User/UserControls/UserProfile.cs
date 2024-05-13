@@ -5,7 +5,7 @@ namespace Library.User.UserControls
 {
     public partial class UserProfile : UserControl
     {
-     
+
         public string Email { get; private set; }
         public string Login { get; private set; }
         public event EventHandler RefreshRequest;
@@ -18,7 +18,7 @@ namespace Library.User.UserControls
 
             Email = email;
             Login = login;
- 
+
 
             textName.Enabled = false;
             textLogin.Enabled = false;
@@ -38,24 +38,34 @@ namespace Library.User.UserControls
         {
             UserInfo userInfo = Registration.UserInfo;
             bool updated = false;
-            
-            if (Email != textEmail.Text.Trim() && Login != textLogin.Text.Trim())
+
+            string inputedLogin = textLogin.Text.Trim();
+            string inputedEmail = textEmail.Text.Trim();
+
+            if (Valid.ValidStrings(new string[] { inputedLogin, inputedEmail }) && Valid.ValidEmail(inputedEmail))
             {
-                updated = DbUser.EditUserInfo(userInfo.Id, textLogin.Text.Trim(), textEmail.Text.Trim());
+                if (Email != inputedEmail && Login != inputedLogin)
+                {
+                    updated = DbUser.EditUserInfo(userInfo.Id, inputedLogin, inputedEmail);
+                    Registration.UserInfo.Login = inputedLogin;
+                    Registration.UserInfo.Email = inputedEmail;
+                }
+                else if (Login != inputedLogin)
+                {
+                    updated = DbUser.EditUserLogin(userInfo.Id, inputedLogin);
+                    Registration.UserInfo.Login = inputedLogin;
+                }
+                else if (Email != textEmail.Text.Trim())
+                {
+                    updated = DbUser.EditUserEmail(userInfo.Id, inputedEmail);
+                    Registration.UserInfo.Email = inputedEmail;
+                }
+                else
+                {
+                    MessageBox.Show("Вы ничего не поменяли");
+                }
             }
-            else if(Login != textLogin.Text.Trim())
-            {
-                updated = DbUser.EditUserLogin(userInfo.Id, textLogin.Text.Trim());
-            }
-            else if (Email != textEmail.Text.Trim())
-            {
-                updated = DbUser.EditUserEmail(userInfo.Id, textEmail.Text.Trim());
-            }
-            else
-            {
-                MessageBox.Show("Вы ничего не поменяли");
-            }
-            
+
             if (updated)
             {
                 RefreshRequest?.Invoke(this, e);

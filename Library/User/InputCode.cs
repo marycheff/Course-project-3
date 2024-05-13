@@ -29,5 +29,10 @@ namespace Library
                 Close();
             }
         }
+
+        private void InputCode_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

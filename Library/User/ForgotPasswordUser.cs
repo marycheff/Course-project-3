@@ -20,53 +20,59 @@ namespace Library
             Email = textEmail.Text.Trim();
             Login = textLogin.Text.Trim();
 
-            bool emailValid = DbUser.CheckEmail(Email);
-            bool loginValid = DbUser.CheckLogin(Login);
-            bool emailAssociatedWithLogin = DbUser.EmailAssociatedWithLogin(Email, Login);
 
-            
-            if (emailValid && loginValid && emailAssociatedWithLogin)
+            if (Valid.ValidStrings(new string[] { Email, Login }) &&
+                Valid.ValidLogin(Login) &&
+                Valid.ValidEmail(Email))
             {
-                string code = SendMail.ResetPassword(Email);
-                MessageBox.Show($"Код отправлен на {Email}", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                InputCode inputCode = new InputCode(code);
-                inputCode.ShowDialog();
-                if (inputCode.CodesMatch)
+                bool emailExists = DbUser.CheckEmail(Email);
+                bool loginExists = DbUser.CheckLogin(Login);
+                bool emailAssociatedWithLogin = DbUser.EmailAssociatedWithLogin(Email, Login);
+
+
+                if (emailExists && loginExists && emailAssociatedWithLogin)
                 {
-                    SetNewPassword setNewPassword = new SetNewPassword();
-                    setNewPassword.SetLogin(Login);
-                    setNewPassword.ShowDialog();
-                    Close();
+                    string code = SendMail.ResetPassword(Email);
+                    MessageBox.Show($"Код отправлен на {Email}", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InputCode inputCode = new InputCode(code);
+                    inputCode.ShowDialog();
+                    if (inputCode.CodesMatch)
+                    {
+                        SetNewPassword setNewPassword = new SetNewPassword();
+                        setNewPassword.SetLogin(Login);
+                        setNewPassword.ShowDialog();
+                        Close();
+                    }
+                    else
+                    {
+                        btnSend.Text = "Отправить код еще раз";
+                        btnSend.Location = new Point(btnSend.Location.X - 21, btnSend.Location.Y);
+                    }
+                }
+                else if (!emailExists && loginExists)
+                {
+                    MessageBox.Show("Такого email нет в базе данных", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textEmail.Text = string.Empty;
+                }
+                else if (emailExists && !loginExists)
+                {
+                    MessageBox.Show("Такого логина нет в базе данных", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textLogin.Text = string.Empty;
+                }
+                else if (emailExists && loginExists && !emailAssociatedWithLogin)
+                {
+                    MessageBox.Show("Логин и email не относятся к одному и тому же пользователю", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textLogin.Text = string.Empty;
+                    textEmail.Text = string.Empty;
                 }
                 else
                 {
-                    btnSend.Text = "Отправить код еще раз";
-                    btnSend.Location = new Point(btnSend.Location.X - 21, btnSend.Location.Y);
+                    MessageBox.Show("Таких email и логина нет в базе данных", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textLogin.Text = string.Empty;
+                    textEmail.Text = string.Empty;
                 }
+                SendClicked = true;
             }
-            else if (!emailValid && loginValid)
-            {
-                MessageBox.Show("Такого email нет в базе данных", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textEmail.Text = string.Empty;
-            }
-            else if (emailValid && !loginValid)
-            {
-                MessageBox.Show("Такого логина нет в базе данных", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textLogin.Text = string.Empty;
-            }
-            else if (emailValid && loginValid && !emailAssociatedWithLogin)
-            {
-                MessageBox.Show("Логин и email не относятся к одному и тому же пользователю", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textLogin.Text = string.Empty;
-                textEmail.Text = string.Empty;
-            }
-            else
-            {
-                MessageBox.Show("Таких email и логина нет в базе данных", "Восстановление пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textLogin.Text = string.Empty;
-                textEmail.Text = string.Empty;
-            }
-            SendClicked = true;
             // Close();
         }
 

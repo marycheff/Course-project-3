@@ -175,6 +175,7 @@
     <Compile Include="User\UserMainWindow.Designer.cs">
       <DependentUpon>UserMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Valid.cs" />
     <EmbeddedResource Include="Admin\UserControls\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>

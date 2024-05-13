@@ -60,20 +60,49 @@ namespace Library
 
                 if (editForm.SaveClicked)
                 {
-                    bool edited = DbUser.EditUserInfo(id, editForm.Name, editForm.Login, editForm.Email, editForm.RoleId);
-                    if (edited)
+                    bool edited = false;
+                    string editedName = editForm.Name;
+                    string editedEmail = editForm.Email;
+                    string editedLogin = editForm.Login;
+                    int editedRoleId = editForm.RoleId;
+
+                    if (name != editedName && email == editedEmail && login == editedLogin)
                     {
-                        dataGridView1.Rows[e.RowIndex].Cells["username"].Value = editForm.Name;
-                        dataGridView1.Rows[e.RowIndex].Cells["login"].Value = editForm.Login;
-                        dataGridView1.Rows[e.RowIndex].Cells["email"].Value = editForm.Email;
-                        dataGridView1.Rows[e.RowIndex].Cells["role"].Value = DbUser.GetRoleName(editForm.RoleId);
-                        MessageBox.Show("Пользователь успешно изменен", "Редактирование пользователя", MessageBoxButtons.OK);
+                        edited = DbUser.EditUserName(id, editedName);
+                    }
+                    else if (email != editedEmail && login != editedLogin)
+                    {
+
+                        edited = DbUser.EditUserInfo(id, editedName, editedLogin, editedEmail, editedRoleId);
+                    }
+                    else if (login != editedLogin)
+                    {
+                        edited = DbUser.EditUserLogin(id, editedLogin);
+                    }
+                    else if (email != editedEmail)
+                    {
+                        edited = DbUser.EditUserEmail(id, editedEmail);
+                    }
+                    else if (roleId != editForm.RoleId)
+                    {
+                        edited = DbUser.EditUserRole(id, editedRoleId);  
                     }
                     else
                     {
-                        MessageBox.Show("Ошибка при изменении пользователя", "Редактирование пользователя", MessageBoxButtons.OK);
+                        MessageBox.Show("Вы ничего не поменяли");
+                    }
+
+
+                    if (edited)
+                    {
+                        dataGridView1.Rows[e.RowIndex].Cells["username"].Value = editedName;
+                        dataGridView1.Rows[e.RowIndex].Cells["login"].Value = editedLogin;
+                        dataGridView1.Rows[e.RowIndex].Cells["email"].Value = editedEmail;
+                        dataGridView1.Rows[e.RowIndex].Cells["role"].Value = DbUser.GetRoleName(editForm.RoleId);
                     }
                 }
+
+
             }
 
 

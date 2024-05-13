@@ -50,33 +50,12 @@ namespace Library
         }
         public static bool Register(string name, string login, string email, string password, string passwordRepeat)
         {
-            
-            if (string.IsNullOrEmpty(name) || name.Split(' ').Length != 3)
-            {
-                MessageBox.Show("Введите ФИО в формате 'Фамилия Имя Отчество'", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(passwordRepeat) || string.IsNullOrEmpty(email))
-            {
-                MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (password != passwordRepeat)
-            {
-                MessageBox.Show("Пароли не совпадают", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (!Regex.IsMatch(email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
-            {
-                MessageBox.Show("Email введен некорректно", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+
             MySqlConnection conn = GetConnection();
             try
             {
                 password = md5.hashPassword(password);
                 passwordRepeat = md5.hashPassword(passwordRepeat);
-
                 string checkQueryLogin = "SELECT COUNT(*) FROM users WHERE login = @login";
                 MySqlCommand checkCommandLogin = new MySqlCommand(checkQueryLogin, conn);
                 checkCommandLogin.Parameters.AddWithValue("@login", login);
@@ -128,23 +107,6 @@ namespace Library
         }
         public static bool Register(string name, string login, string email, string password, int roleId)
         {
-            if (string.IsNullOrEmpty(name) || name.Split(' ').Length != 3)
-            {
-                MessageBox.Show("Введите ФИО в формате \"Фамилия Имя Отчество\"", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
-            {
-                MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (!Regex.IsMatch(email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
-            {
-                MessageBox.Show("Email введен некорректно", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-
             MySqlConnection conn = GetConnection();
             try
             {
@@ -284,18 +246,6 @@ namespace Library
         }
         public static bool EditUserInfo(int id, string login, string email)
         {
-
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(email))
-            {
-                MessageBox.Show("Введены не все данные", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (!Regex.IsMatch(email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
-            {
-                MessageBox.Show("Email введен некорректно", "Ошибка регистрации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
             MySqlConnection conn = GetConnection();
             try
             {
@@ -328,8 +278,7 @@ namespace Library
                 if (rowsAffected > 0)
                 {
                     MessageBox.Show("Информация обновлена", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Registration.UserInfo.Login = login;
-                    Registration.UserInfo.Email = email;
+                   
                     return true;
                 }
                 else
@@ -381,7 +330,6 @@ namespace Library
                 if (rowsAffected > 0)
                 {
                     MessageBox.Show("Информация обновлена", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Registration.UserInfo.Login = login;
                     return true;
                 }
                 else
@@ -400,8 +348,6 @@ namespace Library
                 conn.Close();
             }
         }
-
-
         public static bool EditUserEmail(int id, string email)
         {
 
@@ -435,7 +381,6 @@ namespace Library
                 if (rowsAffected > 0)
                 {
                     MessageBox.Show("Информация обновлена", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Registration.UserInfo.Email = email;
                     return true;
                 }
                 else
@@ -454,16 +399,9 @@ namespace Library
                 conn.Close();
             }
         }
-
-        public static bool EditUserPasswordByLogin(string login, string password, string passwordRepeat)
+        public static bool EditUserPasswordByLogin(string login, string password)
         {
             password = md5.hashPassword(password);
-            passwordRepeat = md5.hashPassword(passwordRepeat);
-            if (password != passwordRepeat)
-            {
-                MessageBox.Show("Пароли не совпадают", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
 
             MySqlConnection conn = GetConnection();
             try
@@ -495,8 +433,78 @@ namespace Library
             }
         }
 
-        //Проверка
-        public static bool CheckEmail(string email)
+
+        public static bool EditUserName(int id, string name)
+        {
+
+            MySqlConnection conn = GetConnection();
+            try
+            {
+
+                string query = "UPDATE users SET name = @name WHERE id = @id";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@name", name);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Информация обновлена", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при изменении профиля", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при изменении профиля: " + ex.Message, "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+
+        }
+
+        public static bool EditUserRole(int id, int roleId)
+        {
+
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "UPDATE users SET role_id = @roleId WHERE id = @id";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@roleId", roleId);
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Информация обновлена", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка при изменении профиля", "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при изменении профиля: " + ex.Message, "Изменение профиля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+            //Проверка
+            public static bool CheckEmail(string email)
         {
             MySqlConnection conn = GetConnection();
             try

@@ -33,8 +33,15 @@ namespace Library
             Login = textLogin.Text.Trim();
             RoleId = comboRole.SelectedIndex + 1;
             Email = textEmail.Text.Trim();
-            SaveClicked = true;
-            Close();
+
+            if (Valid.ValidStrings(new string[] { Name, Email, Login }) &&
+                        Valid.ValidName(Name) &&
+                        Valid.ValidLogin(Login) &&
+                        Valid.ValidEmail(Email))
+            {
+                SaveClicked = true;
+                Close();
+            }
         }
     }
 

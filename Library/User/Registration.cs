@@ -1,5 +1,4 @@
-﻿using Library.DB;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Library
@@ -50,14 +49,23 @@ namespace Library
             string email = tabRegTextEmail.Text.Trim();
             string password = tabRegTextPassword.Text.Trim();
             string passwordRepeat = tabRegTextPasswordRepeat.Text.Trim();
-            bool registered = DbUser.Register(name, login, email, password, passwordRepeat);
+            bool registered = false;
+            if (Valid.ValidStrings(new string[] { name, login, email, password, passwordRepeat }) &&
+                Valid.ValidName(name) &&
+                Valid.ValidEmail(email) &&
+                Valid.ValidPasswords(password, passwordRepeat) &&
+                Valid.ValidName(name))
+            { 
+                registered = DbUser.Register(name, login, email, password, passwordRepeat); 
+            }
+
             if (registered)
             {
                 UserMainWindow userMainWindow = new UserMainWindow();
                 UserInfo = DbUser.GetUserInfoByLogin(login);
                 userMainWindow.Closed += (s, args) => Close();
                 Hide();
-                
+
 
                 userMainWindow.Show();
             }

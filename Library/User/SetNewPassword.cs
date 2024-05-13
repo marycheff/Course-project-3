@@ -28,9 +28,12 @@ namespace Library.User
             bool passwordChanged = false;
             if (Login != null && Email == null)
             {
-               passwordChanged = DbUser.EditUserPasswordByLogin(Login, textPassword.Text.Trim(), textPasswordRepeat.Text.Trim());
+                if (Valid.ValidPasswords(textPassword.Text.Trim(), textPasswordRepeat.Text.Trim())){
+                    passwordChanged = DbUser.EditUserPasswordByLogin(Login, textPassword.Text.Trim());
+
+                }
             }
-            else if (Email != null && Login == null) 
+            else if (Email != null && Login == null)
             {
 
             }
@@ -40,7 +43,7 @@ namespace Library.User
             }
             else
             {
-              
+
             }
         }
     }
