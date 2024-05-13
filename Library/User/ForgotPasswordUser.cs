@@ -21,9 +21,9 @@ namespace Library
             Login = textLogin.Text.Trim();
 
 
-            if (Valid.ValidStrings(new string[] { Email, Login }) &&
-                Valid.ValidLogin(Login) &&
-                Valid.ValidEmail(Email))
+            if (Validation.ValidStrings(new string[] { Email, Login }) &&
+                Validation.ValidLogin(Login) &&
+                Validation.ValidEmail(Email))
             {
                 bool emailExists = DbUser.CheckEmail(Email);
                 bool loginExists = DbUser.CheckLogin(Login);

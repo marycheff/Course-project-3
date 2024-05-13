@@ -50,11 +50,11 @@ namespace Library
             string password = tabRegTextPassword.Text.Trim();
             string passwordRepeat = tabRegTextPasswordRepeat.Text.Trim();
             bool registered = false;
-            if (Valid.ValidStrings(new string[] { name, login, email, password, passwordRepeat }) &&
-                Valid.ValidName(name) &&
-                Valid.ValidEmail(email) &&
-                Valid.ValidPasswords(password, passwordRepeat) &&
-                Valid.ValidName(name))
+            if (Validation.ValidStrings(new string[] { name, login, email, password, passwordRepeat }) &&
+                Validation.ValidName(name) &&
+                Validation.ValidEmail(email) &&
+                Validation.ValidPasswords(password, passwordRepeat) &&
+                Validation.ValidName(name))
             { 
                 registered = DbUser.Register(name, login, email, password, passwordRepeat); 
             }

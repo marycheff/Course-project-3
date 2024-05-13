@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Library
 {
-    public class Valid
+    public class Validation
     {
         public static bool ValidName(string name)
         {

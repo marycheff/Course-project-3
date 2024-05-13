@@ -34,10 +34,10 @@ namespace Library
             RoleId = comboRole.SelectedIndex + 1;
             Email = textEmail.Text.Trim();
 
-            if (Valid.ValidStrings(new string[] { Name, Email, Login }) &&
-                        Valid.ValidName(Name) &&
-                        Valid.ValidLogin(Login) &&
-                        Valid.ValidEmail(Email))
+            if (Validation.ValidStrings(new string[] { Name, Email, Login }) &&
+                        Validation.ValidName(Name) &&
+                        Validation.ValidLogin(Login) &&
+                        Validation.ValidEmail(Email))
             {
                 SaveClicked = true;
                 Close();

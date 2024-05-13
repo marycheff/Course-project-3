@@ -21,11 +21,11 @@ namespace Library
 
             bool userAdded = false;
 
-            if (Valid.ValidStrings(new string[] { name, login, email, password }) &&
-                Valid.ValidName(name) &&
-                Valid.ValidEmail(email) &&
-                Valid.ValidPassword(password) &&
-                Valid.ValidName(name))
+            if (Validation.ValidStrings(new string[] { name, login, email, password }) &&
+                Validation.ValidName(name) &&
+                Validation.ValidEmail(email) &&
+                Validation.ValidPassword(password) &&
+                Validation.ValidName(name))
             {
                 userAdded = DbUser.Register(name, login, email, password, roleId);
             }

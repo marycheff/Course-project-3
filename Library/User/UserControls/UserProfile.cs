@@ -42,7 +42,7 @@ namespace Library.User.UserControls
             string inputedLogin = textLogin.Text.Trim();
             string inputedEmail = textEmail.Text.Trim();
 
-            if (Valid.ValidStrings(new string[] { inputedLogin, inputedEmail }) && Valid.ValidEmail(inputedEmail))
+            if (Validation.ValidStrings(new string[] { inputedLogin, inputedEmail }) && Validation.ValidEmail(inputedEmail))
             {
                 if (Email != inputedEmail && Login != inputedLogin)
                 {

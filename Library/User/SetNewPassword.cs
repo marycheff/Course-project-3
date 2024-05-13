@@ -28,7 +28,7 @@ namespace Library.User
             bool passwordChanged = false;
             if (Login != null && Email == null)
             {
-                if (Valid.ValidPasswords(textPassword.Text.Trim(), textPasswordRepeat.Text.Trim())){
+                if (Validation.ValidPasswords(textPassword.Text.Trim(), textPasswordRepeat.Text.Trim())){
                     passwordChanged = DbUser.EditUserPasswordByLogin(Login, textPassword.Text.Trim());
 
                 }
