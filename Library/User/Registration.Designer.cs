@@ -72,7 +72,7 @@
             this.tabReg.Margin = new System.Windows.Forms.Padding(0);
             this.tabReg.Name = "tabReg";
             this.tabReg.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabReg.Size = new System.Drawing.Size(501, 386);
+            this.tabReg.Size = new System.Drawing.Size(501, 389);
             this.tabReg.TabIndex = 1;
             this.tabReg.Text = "Регистрация";
             // 
@@ -91,14 +91,14 @@
             this.tabRegTextEmail.Location = new System.Drawing.Point(10, 177);
             this.tabRegTextEmail.Name = "tabRegTextEmail";
             this.tabRegTextEmail.Size = new System.Drawing.Size(482, 26);
-            this.tabRegTextEmail.TabIndex = 13;
+            this.tabRegTextEmail.TabIndex = 3;
             // 
             // tabRegTextName
             // 
             this.tabRegTextName.Location = new System.Drawing.Point(10, 49);
             this.tabRegTextName.Name = "tabRegTextName";
             this.tabRegTextName.Size = new System.Drawing.Size(482, 26);
-            this.tabRegTextName.TabIndex = 11;
+            this.tabRegTextName.TabIndex = 1;
             // 
             // tabRegTextPasswordRepeat
             // 
@@ -106,7 +106,7 @@
             this.tabRegTextPasswordRepeat.Name = "tabRegTextPasswordRepeat";
             this.tabRegTextPasswordRepeat.PasswordChar = '•';
             this.tabRegTextPasswordRepeat.Size = new System.Drawing.Size(482, 26);
-            this.tabRegTextPasswordRepeat.TabIndex = 8;
+            this.tabRegTextPasswordRepeat.TabIndex = 5;
             // 
             // tabRegTextPassword
             // 
@@ -114,14 +114,14 @@
             this.tabRegTextPassword.Name = "tabRegTextPassword";
             this.tabRegTextPassword.PasswordChar = '•';
             this.tabRegTextPassword.Size = new System.Drawing.Size(482, 26);
-            this.tabRegTextPassword.TabIndex = 6;
+            this.tabRegTextPassword.TabIndex = 4;
             // 
             // tabRegTextLogin
             // 
             this.tabRegTextLogin.Location = new System.Drawing.Point(10, 113);
             this.tabRegTextLogin.Name = "tabRegTextLogin";
             this.tabRegTextLogin.Size = new System.Drawing.Size(482, 26);
-            this.tabRegTextLogin.TabIndex = 4;
+            this.tabRegTextLogin.TabIndex = 2;
             // 
             // tabRegLabelName
             // 
@@ -138,7 +138,7 @@
             this.tabRegButton.Location = new System.Drawing.Point(142, 346);
             this.tabRegButton.Name = "tabRegButton";
             this.tabRegButton.Size = new System.Drawing.Size(216, 31);
-            this.tabRegButton.TabIndex = 10;
+            this.tabRegButton.TabIndex = 6;
             this.tabRegButton.Text = "Зарегистрироваться";
             this.tabRegButton.UseVisualStyleBackColor = true;
             // 
