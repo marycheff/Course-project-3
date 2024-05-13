@@ -24,6 +24,7 @@ namespace Library
                 rowData[3] = userData["email"];
                 rowData[4] = userData["role"];
                 dataGridView1.Rows.Add(rowData);
+                dataGridView1.Sort(dataGridView1.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
             }
         }
 
