@@ -39,19 +39,24 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.BackColor = System.Drawing.Color.DarkGray;
             this.panel1.Controls.Add(this.btnBooksList);
             this.panel1.Controls.Add(this.btnProfile);
             this.panel1.Controls.Add(this.btnLogout);
             this.panel1.Location = new System.Drawing.Point(-5, -2);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1269, 42);
+            this.panel1.Size = new System.Drawing.Size(1278, 42);
             this.panel1.TabIndex = 4;
             // 
             // btnBooksList
             // 
-            this.btnBooksList.BackColor = System.Drawing.Color.Transparent;
+            this.btnBooksList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(105)))), ((int)(((byte)(115)))));
+            this.btnBooksList.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(115)))), ((int)(((byte)(128)))));
+            this.btnBooksList.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(90)))), ((int)(((byte)(99)))));
+            this.btnBooksList.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(90)))), ((int)(((byte)(99)))));
+            this.btnBooksList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBooksList.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btnBooksList.Location = new System.Drawing.Point(604, 6);
             this.btnBooksList.Name = "btnBooksList";
             this.btnBooksList.Size = new System.Drawing.Size(61, 31);
@@ -85,10 +90,11 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(-5, 41);
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(-5, 38);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1269, 642);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1269, 645);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // UserMainWindow
@@ -108,7 +114,6 @@
             this.Text = "Библиотека";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.Load += UserMainWindow_Load;
 
         }
 

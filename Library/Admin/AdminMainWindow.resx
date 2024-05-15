@@ -121,7 +121,7 @@
   <data name="btnLogout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1
-        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAADsAAAA7AAWrWiQkAAAAHdElNRQfoBBwNJRQjfephAAAA
+        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAADr4AAA6+AepCscAAAAAHdElNRQfoBBwNJRQjfephAAAA
         GXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAuRJREFUaEPt2UuojkEcx/EXB3FCoVxy
         2cp9Q4qF5JINZSmFkJXkshIpsSBZ2biGUlgK6XRkw+p0XJKFci8Jucsl1++vjKa38TzzzPPM+8zi/OrT
         qbf3zMz/fZ9n3plnGo6MxB48xA/8jug7HkD9qd/SGYeL+AVXh7GoP/Wr/oPTD8fh6kBaUdQxaBxBmYk3
@@ -188,7 +188,7 @@
   <data name="btnDeleteUser.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1
-        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAADdIAAA3SAW+S/o4AAAAHdElNRQfoBBUTAgcWttgqAAAA
+        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAADdAAAA3QARBsPQcAAAAHdElNRQfoBBUTAgcWttgqAAAA
         GXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAx5JREFUaEPN2knITlEcx/HHPM+UWeaF
         ZEFCUoSQRIZsZNhZsFYIK2RBxmQhRIZiYYoMhZAFEkmIjEXmefb9LZ56evrf+5x7z51+9am33vee5//c
         e+6555z7lhJMa8zAHtzDZ/zBdzzDSSxGTxQqdTEJp/EF/0L8xm3oi7RC7mmGlfgAq+AgujKH0Ru5pSk2

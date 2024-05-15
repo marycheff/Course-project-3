@@ -49,53 +49,58 @@
             this.panel1.Controls.Add(this.btnAddUser);
             this.panel1.Location = new System.Drawing.Point(-5, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(100, 684);
+            this.panel1.Size = new System.Drawing.Size(203, 684);
             this.panel1.TabIndex = 1;
             // 
             // btnLogout
             // 
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnLogout.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.Image")));
-            this.btnLogout.Location = new System.Drawing.Point(7, 606);
+            this.btnLogout.Location = new System.Drawing.Point(0, 253);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(90, 63);
+            this.btnLogout.Size = new System.Drawing.Size(203, 63);
             this.btnLogout.TabIndex = 4;
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // button3
             // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(7, 524);
+            this.button3.Location = new System.Drawing.Point(0, 190);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(90, 63);
+            this.button3.Size = new System.Drawing.Size(203, 63);
             this.button3.TabIndex = 3;
             this.button3.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(7, 455);
+            this.button1.Location = new System.Drawing.Point(0, 127);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 63);
+            this.button1.Size = new System.Drawing.Size(203, 63);
             this.button1.TabIndex = 2;
             this.button1.UseVisualStyleBackColor = true;
             // 
             // btnDeleteUser
             // 
+            this.btnDeleteUser.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDeleteUser.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteUser.Image")));
-            this.btnDeleteUser.Location = new System.Drawing.Point(7, 83);
+            this.btnDeleteUser.Location = new System.Drawing.Point(0, 63);
             this.btnDeleteUser.Name = "btnDeleteUser";
-            this.btnDeleteUser.Size = new System.Drawing.Size(90, 63);
+            this.btnDeleteUser.Size = new System.Drawing.Size(203, 64);
             this.btnDeleteUser.TabIndex = 1;
             this.btnDeleteUser.UseVisualStyleBackColor = true;
             this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
             // btnAddUser
             // 
+            this.btnAddUser.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnAddUser.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUser.Image")));
-            this.btnAddUser.Location = new System.Drawing.Point(7, 14);
+            this.btnAddUser.Location = new System.Drawing.Point(0, 0);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(90, 63);
+            this.btnAddUser.Size = new System.Drawing.Size(203, 63);
             this.btnAddUser.TabIndex = 0;
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
@@ -103,10 +108,11 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(98, 0);
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.flowLayoutPanel1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(194, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1171, 684);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1075, 693);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // AdminMainWindow
@@ -117,7 +123,7 @@
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
@@ -125,7 +131,7 @@
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "AdminMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Библиотека - панель администратора";
+            this.Text = "Библиотека - Панель администратора";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

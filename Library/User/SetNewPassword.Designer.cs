@@ -38,10 +38,10 @@
             // 
             // textPasswordRepeat
             // 
-            this.textPasswordRepeat.Location = new System.Drawing.Point(12, 130);
+            this.textPasswordRepeat.Location = new System.Drawing.Point(12, 145);
             this.textPasswordRepeat.Name = "textPasswordRepeat";
             this.textPasswordRepeat.PasswordChar = '•';
-            this.textPasswordRepeat.Size = new System.Drawing.Size(450, 26);
+            this.textPasswordRepeat.Size = new System.Drawing.Size(450, 27);
             this.textPasswordRepeat.TabIndex = 13;
             // 
             // textPassword
@@ -49,26 +49,33 @@
             this.textPassword.Location = new System.Drawing.Point(12, 66);
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '•';
-            this.textPassword.Size = new System.Drawing.Size(450, 26);
+            this.textPassword.Size = new System.Drawing.Size(450, 27);
             this.textPassword.TabIndex = 11;
             // 
             // btnSave
             // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(105)))), ((int)(((byte)(115)))));
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(115)))), ((int)(((byte)(128)))));
+            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(90)))), ((int)(((byte)(99)))));
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(90)))), ((int)(((byte)(99)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(207)))));
             this.btnSave.Location = new System.Drawing.Point(124, 298);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(216, 31);
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Сохранить";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tabRegLabelPasswordRepeat
             // 
             this.tabRegLabelPasswordRepeat.AutoSize = true;
-            this.tabRegLabelPasswordRepeat.ForeColor = System.Drawing.Color.DimGray;
-            this.tabRegLabelPasswordRepeat.Location = new System.Drawing.Point(12, 107);
+            this.tabRegLabelPasswordRepeat.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabRegLabelPasswordRepeat.ForeColor = System.Drawing.Color.Gainsboro;
+            this.tabRegLabelPasswordRepeat.Location = new System.Drawing.Point(12, 119);
             this.tabRegLabelPasswordRepeat.Name = "tabRegLabelPasswordRepeat";
-            this.tabRegLabelPasswordRepeat.Size = new System.Drawing.Size(132, 20);
+            this.tabRegLabelPasswordRepeat.Size = new System.Drawing.Size(152, 23);
             this.tabRegLabelPasswordRepeat.TabIndex = 14;
             this.tabRegLabelPasswordRepeat.Text = "Пароль еще раз";
             this.tabRegLabelPasswordRepeat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -76,24 +83,26 @@
             // tabRegLabelPassword
             // 
             this.tabRegLabelPassword.AutoSize = true;
-            this.tabRegLabelPassword.ForeColor = System.Drawing.Color.DimGray;
-            this.tabRegLabelPassword.Location = new System.Drawing.Point(12, 43);
+            this.tabRegLabelPassword.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabRegLabelPassword.ForeColor = System.Drawing.Color.Gainsboro;
+            this.tabRegLabelPassword.Location = new System.Drawing.Point(12, 40);
             this.tabRegLabelPassword.Name = "tabRegLabelPassword";
-            this.tabRegLabelPassword.Size = new System.Drawing.Size(67, 20);
+            this.tabRegLabelPassword.Size = new System.Drawing.Size(75, 23);
             this.tabRegLabelPassword.TabIndex = 12;
             this.tabRegLabelPassword.Text = "Пароль";
             // 
             // SetNewPassword
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(474, 341);
             this.Controls.Add(this.textPasswordRepeat);
             this.Controls.Add(this.textPassword);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tabRegLabelPasswordRepeat);
             this.Controls.Add(this.tabRegLabelPassword);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "SetNewPassword";

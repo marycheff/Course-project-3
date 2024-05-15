@@ -36,7 +36,8 @@
             // textTitle
             // 
             this.textTitle.AutoSize = true;
-            this.textTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textTitle.ForeColor = System.Drawing.Color.White;
             this.textTitle.Location = new System.Drawing.Point(3, 306);
             this.textTitle.Name = "textTitle";
             this.textTitle.Size = new System.Drawing.Size(193, 15);
@@ -46,8 +47,8 @@
             // textAuthor
             // 
             this.textAuthor.AutoSize = true;
-            this.textAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textAuthor.ForeColor = System.Drawing.Color.DimGray;
+            this.textAuthor.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textAuthor.ForeColor = System.Drawing.Color.DarkGray;
             this.textAuthor.Location = new System.Drawing.Point(3, 321);
             this.textAuthor.Name = "textAuthor";
             this.textAuthor.Size = new System.Drawing.Size(83, 16);
@@ -66,13 +67,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.textAuthor);
             this.Controls.Add(this.textTitle);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(15, 0, 0, 9);
             this.Name = "BookControl";
-            this.Size = new System.Drawing.Size(233, 346);
+            this.Size = new System.Drawing.Size(235, 348);
             this.ResumeLayout(false);
             this.PerformLayout();
 

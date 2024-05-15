@@ -82,5 +82,10 @@ namespace Library.User.UserControls
             RefreshRequest?.Invoke(this, e);
 
         }
+
+        private void UserProfile_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

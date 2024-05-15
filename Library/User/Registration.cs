@@ -82,5 +82,15 @@ namespace Library
             forgotPasswordUser.ShowDialog();
 
         }
+
+        private void tabAuth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabReg_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
