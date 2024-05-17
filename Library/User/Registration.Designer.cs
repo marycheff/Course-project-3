@@ -35,7 +35,7 @@ namespace Library
             this.tabReg = new System.Windows.Forms.TabPage();
             this.tabRegLabelEmail = new System.Windows.Forms.Label();
             this.tabRegTextEmail = new System.Windows.Forms.TextBox();
-            this.tabRegTextName = new System.Windows.Forms.TextBox();
+            this.tabRegTextSurname = new System.Windows.Forms.TextBox();
             this.tabRegTextPasswordRepeat = new System.Windows.Forms.TextBox();
             this.tabRegTextPassword = new System.Windows.Forms.TextBox();
             this.tabRegTextLogin = new System.Windows.Forms.TextBox();
@@ -52,6 +52,10 @@ namespace Library
             this.tabAuthTextLogin = new System.Windows.Forms.TextBox();
             this.tabAuthLabelLogin = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabRegTextName = new System.Windows.Forms.TextBox();
+            this.tabRegTextPatronymic = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabReg.SuspendLayout();
             this.tabAuth.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -60,9 +64,13 @@ namespace Library
             // tabReg
             // 
             this.tabReg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.tabReg.Controls.Add(this.label2);
+            this.tabReg.Controls.Add(this.label1);
+            this.tabReg.Controls.Add(this.tabRegTextPatronymic);
+            this.tabReg.Controls.Add(this.tabRegTextName);
             this.tabReg.Controls.Add(this.tabRegLabelEmail);
             this.tabReg.Controls.Add(this.tabRegTextEmail);
-            this.tabReg.Controls.Add(this.tabRegTextName);
+            this.tabReg.Controls.Add(this.tabRegTextSurname);
             this.tabReg.Controls.Add(this.tabRegTextPasswordRepeat);
             this.tabReg.Controls.Add(this.tabRegTextPassword);
             this.tabReg.Controls.Add(this.tabRegTextLogin);
@@ -71,12 +79,13 @@ namespace Library
             this.tabReg.Controls.Add(this.tabRegLabelPasswordRepeat);
             this.tabReg.Controls.Add(this.tabRegLabelPassword);
             this.tabReg.Controls.Add(this.tabRegLabelLogin);
+            this.tabReg.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabReg.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tabReg.Location = new System.Drawing.Point(4, 28);
+            this.tabReg.Location = new System.Drawing.Point(4, 30);
             this.tabReg.Margin = new System.Windows.Forms.Padding(0);
             this.tabReg.Name = "tabReg";
             this.tabReg.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabReg.Size = new System.Drawing.Size(501, 390);
+            this.tabReg.Size = new System.Drawing.Size(537, 454);
             this.tabReg.TabIndex = 1;
             this.tabReg.Text = "Регистрация";
             this.tabReg.Click += new System.EventHandler(this.tabReg_Click);
@@ -84,59 +93,60 @@ namespace Library
             // tabRegLabelEmail
             // 
             this.tabRegLabelEmail.AutoSize = true;
+            this.tabRegLabelEmail.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabRegLabelEmail.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tabRegLabelEmail.Location = new System.Drawing.Point(13, 133);
+            this.tabRegLabelEmail.Location = new System.Drawing.Point(25, 174);
             this.tabRegLabelEmail.Name = "tabRegLabelEmail";
-            this.tabRegLabelEmail.Size = new System.Drawing.Size(48, 19);
+            this.tabRegLabelEmail.Size = new System.Drawing.Size(55, 23);
             this.tabRegLabelEmail.TabIndex = 14;
             this.tabRegLabelEmail.Text = "Email";
             // 
             // tabRegTextEmail
             // 
-            this.tabRegTextEmail.Location = new System.Drawing.Point(9, 156);
+            this.tabRegTextEmail.Location = new System.Drawing.Point(29, 200);
             this.tabRegTextEmail.Name = "tabRegTextEmail";
-            this.tabRegTextEmail.Size = new System.Drawing.Size(482, 27);
-            this.tabRegTextEmail.TabIndex = 3;
+            this.tabRegTextEmail.Size = new System.Drawing.Size(482, 30);
+            this.tabRegTextEmail.TabIndex = 5;
             // 
-            // tabRegTextName
+            // tabRegTextSurname
             // 
-            this.tabRegTextName.Location = new System.Drawing.Point(9, 32);
-            this.tabRegTextName.Name = "tabRegTextName";
-            this.tabRegTextName.Size = new System.Drawing.Size(482, 27);
-            this.tabRegTextName.TabIndex = 1;
+            this.tabRegTextSurname.Location = new System.Drawing.Point(29, 48);
+            this.tabRegTextSurname.Name = "tabRegTextSurname";
+            this.tabRegTextSurname.Size = new System.Drawing.Size(157, 30);
+            this.tabRegTextSurname.TabIndex = 1;
             // 
             // tabRegTextPasswordRepeat
             // 
-            this.tabRegTextPasswordRepeat.Location = new System.Drawing.Point(9, 280);
+            this.tabRegTextPasswordRepeat.Location = new System.Drawing.Point(29, 352);
             this.tabRegTextPasswordRepeat.Name = "tabRegTextPasswordRepeat";
             this.tabRegTextPasswordRepeat.PasswordChar = '•';
-            this.tabRegTextPasswordRepeat.Size = new System.Drawing.Size(482, 27);
-            this.tabRegTextPasswordRepeat.TabIndex = 5;
+            this.tabRegTextPasswordRepeat.Size = new System.Drawing.Size(482, 30);
+            this.tabRegTextPasswordRepeat.TabIndex = 7;
             // 
             // tabRegTextPassword
             // 
-            this.tabRegTextPassword.Location = new System.Drawing.Point(9, 218);
+            this.tabRegTextPassword.Location = new System.Drawing.Point(29, 276);
             this.tabRegTextPassword.Name = "tabRegTextPassword";
             this.tabRegTextPassword.PasswordChar = '•';
-            this.tabRegTextPassword.Size = new System.Drawing.Size(482, 27);
-            this.tabRegTextPassword.TabIndex = 4;
+            this.tabRegTextPassword.Size = new System.Drawing.Size(482, 30);
+            this.tabRegTextPassword.TabIndex = 6;
             // 
             // tabRegTextLogin
             // 
-            this.tabRegTextLogin.Location = new System.Drawing.Point(9, 94);
+            this.tabRegTextLogin.Location = new System.Drawing.Point(29, 124);
             this.tabRegTextLogin.Name = "tabRegTextLogin";
-            this.tabRegTextLogin.Size = new System.Drawing.Size(482, 27);
-            this.tabRegTextLogin.TabIndex = 2;
+            this.tabRegTextLogin.Size = new System.Drawing.Size(482, 30);
+            this.tabRegTextLogin.TabIndex = 4;
             // 
             // tabRegLabelName
             // 
             this.tabRegLabelName.AutoSize = true;
             this.tabRegLabelName.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tabRegLabelName.Location = new System.Drawing.Point(13, 9);
+            this.tabRegLabelName.Location = new System.Drawing.Point(25, 22);
             this.tabRegLabelName.Name = "tabRegLabelName";
-            this.tabRegLabelName.Size = new System.Drawing.Size(160, 19);
+            this.tabRegLabelName.Size = new System.Drawing.Size(89, 23);
             this.tabRegLabelName.TabIndex = 12;
-            this.tabRegLabelName.Text = "ФИО (через пробел)";
+            this.tabRegLabelName.Text = "Фамилия";
             // 
             // tabRegButton
             // 
@@ -145,20 +155,22 @@ namespace Library
             this.tabRegButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(90)))), ((int)(((byte)(99)))));
             this.tabRegButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(90)))), ((int)(((byte)(99)))));
             this.tabRegButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tabRegButton.Location = new System.Drawing.Point(142, 342);
+            this.tabRegButton.Location = new System.Drawing.Point(170, 408);
             this.tabRegButton.Name = "tabRegButton";
-            this.tabRegButton.Size = new System.Drawing.Size(216, 31);
-            this.tabRegButton.TabIndex = 6;
+            this.tabRegButton.Size = new System.Drawing.Size(207, 38);
+            this.tabRegButton.TabIndex = 8;
             this.tabRegButton.Text = "Зарегистрироваться";
             this.tabRegButton.UseVisualStyleBackColor = false;
+            this.tabRegButton.Click += new System.EventHandler(this.tabRegButton_Click_1);
             // 
             // tabRegLabelPasswordRepeat
             // 
             this.tabRegLabelPasswordRepeat.AutoSize = true;
+            this.tabRegLabelPasswordRepeat.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabRegLabelPasswordRepeat.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tabRegLabelPasswordRepeat.Location = new System.Drawing.Point(13, 257);
+            this.tabRegLabelPasswordRepeat.Location = new System.Drawing.Point(25, 326);
             this.tabRegLabelPasswordRepeat.Name = "tabRegLabelPasswordRepeat";
-            this.tabRegLabelPasswordRepeat.Size = new System.Drawing.Size(126, 19);
+            this.tabRegLabelPasswordRepeat.Size = new System.Drawing.Size(152, 23);
             this.tabRegLabelPasswordRepeat.TabIndex = 9;
             this.tabRegLabelPasswordRepeat.Text = "Пароль еще раз";
             this.tabRegLabelPasswordRepeat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -166,20 +178,22 @@ namespace Library
             // tabRegLabelPassword
             // 
             this.tabRegLabelPassword.AutoSize = true;
+            this.tabRegLabelPassword.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabRegLabelPassword.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tabRegLabelPassword.Location = new System.Drawing.Point(13, 195);
+            this.tabRegLabelPassword.Location = new System.Drawing.Point(25, 250);
             this.tabRegLabelPassword.Name = "tabRegLabelPassword";
-            this.tabRegLabelPassword.Size = new System.Drawing.Size(63, 19);
+            this.tabRegLabelPassword.Size = new System.Drawing.Size(75, 23);
             this.tabRegLabelPassword.TabIndex = 7;
             this.tabRegLabelPassword.Text = "Пароль";
             // 
             // tabRegLabelLogin
             // 
             this.tabRegLabelLogin.AutoSize = true;
+            this.tabRegLabelLogin.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabRegLabelLogin.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tabRegLabelLogin.Location = new System.Drawing.Point(13, 71);
+            this.tabRegLabelLogin.Location = new System.Drawing.Point(25, 98);
             this.tabRegLabelLogin.Name = "tabRegLabelLogin";
-            this.tabRegLabelLogin.Size = new System.Drawing.Size(54, 19);
+            this.tabRegLabelLogin.Size = new System.Drawing.Size(63, 23);
             this.tabRegLabelLogin.TabIndex = 5;
             this.tabRegLabelLogin.Text = "Логин";
             // 
@@ -193,11 +207,11 @@ namespace Library
             this.tabAuth.Controls.Add(this.tabAuthTextLogin);
             this.tabAuth.Controls.Add(this.tabAuthLabelLogin);
             this.tabAuth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tabAuth.Location = new System.Drawing.Point(4, 28);
+            this.tabAuth.Location = new System.Drawing.Point(4, 30);
             this.tabAuth.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabAuth.Name = "tabAuth";
             this.tabAuth.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabAuth.Size = new System.Drawing.Size(501, 390);
+            this.tabAuth.Size = new System.Drawing.Size(537, 454);
             this.tabAuth.TabIndex = 0;
             this.tabAuth.Text = "Вход";
             this.tabAuth.Click += new System.EventHandler(this.tabAuth_Click);
@@ -211,7 +225,7 @@ namespace Library
             this.btnResetPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetPass.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnResetPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(207)))));
-            this.btnResetPass.Location = new System.Drawing.Point(377, 180);
+            this.btnResetPass.Location = new System.Drawing.Point(396, 235);
             this.btnResetPass.Name = "btnResetPass";
             this.btnResetPass.Size = new System.Drawing.Size(110, 24);
             this.btnResetPass.TabIndex = 12;
@@ -226,10 +240,11 @@ namespace Library
             this.tabAuthButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(90)))), ((int)(((byte)(99)))));
             this.tabAuthButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(90)))), ((int)(((byte)(99)))));
             this.tabAuthButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tabAuthButton.Font = new System.Drawing.Font("Tahoma", 14F);
             this.tabAuthButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(207)))));
-            this.tabAuthButton.Location = new System.Drawing.Point(161, 339);
+            this.tabAuthButton.Location = new System.Drawing.Point(191, 406);
             this.tabAuthButton.Name = "tabAuthButton";
-            this.tabAuthButton.Size = new System.Drawing.Size(188, 31);
+            this.tabAuthButton.Size = new System.Drawing.Size(168, 40);
             this.tabAuthButton.TabIndex = 11;
             this.tabAuthButton.Text = "Войти";
             this.tabAuthButton.UseVisualStyleBackColor = false;
@@ -239,7 +254,7 @@ namespace Library
             this.tabAuthLabelPassword.AutoSize = true;
             this.tabAuthLabelPassword.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabAuthLabelPassword.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tabAuthLabelPassword.Location = new System.Drawing.Point(7, 116);
+            this.tabAuthLabelPassword.Location = new System.Drawing.Point(26, 173);
             this.tabAuthLabelPassword.Name = "tabAuthLabelPassword";
             this.tabAuthLabelPassword.Size = new System.Drawing.Size(75, 23);
             this.tabAuthLabelPassword.TabIndex = 3;
@@ -248,7 +263,7 @@ namespace Library
             // tabAuthTextPassword
             // 
             this.tabAuthTextPassword.Font = new System.Drawing.Font("Tahoma", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabAuthTextPassword.Location = new System.Drawing.Point(11, 144);
+            this.tabAuthTextPassword.Location = new System.Drawing.Point(30, 199);
             this.tabAuthTextPassword.Name = "tabAuthTextPassword";
             this.tabAuthTextPassword.PasswordChar = '•';
             this.tabAuthTextPassword.Size = new System.Drawing.Size(476, 28);
@@ -259,7 +274,7 @@ namespace Library
             this.tabAuthTextLogin.BackColor = System.Drawing.SystemColors.Window;
             this.tabAuthTextLogin.Font = new System.Drawing.Font("Tahoma", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabAuthTextLogin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tabAuthTextLogin.Location = new System.Drawing.Point(11, 66);
+            this.tabAuthTextLogin.Location = new System.Drawing.Point(30, 121);
             this.tabAuthTextLogin.Name = "tabAuthTextLogin";
             this.tabAuthTextLogin.Size = new System.Drawing.Size(476, 28);
             this.tabAuthTextLogin.TabIndex = 0;
@@ -269,7 +284,7 @@ namespace Library
             this.tabAuthLabelLogin.AutoSize = true;
             this.tabAuthLabelLogin.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabAuthLabelLogin.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tabAuthLabelLogin.Location = new System.Drawing.Point(7, 38);
+            this.tabAuthLabelLogin.Location = new System.Drawing.Point(26, 95);
             this.tabAuthLabelLogin.Name = "tabAuthLabelLogin";
             this.tabAuthLabelLogin.Size = new System.Drawing.Size(63, 23);
             this.tabAuthLabelLogin.TabIndex = 1;
@@ -280,28 +295,60 @@ namespace Library
             this.tabControl1.Controls.Add(this.tabAuth);
             this.tabControl1.Controls.Add(this.tabReg);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tabControl1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabControl1.Font = new System.Drawing.Font("Tahoma", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl1.Location = new System.Drawing.Point(-5, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(509, 422);
+            this.tabControl1.Size = new System.Drawing.Size(545, 488);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabRegTextName
+            // 
+            this.tabRegTextName.Location = new System.Drawing.Point(192, 48);
+            this.tabRegTextName.Name = "tabRegTextName";
+            this.tabRegTextName.Size = new System.Drawing.Size(156, 30);
+            this.tabRegTextName.TabIndex = 2;
+            // 
+            // tabRegTextPatronymic
+            // 
+            this.tabRegTextPatronymic.Location = new System.Drawing.Point(354, 48);
+            this.tabRegTextPatronymic.Name = "tabRegTextPatronymic";
+            this.tabRegTextPatronymic.Size = new System.Drawing.Size(157, 30);
+            this.tabRegTextPatronymic.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label1.Location = new System.Drawing.Point(188, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 23);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Имя";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label2.Location = new System.Drawing.Point(354, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 23);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Отчество";
             // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 411);
+            this.ClientSize = new System.Drawing.Size(534, 481);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 450);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(515, 450);
             this.Name = "Registration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Библиотека - Вход в систему";
@@ -319,7 +366,7 @@ namespace Library
         private System.Windows.Forms.TabPage tabReg;
         private System.Windows.Forms.Label tabRegLabelEmail;
         private System.Windows.Forms.TextBox tabRegTextEmail;
-        private System.Windows.Forms.TextBox tabRegTextName;
+        private System.Windows.Forms.TextBox tabRegTextSurname;
         private System.Windows.Forms.TextBox tabRegTextPassword;
         private System.Windows.Forms.TextBox tabRegTextLogin;
         private System.Windows.Forms.Label tabRegLabelName;
@@ -336,6 +383,10 @@ namespace Library
         private System.Windows.Forms.Label tabAuthLabelLogin;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TextBox tabRegTextPasswordRepeat;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tabRegTextPatronymic;
+        private System.Windows.Forms.TextBox tabRegTextName;
     }
 }
 

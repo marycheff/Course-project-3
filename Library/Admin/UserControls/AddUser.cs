@@ -13,7 +13,7 @@ namespace Library
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            string name = textName.Text.Trim();
+            string name = TextSurname.Text.Trim() + " " + TextName.Text.Trim() + " " + TextPatronymic.Text.Trim();
             string login = textLogin.Text.Trim();
             string email = textEmail.Text.Trim();
             string password = textPassword.Text.Trim();
@@ -32,7 +32,7 @@ namespace Library
 
             if (userAdded)
             {
-                textName.Text = string.Empty;
+                TextSurname.Text = string.Empty;
                 textLogin.Text = string.Empty;
                 textPassword.Text = string.Empty;
                 textEmail.Text = string.Empty;

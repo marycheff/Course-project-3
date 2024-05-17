@@ -34,12 +34,16 @@
             this.tabAuthLabelPassword = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textName = new System.Windows.Forms.TextBox();
+            this.TextSurname = new System.Windows.Forms.TextBox();
             this.textLogin = new System.Windows.Forms.TextBox();
             this.comboRole = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textPassword = new System.Windows.Forms.TextBox();
             this.textEmail = new System.Windows.Forms.TextBox();
+            this.TextName = new System.Windows.Forms.TextBox();
+            this.TextPatronymic = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -49,9 +53,9 @@
             this.label1.ForeColor = System.Drawing.Color.Gainsboro;
             this.label1.Location = new System.Drawing.Point(297, 162);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 25);
+            this.label1.Size = new System.Drawing.Size(89, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "ФИО";
+            this.label1.Text = "Фамилия";
             // 
             // label2
             // 
@@ -60,7 +64,7 @@
             this.label2.ForeColor = System.Drawing.Color.Gainsboro;
             this.label2.Location = new System.Drawing.Point(298, 238);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 25);
+            this.label2.Size = new System.Drawing.Size(63, 23);
             this.label2.TabIndex = 3;
             this.label2.Text = "Логин";
             // 
@@ -75,7 +79,7 @@
             this.btnAddUser.Location = new System.Drawing.Point(385, 615);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(302, 34);
-            this.btnAddUser.TabIndex = 6;
+            this.btnAddUser.TabIndex = 7;
             this.btnAddUser.Text = "Добавить пользователя";
             this.btnAddUser.UseVisualStyleBackColor = false;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
@@ -87,7 +91,7 @@
             this.tabAuthLabelPassword.ForeColor = System.Drawing.Color.Gainsboro;
             this.tabAuthLabelPassword.Location = new System.Drawing.Point(297, 392);
             this.tabAuthLabelPassword.Name = "tabAuthLabelPassword";
-            this.tabAuthLabelPassword.Size = new System.Drawing.Size(78, 25);
+            this.tabAuthLabelPassword.Size = new System.Drawing.Size(75, 23);
             this.tabAuthLabelPassword.TabIndex = 8;
             this.tabAuthLabelPassword.Text = "Пароль";
             // 
@@ -98,7 +102,7 @@
             this.label4.ForeColor = System.Drawing.Color.Gainsboro;
             this.label4.Location = new System.Drawing.Point(385, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(302, 30);
+            this.label4.Size = new System.Drawing.Size(311, 25);
             this.label4.TabIndex = 9;
             this.label4.Text = "ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ";
             // 
@@ -109,18 +113,18 @@
             this.label5.ForeColor = System.Drawing.Color.Gainsboro;
             this.label5.Location = new System.Drawing.Point(297, 314);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 25);
+            this.label5.Size = new System.Drawing.Size(55, 23);
             this.label5.TabIndex = 11;
             this.label5.Text = "Email";
             // 
-            // textName
+            // TextSurname
             // 
-            this.textName.Font = new System.Drawing.Font("Tahoma", 12.75F);
-            this.textName.Location = new System.Drawing.Point(302, 192);
-            this.textName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(475, 30);
-            this.textName.TabIndex = 0;
+            this.TextSurname.Font = new System.Drawing.Font("Tahoma", 12.75F);
+            this.TextSurname.Location = new System.Drawing.Point(302, 192);
+            this.TextSurname.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextSurname.Name = "TextSurname";
+            this.TextSurname.Size = new System.Drawing.Size(153, 28);
+            this.TextSurname.TabIndex = 0;
             // 
             // textLogin
             // 
@@ -128,8 +132,8 @@
             this.textLogin.Location = new System.Drawing.Point(302, 268);
             this.textLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textLogin.Name = "textLogin";
-            this.textLogin.Size = new System.Drawing.Size(475, 30);
-            this.textLogin.TabIndex = 2;
+            this.textLogin.Size = new System.Drawing.Size(475, 28);
+            this.textLogin.TabIndex = 3;
             // 
             // comboRole
             // 
@@ -142,8 +146,8 @@
             "Читатель"});
             this.comboRole.Location = new System.Drawing.Point(302, 496);
             this.comboRole.Name = "comboRole";
-            this.comboRole.Size = new System.Drawing.Size(475, 31);
-            this.comboRole.TabIndex = 4;
+            this.comboRole.Size = new System.Drawing.Size(475, 29);
+            this.comboRole.TabIndex = 6;
             // 
             // label3
             // 
@@ -152,7 +156,7 @@
             this.label3.ForeColor = System.Drawing.Color.Gainsboro;
             this.label3.Location = new System.Drawing.Point(297, 468);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 25);
+            this.label3.Size = new System.Drawing.Size(143, 23);
             this.label3.TabIndex = 5;
             this.label3.Text = "Роль в системе";
             // 
@@ -162,8 +166,8 @@
             this.textPassword.Location = new System.Drawing.Point(302, 420);
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '•';
-            this.textPassword.Size = new System.Drawing.Size(474, 30);
-            this.textPassword.TabIndex = 7;
+            this.textPassword.Size = new System.Drawing.Size(474, 28);
+            this.textPassword.TabIndex = 5;
             // 
             // textEmail
             // 
@@ -171,13 +175,57 @@
             this.textEmail.Location = new System.Drawing.Point(301, 344);
             this.textEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textEmail.Name = "textEmail";
-            this.textEmail.Size = new System.Drawing.Size(475, 30);
-            this.textEmail.TabIndex = 10;
+            this.textEmail.Size = new System.Drawing.Size(475, 28);
+            this.textEmail.TabIndex = 4;
+            // 
+            // TextName
+            // 
+            this.TextName.Font = new System.Drawing.Font("Tahoma", 12.75F);
+            this.TextName.Location = new System.Drawing.Point(463, 192);
+            this.TextName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextName.Name = "TextName";
+            this.TextName.Size = new System.Drawing.Size(153, 28);
+            this.TextName.TabIndex = 1;
+            // 
+            // TextPatronymic
+            // 
+            this.TextPatronymic.Font = new System.Drawing.Font("Tahoma", 12.75F);
+            this.TextPatronymic.Location = new System.Drawing.Point(623, 192);
+            this.TextPatronymic.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TextPatronymic.Name = "TextPatronymic";
+            this.TextPatronymic.Size = new System.Drawing.Size(153, 28);
+            this.TextPatronymic.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label6.Location = new System.Drawing.Point(459, 164);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 23);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Имя";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label7.Location = new System.Drawing.Point(619, 164);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(90, 23);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Отчество";
             // 
             // AddUser
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.TextPatronymic);
+            this.Controls.Add(this.TextName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textEmail);
             this.Controls.Add(this.label4);
@@ -189,7 +237,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textLogin);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textName);
+            this.Controls.Add(this.TextSurname);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(207)))));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -207,11 +255,15 @@
         private System.Windows.Forms.Label tabAuthLabelPassword;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textName;
+        private System.Windows.Forms.TextBox TextSurname;
         private System.Windows.Forms.TextBox textLogin;
         private System.Windows.Forms.ComboBox comboRole;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textPassword;
         private System.Windows.Forms.TextBox textEmail;
+        private System.Windows.Forms.TextBox TextName;
+        private System.Windows.Forms.TextBox TextPatronymic;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

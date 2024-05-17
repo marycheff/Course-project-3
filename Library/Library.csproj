@@ -129,6 +129,11 @@
       <DependentUpon>CheckUser.cs</DependentUpon>
     </Compile>
     <Compile Include="DB\md5.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="User\EditUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +205,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="User\Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
@@ -257,6 +263,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\add book.png" />
+    <None Include="Resources\book.png" />
+    <None Include="Resources\add user32.png" />
+    <None Include="Resources\user32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

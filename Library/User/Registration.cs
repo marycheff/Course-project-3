@@ -44,7 +44,7 @@ namespace Library
 
         private void TabRegButton_Click(object sender, EventArgs e)
         {
-            string name = tabRegTextName.Text.Trim();
+            string name = tabRegTextSurname.Text.Trim() + " " + tabRegTextName.Text.Trim() + " " + tabRegTextPatronymic.Text.Trim();
             string login = tabRegTextLogin.Text.Trim();
             string email = tabRegTextEmail.Text.Trim();
             string password = tabRegTextPassword.Text.Trim();
@@ -55,8 +55,8 @@ namespace Library
                 Validation.ValidEmail(email) &&
                 Validation.ValidPasswords(password, passwordRepeat) &&
                 Validation.ValidName(name))
-            { 
-                registered = DbUser.Register(name, login, email, password, passwordRepeat); 
+            {
+                registered = DbUser.Register(name, login, email, password, passwordRepeat);
             }
 
             if (registered)
@@ -89,6 +89,11 @@ namespace Library
         }
 
         private void tabReg_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabRegButton_Click_1(object sender, EventArgs e)
         {
 
         }
