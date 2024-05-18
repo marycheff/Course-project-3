@@ -138,14 +138,13 @@
             this.Controls.Add(this.tabAuthLabelLogin);
             this.Controls.Add(this.textEmail);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(490, 397);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(490, 397);
             this.Name = "ForgotPasswordUser";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Библиотека - Восстановление пароля";
             this.ResumeLayout(false);
             this.PerformLayout();

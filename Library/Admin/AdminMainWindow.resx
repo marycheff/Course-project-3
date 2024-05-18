@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="mySqlCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="mySqlCommand1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnGiveBook.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1
-        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAACw0AAAsNAe0HwCwAAAAHdElNRQfoBQ8UMgxZqb+fAAAC
+        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAACwwAAAsMAT9AIsgAAAAHdElNRQfoBQ8UMgxZqb+fAAAC
         XElEQVRYR82WPUiWURiGX8khhwgK6gtCG3QRFdMCh8yhBnH7sAaFiLaWwJboB4qWHBoMBAsahIZ+oOjH
         QYkgsMBRoiAqKqGGChpKCcvvx+vW58jRD6HhOdENF8/549y3r+8535vFKpVKK5TL5aRUKDamNsFFuEv/
         kSP3oB7MNVIIAPtY8AJSqAR7wVwjmfkWJh9oZSL9hj1grpEsQDOT37QykdYPoEGbnIdU0t7tsPQHr5IG
@@ -138,7 +144,7 @@
   <data name="btnLogout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1
-        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAACxAAAAsQAa0jvXUAAAAHdElNRQfoBQ8UNTVJ7aFQAAAB
+        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAACw0AAAsNAe0HwCwAAAAHdElNRQfoBQ8UNTVJ7aFQAAAB
         aElEQVRYR+3Xvy/FUBjG8QbBgDCIRGwms8lkZ2C3CbPEZPIjZuwGxN9hM5swmpBIJEQsBlLfp97eNHV6
         Uu3ptfRJPklv+p72ub03N/dEZRPHsUsPJrGEE6zDVgSILubQhyks4whXeIOyC1tdI7pITj+msYJj3OID
         im7++nMY78C1PlE6tmAQM1jDOe7wCeUFl9jHPA6hHGACekJZI7Crl4iGsYpHfEF5xgW2MIcxpLN654qe
@@ -148,12 +154,6 @@
         Nx3GIrYfKb6SAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="mySqlCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="mySqlCommand1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAgIAAAAEAIAAoCAEAFgAAACgAAACAAAAAAAEAAAEAIAAAAAAAAAABABx2AAAcdgAAAAAAAAAA

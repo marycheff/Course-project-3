@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Admin.UserControls;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -61,9 +62,9 @@ namespace Library
                 currentControl.Dispose(); // Освобождаем ресурсы
             }
 
-            CheckUser deleteUser = new CheckUser();
-            flowLayoutPanel1.Controls.Add(deleteUser);
-            deleteUser.Focus();
+            CheckUser checkUser = new CheckUser();
+            flowLayoutPanel1.Controls.Add(checkUser);
+            checkUser.Focus();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -79,6 +80,17 @@ namespace Library
         private void btnAllBooks_Click(object sender, EventArgs e)
         {
             ActivateButton(btnAllBooks);
+            if (flowLayoutPanel1.Controls.Count > 0)
+            {
+                Control currentControl = flowLayoutPanel1.Controls[0];
+                flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
+                currentControl.Dispose(); // Освобождаем ресурсы
+            }
+
+            CheckBook checkBook = new CheckBook();
+            flowLayoutPanel1.Controls.Add(checkBook);
+            checkBook.Focus();
         }
 
         private void btnAddBooks_Click(object sender, EventArgs e)
