@@ -2,6 +2,7 @@
 using Library.DB;
 using Library.User.UserControls;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Library
@@ -61,7 +62,7 @@ namespace Library
             }
 
 
-            var allBooks = DbBook.GetAllBooks();
+            List<BookInfo> allBooks = DbBook.GetAllBooks();
             foreach (var book in allBooks)
             {
                 BookControl bookControl = new BookControl(book);

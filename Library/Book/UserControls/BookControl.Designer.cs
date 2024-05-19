@@ -40,9 +40,9 @@
             this.textTitle.ForeColor = System.Drawing.Color.White;
             this.textTitle.Location = new System.Drawing.Point(3, 306);
             this.textTitle.Name = "textTitle";
-            this.textTitle.Size = new System.Drawing.Size(193, 15);
+            this.textTitle.Size = new System.Drawing.Size(95, 14);
             this.textTitle.TabIndex = 1;
-            this.textTitle.Text = "Гарри Поттер и Орден Феникса";
+            this.textTitle.Text = "Название книги";
             // 
             // textAuthor
             // 
@@ -51,12 +51,13 @@
             this.textAuthor.ForeColor = System.Drawing.Color.DarkGray;
             this.textAuthor.Location = new System.Drawing.Point(3, 321);
             this.textAuthor.Name = "textAuthor";
-            this.textAuthor.Size = new System.Drawing.Size(83, 16);
+            this.textAuthor.Size = new System.Drawing.Size(42, 16);
             this.textAuthor.TabIndex = 2;
-            this.textAuthor.Text = "Дж.Роулинг";
+            this.textAuthor.Text = "Автор";
             // 
             // panel1
             // 
+            this.panel1.BackgroundImage = global::Library.Properties.Resources.DEFAULT;
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel1.Location = new System.Drawing.Point(18, 3);
             this.panel1.Name = "panel1";

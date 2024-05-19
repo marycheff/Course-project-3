@@ -14,7 +14,7 @@ namespace Library.Book.UserControls
             bookInfo = book;
 
             textTitle.Text = bookInfo.Title;
-            textAuthor.Text =DbBook.GetAuthorById(bookInfo.AuthorId);
+            textAuthor.Text = DbBook.GetAuthorById(bookInfo.AuthorId);
 
 
             string rootDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\"));
@@ -25,20 +25,6 @@ namespace Library.Book.UserControls
             {
                 // Загружаем изображение из файла
                 panel1.BackgroundImage = Image.FromFile(imagePath);
-            }
-            else
-            {
-                panel1.BackgroundImage = null;
-            }
-
-        }
-
-
-        private Image ByteArrayToImage(byte[] byteArray)
-        {
-            using (MemoryStream ms = new MemoryStream(byteArray))
-            {
-                return Image.FromStream(ms);
             }
 
         }

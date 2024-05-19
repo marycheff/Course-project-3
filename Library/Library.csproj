@@ -113,7 +113,25 @@
     <Compile Include="Admin\AdminMainWindow.Designer.cs">
       <DependentUpon>AdminMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControls\CheckBook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControls\CheckBook.Designer.cs">
+      <DependentUpon>CheckBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Book\BookImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Book\BookImageForm.Designer.cs">
+      <DependentUpon>BookImageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Book\BookInfo.cs" />
+    <Compile Include="Book\EditBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Book\EditBookForm.Designer.cs">
+      <DependentUpon>EditBookForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Book\UserControls\BookControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,8 +205,17 @@
     <EmbeddedResource Include="Admin\AdminMainWindow.resx">
       <DependentUpon>AdminMainWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\UserControls\CheckBook.resx">
+      <DependentUpon>CheckBook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\UserControls\CheckUser.resx">
       <DependentUpon>CheckUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Book\BookImageForm.resx">
+      <DependentUpon>BookImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Book\EditBookForm.resx">
+      <DependentUpon>EditBookForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Book\UserControls\BookControl.resx">
       <DependentUpon>BookControl.cs</DependentUpon>
@@ -203,7 +230,7 @@
       <DependentUpon>InputCode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -263,6 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\BookCover.bmp" />
     <None Include="Resources\add book.png" />
     <None Include="Resources\book.png" />
     <None Include="Resources\add user32.png" />

@@ -51,7 +51,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label1.Location = new System.Drawing.Point(297, 162);
+            this.label1.Location = new System.Drawing.Point(297, 134);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 23);
             this.label1.TabIndex = 1;
@@ -62,7 +62,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label2.Location = new System.Drawing.Point(298, 238);
+            this.label2.Location = new System.Drawing.Point(298, 210);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 23);
             this.label2.TabIndex = 3;
@@ -89,7 +89,7 @@
             this.tabAuthLabelPassword.AutoSize = true;
             this.tabAuthLabelPassword.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabAuthLabelPassword.ForeColor = System.Drawing.Color.Gainsboro;
-            this.tabAuthLabelPassword.Location = new System.Drawing.Point(297, 392);
+            this.tabAuthLabelPassword.Location = new System.Drawing.Point(297, 364);
             this.tabAuthLabelPassword.Name = "tabAuthLabelPassword";
             this.tabAuthLabelPassword.Size = new System.Drawing.Size(75, 23);
             this.tabAuthLabelPassword.TabIndex = 8;
@@ -111,7 +111,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label5.Location = new System.Drawing.Point(297, 314);
+            this.label5.Location = new System.Drawing.Point(297, 286);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 23);
             this.label5.TabIndex = 11;
@@ -120,7 +120,7 @@
             // TextSurname
             // 
             this.TextSurname.Font = new System.Drawing.Font("Tahoma", 12.75F);
-            this.TextSurname.Location = new System.Drawing.Point(302, 192);
+            this.TextSurname.Location = new System.Drawing.Point(302, 164);
             this.TextSurname.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextSurname.Name = "TextSurname";
             this.TextSurname.Size = new System.Drawing.Size(153, 28);
@@ -129,7 +129,7 @@
             // textLogin
             // 
             this.textLogin.Font = new System.Drawing.Font("Tahoma", 12.75F);
-            this.textLogin.Location = new System.Drawing.Point(302, 268);
+            this.textLogin.Location = new System.Drawing.Point(302, 240);
             this.textLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textLogin.Name = "textLogin";
             this.textLogin.Size = new System.Drawing.Size(475, 28);
@@ -144,7 +144,7 @@
             "Администратор",
             "Библиотекарь",
             "Читатель"});
-            this.comboRole.Location = new System.Drawing.Point(302, 496);
+            this.comboRole.Location = new System.Drawing.Point(302, 468);
             this.comboRole.Name = "comboRole";
             this.comboRole.Size = new System.Drawing.Size(475, 29);
             this.comboRole.TabIndex = 6;
@@ -154,7 +154,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label3.Location = new System.Drawing.Point(297, 468);
+            this.label3.Location = new System.Drawing.Point(297, 440);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 23);
             this.label3.TabIndex = 5;
@@ -163,7 +163,7 @@
             // textPassword
             // 
             this.textPassword.Font = new System.Drawing.Font("Tahoma", 12.75F);
-            this.textPassword.Location = new System.Drawing.Point(302, 420);
+            this.textPassword.Location = new System.Drawing.Point(302, 392);
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '•';
             this.textPassword.Size = new System.Drawing.Size(474, 28);
@@ -172,7 +172,7 @@
             // textEmail
             // 
             this.textEmail.Font = new System.Drawing.Font("Tahoma", 12.75F);
-            this.textEmail.Location = new System.Drawing.Point(301, 344);
+            this.textEmail.Location = new System.Drawing.Point(301, 316);
             this.textEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textEmail.Name = "textEmail";
             this.textEmail.Size = new System.Drawing.Size(475, 28);
@@ -181,7 +181,7 @@
             // TextName
             // 
             this.TextName.Font = new System.Drawing.Font("Tahoma", 12.75F);
-            this.TextName.Location = new System.Drawing.Point(463, 192);
+            this.TextName.Location = new System.Drawing.Point(463, 164);
             this.TextName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextName.Name = "TextName";
             this.TextName.Size = new System.Drawing.Size(153, 28);
@@ -190,7 +190,7 @@
             // TextPatronymic
             // 
             this.TextPatronymic.Font = new System.Drawing.Font("Tahoma", 12.75F);
-            this.TextPatronymic.Location = new System.Drawing.Point(623, 192);
+            this.TextPatronymic.Location = new System.Drawing.Point(623, 164);
             this.TextPatronymic.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TextPatronymic.Name = "TextPatronymic";
             this.TextPatronymic.Size = new System.Drawing.Size(153, 28);
@@ -201,7 +201,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label6.Location = new System.Drawing.Point(459, 164);
+            this.label6.Location = new System.Drawing.Point(459, 136);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 23);
             this.label6.TabIndex = 14;
@@ -212,7 +212,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label7.Location = new System.Drawing.Point(619, 164);
+            this.label7.Location = new System.Drawing.Point(619, 136);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 23);
             this.label7.TabIndex = 15;

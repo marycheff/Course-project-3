@@ -33,7 +33,7 @@ public class BookInfo
         get { return authorId; }
         set { authorId = value; }
     }
-    public int Genre_id
+    public int GenreId
     {
         get { return genreId; }
         set { genreId = value; }

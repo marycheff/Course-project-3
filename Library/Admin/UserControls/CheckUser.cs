@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Library
@@ -9,6 +10,7 @@ namespace Library
         public CheckUser()
         {
             InitializeComponent();
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("tahoma", 11, FontStyle.Bold);
             LoadUserData();
         }
 
