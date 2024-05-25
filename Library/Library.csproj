@@ -101,6 +101,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\UserControls\AddBook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControls\AddBook.Designer.cs">
+      <DependentUpon>AddBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserControls\AddUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -199,6 +205,9 @@
       <DependentUpon>UserMainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Validation.cs" />
+    <EmbeddedResource Include="Admin\UserControls\AddBook.resx">
+      <DependentUpon>AddBook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\UserControls\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -290,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\DEFAULT_ADD.png" />
     <None Include="Resources\BookCover.bmp" />
     <None Include="Resources\add book.png" />
     <None Include="Resources\book.png" />

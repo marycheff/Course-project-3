@@ -75,7 +75,7 @@ namespace Library.User.UserControls
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(textLogin.Text);
+
             SetNewPassword setNewPassword = new SetNewPassword();
             setNewPassword.SetLogin(Login);
             setNewPassword.ShowDialog();

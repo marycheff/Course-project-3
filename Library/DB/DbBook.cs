@@ -405,5 +405,39 @@ namespace Library.DB
             }
 
         }
+        public static bool AddBook(string title, int authorId, int genreId, string description, bool available, string coverImagePath)
+        {
+            MySqlConnection conn = GetConnection();
+
+            try
+            {
+
+                string query = @"INSERT INTO books (title, author_id, genre_id, description, available, cover_image_path)
+                         VALUES (@title,@author_id, @genre_id, @description, @available, @coverImagePath)";
+
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@title", title);
+                command.Parameters.AddWithValue("@author_id", authorId);
+                command.Parameters.AddWithValue("@genre_id", genreId);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@available", available);
+                command.Parameters.AddWithValue("@coverImagePath", coverImagePath);
+
+                // Выполняем запрос
+                int rowsAffected = command.ExecuteNonQuery();
+
+                // Если добавление прошло успешно, возвращаем true, иначе false
+                return rowsAffected > 0;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Ошибка при добавлении книги: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

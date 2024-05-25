@@ -113,6 +113,16 @@ namespace Library.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap DEFAULT_ADD {
+            get {
+                object obj = ResourceManager.GetObject("DEFAULT_ADD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap user32 {
             get {
                 object obj = ResourceManager.GetObject("user32", resourceCulture);

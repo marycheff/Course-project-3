@@ -1,4 +1,5 @@
 ﻿using Library.Admin.UserControls;
+using Library.Book;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -96,6 +97,18 @@ namespace Library
         private void btnAddBooks_Click(object sender, EventArgs e)
         {
             ActivateButton(btnAddBooks);
+            if (flowLayoutPanel1.Controls.Count > 0)
+            {
+                Control currentControl = flowLayoutPanel1.Controls[0];
+                flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
+                currentControl.Dispose(); // Освобождаем ресурсы
+            }
+
+            AddBook addBook = new AddBook();
+            flowLayoutPanel1.Controls.Add(addBook);
+            addBook.Focus();
+     
         }
 
 

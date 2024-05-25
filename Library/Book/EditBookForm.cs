@@ -44,8 +44,7 @@ namespace Library.Book
             Array.Sort(genres);
             comboGenre.Items.AddRange(genres);
             comboGenre.SelectedItem = DbBook.GetGenreById(book.GenreId);
-
-
+            
             if (DbBook.GetAvailabilityId(id))
             {
                 comboAvailable.SelectedIndex = 0;
@@ -85,10 +84,7 @@ namespace Library.Book
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // Получаем полный путь к выбранному изображению
                     temporaryImagePath = openFileDialog.FileName;
-
-                    // Обновляем отображение обложки книги на panel1
                     panel1.BackgroundImage = Image.FromFile(temporaryImagePath);
                 }
             }
@@ -96,11 +92,10 @@ namespace Library.Book
         private void btnSave_Click(object sender, EventArgs e)
         {
             Title = textTitle.Text.Trim();
-            
             AuthorId = DbBook.GetAuthorId(comboAuthor.SelectedItem.ToString());
             GenreId = DbBook.GetGenreId(comboGenre.SelectedItem.ToString());
             Description = textDescription.Text.Trim();
-            Available = (comboAvailable.SelectedText == "Да");
+            Available = (comboAvailable.SelectedItem.ToString() == "Да");
 
 
             if (!string.IsNullOrEmpty(temporaryImagePath))
