@@ -46,22 +46,12 @@ namespace Library
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            ActivateButton(btnLogout);
-
-            if (flowLayoutPanel1.Controls.Count > 0)
+            DialogResult result = MessageBox.Show("Вы уверены, что хотите выйти?", "Подтверждение выхода", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
             {
-                Control currentControl = flowLayoutPanel1.Controls[0];
-                flowLayoutPanel1.Controls.Remove(currentControl);
-                flowLayoutPanel1.Controls.Clear();
-                currentControl.Dispose(); // Освобождаем ресурсы
+                Application.Restart();
             }
-            //DialogResult result = MessageBox.Show("Вы уверены, что хотите выйти?", "Подтверждение выхода", MessageBoxButtons.OKCancel);
-            //if (result == DialogResult.OK)
-            //{
-            //    Close();
-            //}
         }
-
         private void btnProfile_Click(object sender, EventArgs e)
         {
             //ActivateButton(btnProfile);
@@ -99,6 +89,18 @@ namespace Library
 
         }
 
-
+        private void btnMyBooks_Click(object sender, EventArgs e)
+        {
+            if (flowLayoutPanel1.Controls.Count > 0)
+            {
+                Control currentControl = flowLayoutPanel1.Controls[0];
+                flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
+                currentControl.Dispose();
+            }
+            UserInfo userInfo = Registration.UserInfo;
+            MyBooks myBooks = new MyBooks(userInfo.Id);
+            flowLayoutPanel1.Controls.Add(myBooks);
+        }
     }
 }

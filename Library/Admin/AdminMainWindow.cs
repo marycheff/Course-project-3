@@ -74,7 +74,7 @@ namespace Library
             DialogResult result = MessageBox.Show("Вы уверены, что хотите выйти?", "Подтверждение выхода", MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
-                Close();
+                Application.Restart();
             }
         }
 
