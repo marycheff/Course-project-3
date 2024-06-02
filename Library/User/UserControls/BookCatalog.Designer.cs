@@ -1,6 +1,6 @@
 ﻿namespace Library.Book.UserControls
 {
-    partial class BookControl
+    partial class BookCatalog
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -38,7 +38,7 @@
             this.textTitle.AutoSize = true;
             this.textTitle.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textTitle.ForeColor = System.Drawing.Color.White;
-            this.textTitle.Location = new System.Drawing.Point(3, 306);
+            this.textTitle.Location = new System.Drawing.Point(21, 315);
             this.textTitle.Name = "textTitle";
             this.textTitle.Size = new System.Drawing.Size(95, 14);
             this.textTitle.TabIndex = 1;
@@ -49,7 +49,7 @@
             this.textAuthor.AutoSize = true;
             this.textAuthor.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textAuthor.ForeColor = System.Drawing.Color.DarkGray;
-            this.textAuthor.Location = new System.Drawing.Point(3, 321);
+            this.textAuthor.Location = new System.Drawing.Point(21, 329);
             this.textAuthor.Name = "textAuthor";
             this.textAuthor.Size = new System.Drawing.Size(42, 16);
             this.textAuthor.TabIndex = 2;
@@ -59,7 +59,7 @@
             // 
             this.panel1.BackgroundImage = global::Library.Properties.Resources.DEFAULT;
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel1.Location = new System.Drawing.Point(18, 3);
+            this.panel1.Location = new System.Drawing.Point(17, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 300);
             this.panel1.TabIndex = 0;
@@ -69,13 +69,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.textAuthor);
             this.Controls.Add(this.textTitle);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(15, 0, 0, 9);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Margin = new System.Windows.Forms.Padding(13, 0, 0, 7);
             this.Name = "BookControl";
-            this.Size = new System.Drawing.Size(235, 348);
+            this.Size = new System.Drawing.Size(235, 350);
             this.ResumeLayout(false);
             this.PerformLayout();
 

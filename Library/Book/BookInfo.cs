@@ -1,11 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
-
-public class BookInfo
+﻿public class BookInfo
 {
     private int id;
     private string title;

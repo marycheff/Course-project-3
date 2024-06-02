@@ -18,10 +18,8 @@ namespace Library
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Application.Run(new Registration());
-
-            //Application.Run(new UserMainWindow());
-
-            Application.Run(new AdminMainWindow());
+            Application.Run(new UserMainWindow());
+            //Application.Run(new AdminMainWindow());
 
         }
     }

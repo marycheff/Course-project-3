@@ -71,8 +71,6 @@ namespace Library.Book
 
 
             imageFileName = Path.GetFileName(imagePath);
-
-
         }
 
 

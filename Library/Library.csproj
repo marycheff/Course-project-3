@@ -138,11 +138,17 @@
     <Compile Include="Book\EditBookForm.Designer.cs">
       <DependentUpon>EditBookForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Book\UserControls\BookControl.cs">
+    <Compile Include="Book\UserControls\BookPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Book\UserControls\BookControl.Designer.cs">
-      <DependentUpon>BookControl.cs</DependentUpon>
+    <Compile Include="Book\UserControls\BookPage.Designer.cs">
+      <DependentUpon>BookPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserControls\BookCatalog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User\UserControls\BookCatalog.Designer.cs">
+      <DependentUpon>BookCatalog.cs</DependentUpon>
     </Compile>
     <Compile Include="DB\DbBook.cs" />
     <Compile Include="DB\DbUser.cs" />
@@ -226,8 +232,11 @@
     <EmbeddedResource Include="Book\EditBookForm.resx">
       <DependentUpon>EditBookForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Book\UserControls\BookControl.resx">
-      <DependentUpon>BookControl.cs</DependentUpon>
+    <EmbeddedResource Include="Book\UserControls\BookPage.resx">
+      <DependentUpon>BookPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\UserControls\BookCatalog.resx">
+      <DependentUpon>BookCatalog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\EditUserForm.resx">
       <DependentUpon>EditUserForm.cs</DependentUpon>
@@ -306,5 +315,6 @@
     <None Include="Resources\add user32.png" />
     <None Include="Resources\user32.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
