@@ -128,6 +128,7 @@
             this.btnMyBooks.TabIndex = 8;
             this.btnMyBooks.Text = "Мои книги";
             this.btnMyBooks.UseVisualStyleBackColor = false;
+            this.btnMyBooks.Click += new System.EventHandler(this.btnMyBooks_Click);
             // 
             // UserMainWindow
             // 

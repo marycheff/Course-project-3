@@ -17,8 +17,8 @@ namespace Library
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new Registration());
-            Application.Run(new UserMainWindow());
+            Application.Run(new Registration());
+            //Application.Run(new UserMainWindow());
             //Application.Run(new AdminMainWindow());
 
         }

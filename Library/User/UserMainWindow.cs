@@ -20,9 +20,13 @@ namespace Library
         {
             btnBooksList.PerformClick();
         }
-        private void MyUserControl_Refresh(object sender, EventArgs e)
+        private void RefreshProfile(object sender, EventArgs e)
         {
             btnProfile.PerformClick();
+        }
+        private void RefreshMyBooks(object sender, EventArgs e)
+        {
+            btnMyBooks.PerformClick();
         }
         private void ActivateButton(Button btnSender)
         {
@@ -64,7 +68,7 @@ namespace Library
             }
             UserInfo userInfo = Registration.UserInfo;
             UserProfile userProfile = new UserProfile(userInfo.Name, userInfo.Login, userInfo.Email);
-            userProfile.RefreshRequest += MyUserControl_Refresh;
+            userProfile.RefreshRequest += RefreshProfile;
             flowLayoutPanel1.Controls.Add(userProfile);
             userProfile.Focus();
 
@@ -100,6 +104,7 @@ namespace Library
             }
             UserInfo userInfo = Registration.UserInfo;
             MyBooks myBooks = new MyBooks(userInfo.Id);
+            myBooks.RefreshRequest += RefreshMyBooks;
             flowLayoutPanel1.Controls.Add(myBooks);
         }
     }

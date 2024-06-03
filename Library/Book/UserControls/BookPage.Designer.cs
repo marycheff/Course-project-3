@@ -31,7 +31,7 @@
             this.textTitle = new System.Windows.Forms.Label();
             this.textDescription = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLogout = new System.Windows.Forms.Button();
+            this.btnReserve = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textTitle
@@ -62,27 +62,28 @@
             this.panel1.Size = new System.Drawing.Size(200, 300);
             this.panel1.TabIndex = 2;
             // 
-            // btnLogout
+            // btnReserve
             // 
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(105)))), ((int)(((byte)(115)))));
-            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(115)))), ((int)(((byte)(128)))));
-            this.btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(146)))), ((int)(((byte)(161)))));
-            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(146)))), ((int)(((byte)(161)))));
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLogout.Location = new System.Drawing.Point(133, 402);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(200, 31);
-            this.btnLogout.TabIndex = 8;
-            this.btnLogout.Text = "Забронировать";
-            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnReserve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(105)))), ((int)(((byte)(115)))));
+            this.btnReserve.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(115)))), ((int)(((byte)(128)))));
+            this.btnReserve.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(146)))), ((int)(((byte)(161)))));
+            this.btnReserve.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(146)))), ((int)(((byte)(161)))));
+            this.btnReserve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReserve.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReserve.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnReserve.Location = new System.Drawing.Point(133, 402);
+            this.btnReserve.Name = "btnReserve";
+            this.btnReserve.Size = new System.Drawing.Size(200, 31);
+            this.btnReserve.TabIndex = 8;
+            this.btnReserve.Text = "Забронировать";
+            this.btnReserve.UseVisualStyleBackColor = false;
+            this.btnReserve.Click += new System.EventHandler(this.btnReserve_Click);
             // 
             // BookPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
-            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.btnReserve);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textDescription);
             this.Controls.Add(this.textTitle);
@@ -99,6 +100,6 @@
         private System.Windows.Forms.Label textTitle;
         private System.Windows.Forms.Label textDescription;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnReserve;
     }
 }
