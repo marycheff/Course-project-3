@@ -503,8 +503,8 @@ namespace Library
                 conn.Close();
             }
         }
-            //Проверка
-            public static bool CheckEmail(string email)
+        //Проверка
+        public static bool CheckEmail(string email)
         {
             MySqlConnection conn = GetConnection();
             try
@@ -718,6 +718,32 @@ namespace Library
                 conn.Close();
             }
             return roleName;
+        }
+        public static string GetUserNameById(int userId)
+        {
+            string userName = "";
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT name FROM users WHERE id = @userId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@userId", userId);
+
+                try
+                {
+                    object result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        userName = result.ToString();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении имени пользователя: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return userName;
         }
     }
 }

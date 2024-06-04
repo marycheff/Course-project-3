@@ -12,8 +12,13 @@ namespace Library
         public AdminMainWindow()
         {
             InitializeComponent();
-        }
+            this.Load += AdminMainWindow_Load;
 
+        }
+        private void AdminMainWindow_Load(object sender, EventArgs e)
+        {
+            btnGiveBook.PerformClick();
+        }
         private void ActivateButton(Button btnSender)
         {
             if (currentButton != btnSender)
@@ -60,7 +65,7 @@ namespace Library
                 Control currentControl = flowLayoutPanel1.Controls[0];
                 flowLayoutPanel1.Controls.Remove(currentControl);
                 flowLayoutPanel1.Controls.Clear();
-                currentControl.Dispose(); // Освобождаем ресурсы
+                currentControl.Dispose(); 
             }
 
             CheckUser checkUser = new CheckUser();
@@ -86,7 +91,7 @@ namespace Library
                 Control currentControl = flowLayoutPanel1.Controls[0];
                 flowLayoutPanel1.Controls.Remove(currentControl);
                 flowLayoutPanel1.Controls.Clear();
-                currentControl.Dispose(); // Освобождаем ресурсы
+                currentControl.Dispose(); 
             }
 
             CheckBook checkBook = new CheckBook();
@@ -102,7 +107,7 @@ namespace Library
                 Control currentControl = flowLayoutPanel1.Controls[0];
                 flowLayoutPanel1.Controls.Remove(currentControl);
                 flowLayoutPanel1.Controls.Clear();
-                currentControl.Dispose(); // Освобождаем ресурсы
+                currentControl.Dispose(); 
             }
 
             AddBook addBook = new AddBook();
@@ -111,11 +116,23 @@ namespace Library
      
         }
 
-
-
         private void btnGiveBook_Click(object sender, EventArgs e)
         {
             ActivateButton(btnGiveBook);
+
+            if (flowLayoutPanel1.Controls.Count > 0)
+            {
+                Control currentControl = flowLayoutPanel1.Controls[0];
+                flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
+                currentControl.Dispose(); 
+            }
+            GiveBook GiveBook = new GiveBook();
+            flowLayoutPanel1 .Controls.Add(GiveBook);
+            GiveBook.Focus();
+
+
+
         }
     }
 }

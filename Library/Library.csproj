@@ -113,6 +113,12 @@
     <Compile Include="Admin\UserControls\CheckBook.Designer.cs">
       <DependentUpon>CheckBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControls\GiveBook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControls\GiveBook.Designer.cs">
+      <DependentUpon>GiveBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Book\BookImageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\UserControls\CheckUser.resx">
       <DependentUpon>CheckUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\UserControls\GiveBook.resx">
+      <DependentUpon>GiveBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Book\BookImageForm.resx">
       <DependentUpon>BookImageForm.cs</DependentUpon>

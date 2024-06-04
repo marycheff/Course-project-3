@@ -36,7 +36,16 @@ namespace Library.Book.UserControls
 
         private void btnReserve_Click(object sender, EventArgs e)
         {
-            string reservationCode = GenerateReservationCode();
+            string reservationCode;
+            bool isUnique;
+
+            do
+            {
+                reservationCode = GenerateReservationCode();
+                isUnique = DbBook.IsReservationCodeUnique(reservationCode);
+            }
+            while (!isUnique);
+            
             if (!DbBook.HasReservedBook(userInfo.Id))
             {
                 bool reserved = DbBook.ReserveBook(book.Id, userInfo.Id, reservationCode);
@@ -56,6 +65,7 @@ namespace Library.Book.UserControls
 
         private static string GenerateReservationCode()
         {
+
             Random random = new Random();
             const string chars = "0123456789";
             return new string(Enumerable.Repeat(chars, 5)

@@ -740,5 +740,69 @@ namespace Library.DB
 
             return isDeleted;
         }
+        public static Reservation GetReservationByCode(string reservationCode)
+        {
+            Reservation reservation = null;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations WHERE reservation_code = @reservationCode AND rented = 0 LIMIT 1";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@reservationCode", reservationCode);
+
+                try
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            reservation = new Reservation
+                            {
+                                Id = reader.GetInt32("id"),
+                                UserId = reader.GetInt32("user_id"),
+                                BookId = reader.GetInt32("book_id"),
+                                ReservationCode = reader.GetString("reservation_code"),
+                                ReservationDate = reader.GetDateTime("reservation_date"),
+                                Rented = reader.GetBoolean("rented")
+                            };
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении информации о бронировании: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return reservation;
+        }
+        public static bool IsReservationCodeUnique(string reservationCode)
+        {
+            bool isUnique = true;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT COUNT(*) FROM reservations WHERE reservation_code = @reservationCode";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@reservationCode", reservationCode);
+
+                try
+                {
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        isUnique = false;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при проверке уникальности кода бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return isUnique;
+        }
+
     }
+
 }

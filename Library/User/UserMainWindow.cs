@@ -64,7 +64,7 @@ namespace Library
                 Control currentControl = flowLayoutPanel1.Controls[0];
                 flowLayoutPanel1.Controls.Remove(currentControl);
                 flowLayoutPanel1.Controls.Clear();
-                currentControl.Dispose(); // Освобождаем ресурсы
+                currentControl.Dispose(); 
             }
             UserInfo userInfo = Registration.UserInfo;
             UserProfile userProfile = new UserProfile(userInfo.Name, userInfo.Login, userInfo.Email);
