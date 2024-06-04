@@ -62,5 +62,26 @@ namespace Library
         {
             return true;
         }
+
+
+        public static bool ValidAuthorName(string name)
+        {
+            if (string.IsNullOrEmpty(name) || name.Split(' ').Length < 2 || name.Split(' ').Length > 3)
+            {
+                MessageBox.Show("Введите ФИО автора в формате \"Фамилия Имя Отчество\"\nИЛИ\n\"Фамилия Имя\"", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        public static bool ValidGenreName(string name)
+        {
+            if (string.IsNullOrEmpty(name) || name.Split(' ').Length > 2 )
+            {
+                MessageBox.Show("В названии жанра должно быть от 1 до 2 слов", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
     }
 }
