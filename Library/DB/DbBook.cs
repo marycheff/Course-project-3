@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Library;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -497,13 +498,14 @@ namespace Library.DB
             try
             {
 
-                string query = @"INSERT INTO reservations (book_id, user_id, reservation_code)
-                         VALUES (@bookId,@userId, @reservationCode)";
+                string query = @"INSERT INTO reservations (book_id, user_id, reservation_code, reservation_date)
+                         VALUES (@bookId,@userId, @reservationCode, @currentDate)";
 
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.AddWithValue("@bookId", bookId);
                 command.Parameters.AddWithValue("@userId", userId);
                 command.Parameters.AddWithValue("@reservationCode", reservationCode);
+                command.Parameters.AddWithValue("@currentDate", DateTime.Now);
                 int rowsAffected = command.ExecuteNonQuery();
                 return rowsAffected > 0;
             }
@@ -620,7 +622,7 @@ namespace Library.DB
 
             return reservations;
         }
-        public static List<Reservation> GetHistoryReservations(int userId)
+        public static List<Reservation> GetReservationsHistory(int userId)
         {
             List<Reservation> reservations = new List<Reservation>();
 
@@ -801,6 +803,154 @@ namespace Library.DB
             }
 
             return isUnique;
+        }
+
+        public static bool GiveBook(Reservation reservation)
+        {
+            bool success = false;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                MySqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+
+                    string updateQuery = "UPDATE reservations SET rented = 1 WHERE id = @reservationId";
+                    MySqlCommand updateCommand = new MySqlCommand(updateQuery, conn, transaction);
+                    updateCommand.Parameters.AddWithValue("@reservationId", reservation.Id);
+                    int rowsAffected = updateCommand.ExecuteNonQuery();
+
+                    if (rowsAffected == 1)
+                    {
+                        string insertQuery = "INSERT INTO rentals (user_id, book_id, rental_date, reservation_id) VALUES (@userId, @bookId, @rentalDate, @reservationId)";
+                        MySqlCommand insertCommand = new MySqlCommand(insertQuery, conn, transaction);
+                        insertCommand.Parameters.AddWithValue("@userId", reservation.UserId);
+                        insertCommand.Parameters.AddWithValue("@bookId", reservation.BookId);
+                        insertCommand.Parameters.AddWithValue("@rentalDate", DateTime.Now);
+                        insertCommand.Parameters.AddWithValue("@reservationId", reservation.Id);
+
+                        insertCommand.ExecuteNonQuery();
+                        transaction.Commit();
+                        success = true;
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("Ошибка при обновлении бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return success;
+        }
+
+
+        public static List<Rental> GetAllRentals()
+        {
+            List<Rental> rentals = new List<Rental>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT id, user_id, reservation_id, book_id, rental_date FROM rentals WHERE return_date IS NULL AND reservation_id IS NOT NULL";
+                MySqlCommand command = new MySqlCommand(query, conn);
+
+                try
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Rental rental = new Rental
+                            {
+                                Id = reader.GetInt32("id"),
+                                UserId = reader.GetInt32("user_id"),
+                                ReservationId = reader.GetInt32("reservation_id"),
+                                BookId = reader.GetInt32("book_id"),
+                                RentalDate = reader.GetDateTime("rental_date"),
+                            };
+                            rentals.Add(rental);
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении данных о арендах: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return rentals;
+        }
+
+        public static bool TakeBook(int rentalId)
+        {
+            bool success = false;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "UPDATE rentals SET return_date = @currentDate WHERE id = @rentalId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@currentDate", DateTime.Now);
+                command.Parameters.AddWithValue("@rentalId", rentalId);
+
+                try
+                {
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        success = true;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при обновлении данных: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return success;
+        }
+
+        public static List<Rental> GetRentalsHistory(int userId)
+        {
+            List<Rental> rentals = new List<Rental>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT id, user_id, reservation_id, book_id, rental_date, return_date FROM rentals WHERE user_id = @userId AND return_date IS NOT NULL";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@userId", userId);
+
+                try
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Rental rental = new Rental
+                            {
+                                Id = reader.GetInt32("id"),
+                                UserId = reader.GetInt32("user_id"),
+                                ReservationId = reader.GetInt32("reservation_id"),
+                                BookId = reader.GetInt32("book_id"),
+                                RentalDate = reader.GetDateTime("rental_date"),
+                                ReturnDate = reader.GetDateTime("return_date")
+                            };
+
+                            rentals.Add(rental);
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении списка аренд: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return rentals;
         }
 
     }

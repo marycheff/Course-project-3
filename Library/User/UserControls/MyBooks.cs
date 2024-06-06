@@ -12,6 +12,16 @@ namespace Library.User.UserControls
         public MyBooks(int userId)
         {
             InitializeComponent();
+            
+            FillCurrentReservation(userId);
+            FillReservationsHistory(userId);
+            FillRentalsHistory(userId);
+
+
+        }
+
+        private void FillCurrentReservation(int userId)
+        {
             if (DbBook.HasReservedBook(userId))
             {
                 textNoRentedBook.Visible = false;
@@ -30,32 +40,51 @@ namespace Library.User.UserControls
                 BookInfo book = DbBook.GetBook(currentReservation.BookId);
                 textRentedBookTitle.Text = book.Title;
                 textReservationCode.Text = currentReservation.ReservationCode.Insert(2, "-");
-                textReservationDate.Text = currentReservation.ReservationDate.ToShortDateString() + " " + currentReservation.ReservationDate.ToShortTimeString();
+                textReservationDate.Text = currentReservation.ReservationDate.ToString("dd.MM.yyyy HH:mm");
 
                 currentReservationId = DbBook.GetReservationIdByDate(currentReservation.ReservationDate);
             }
-            List<Reservation> reservationsList = DbBook.GetHistoryReservations(userId);
-
+        }
+        private void FillReservationsHistory(int userId)
+        {
+            List<Reservation> reservationsList = DbBook.GetReservationsHistory(userId);
             if (reservationsList.Count > 0)
             {
-                dataGridView1.Visible = true;
+                dataGridReservations.Visible = true;
                 foreach (Reservation reservation in reservationsList)
                 {
-                    object[] rowData = new object[dataGridView1.ColumnCount];
+                    object[] rowData = new object[dataGridReservations.ColumnCount];
                     rowData[0] = DbBook.GetBookTitleById(reservation.BookId);
-                    rowData[1] = reservation.ReservationDate.ToShortDateString() + " " + reservation.ReservationDate.ToShortTimeString();
-                    dataGridView1.Rows.Add(rowData);
+                    rowData[1] = reservation.ReservationDate.ToString("dd.MM.yyyy HH:mm");
+                    dataGridReservations.Rows.Add(rowData);
                 }
-                dataGridView1.Sort(dataGridView1.Columns[1], System.ComponentModel.ListSortDirection.Descending);
-
+                dataGridReservations.Sort(dataGridReservations.Columns[1], System.ComponentModel.ListSortDirection.Descending);
             }
-
-
-
-
         }
 
+        private void FillRentalsHistory(int userId)
+        {
+            List<Rental> rentalList = DbBook.GetRentalsHistory(userId);
+            if (rentalList.Count > 0)
+            {
+                dataGridRentals.Visible = true;
+                foreach (Rental rental in rentalList)
+                {
+                    object[] rowData = new object[dataGridRentals.ColumnCount];
+                    rowData[0] = DbBook.GetBookTitleById(rental.BookId);
+                    rowData[1] = rental.RentalDate.ToString("dd.MM.yyyy HH:mm");
+                    rowData[2] = rental.ReturnDate.ToString("dd.MM.yyyy HH:mm");
+                    dataGridRentals.Rows.Add(rowData);
 
+                }
+                //dataGridView1.Sort(dataGridView1.Columns[2], System.ComponentModel.ListSortDirection.Descending);
+
+            }
+        }
+        
+
+
+        
         private void btnCancelReservation_Click(object sender, System.EventArgs e)
         {
             DialogResult result = MessageBox.Show("Отменить бронирование?", "Отмена бронирования", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -75,6 +104,11 @@ namespace Library.User.UserControls
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }

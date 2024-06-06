@@ -6,14 +6,17 @@ namespace Library.Admin.UserControls
 {
     public partial class GiveBook : UserControl
     {
+        Reservation reservation;
+        public event EventHandler RefreshRequest;
         public GiveBook()
         {
             InitializeComponent();
+            textReservationCode.Focus();
         }
 
         private void btnCheckReservation_Click(object sender, EventArgs e)
         {
-            Reservation reservation = DbBook.GetReservationByCode(textReservationCode.Text.Trim().Replace("-", ""));
+            reservation = DbBook.GetReservationByCode(textReservationCode.Text.Trim().Replace("-", ""));
             if (reservation == null)
             {
                 MessageBox.Show("Введен неверный код выдачи книги", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -35,6 +38,25 @@ namespace Library.Admin.UserControls
         private void textReservationCode_Click(object sender, EventArgs e)
         {
             textReservationCode.SelectionStart = 0;
+        }
+
+        private void btnGiveBook_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Выдать книгу?", "Выдача книги", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (DbBook.GiveBook(reservation))
+                {
+                    MessageBox.Show("Книга успешно выдана", "Выдача книги", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshRequest?.Invoke(this, e);
+                }
+            }
+            
+        }
+
+        private void textUserName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

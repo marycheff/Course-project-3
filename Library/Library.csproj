@@ -131,6 +131,12 @@
     <Compile Include="Admin\UserControls\GiveBook.Designer.cs">
       <DependentUpon>GiveBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControls\TakeBook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControls\TakeBook.Designer.cs">
+      <DependentUpon>TakeBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Book\BookImageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,7 @@
     <Compile Include="Book\UserControls\BookPage.Designer.cs">
       <DependentUpon>BookPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rental.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="User\UserControls\BookCatalog.cs">
       <SubType>UserControl</SubType>
@@ -248,6 +255,9 @@
     <EmbeddedResource Include="Admin\UserControls\GiveBook.resx">
       <DependentUpon>GiveBook.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\UserControls\TakeBook.resx">
+      <DependentUpon>TakeBook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Book\BookImageForm.resx">
       <DependentUpon>BookImageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -333,6 +343,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\takeBook.png" />
     <None Include="Resources\DEFAULT_ADD.png" />
     <None Include="Resources\BookCover.bmp" />
     <None Include="Resources\add book.png" />

@@ -31,6 +31,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,13 +47,22 @@
             this.textRentedBookTitle = new System.Windows.Forms.Label();
             this.textNoRentedBook = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridReservations = new System.Windows.Forms.DataGridView();
             this.book = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridRentals = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rentalDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.returnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReservations)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRentals)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -78,14 +90,14 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label3.Location = new System.Drawing.Point(528, 278);
+            this.label3.Location = new System.Drawing.Point(20, 278);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(216, 23);
+            this.label3.Size = new System.Drawing.Size(1211, 23);
             this.label3.TabIndex = 10;
             this.label3.Text = "История бронирований";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // textRentedBookLabel
             // 
@@ -110,9 +122,9 @@
             this.panel1.Controls.Add(this.textRentedBookTitle);
             this.panel1.Controls.Add(this.textNoRentedBook);
             this.panel1.Controls.Add(this.textRentedBookLabel);
-            this.panel1.Location = new System.Drawing.Point(28, 111);
+            this.panel1.Location = new System.Drawing.Point(19, 111);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1212, 138);
+            this.panel1.Size = new System.Drawing.Size(1214, 138);
             this.panel1.TabIndex = 12;
             // 
             // btnCancelReservation
@@ -208,29 +220,29 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.dataGridReservations);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(28, 301);
+            this.panel2.Location = new System.Drawing.Point(20, 301);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1212, 332);
+            this.panel2.Size = new System.Drawing.Size(1212, 219);
             this.panel2.TabIndex = 0;
             // 
-            // dataGridView1
+            // dataGridReservations
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridReservations.AllowUserToAddRows = false;
+            this.dataGridReservations.AllowUserToDeleteRows = false;
+            this.dataGridReservations.AllowUserToResizeColumns = false;
+            this.dataGridReservations.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridReservations.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridReservations.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridReservations.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.dataGridReservations.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridReservations.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(86)))), ((int)(((byte)(92)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -238,27 +250,27 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridReservations.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridReservations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridReservations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.book,
             this.date});
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(74)))), ((int)(((byte)(79)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 1);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridReservations.EnableHeadersVisualStyles = false;
+            this.dataGridReservations.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(74)))), ((int)(((byte)(79)))));
+            this.dataGridReservations.Location = new System.Drawing.Point(0, 0);
+            this.dataGridReservations.Margin = new System.Windows.Forms.Padding(0);
+            this.dataGridReservations.Name = "dataGridReservations";
+            this.dataGridReservations.ReadOnly = true;
+            this.dataGridReservations.RowHeadersVisible = false;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(1210, 328);
-            this.dataGridView1.TabIndex = 13;
-            this.dataGridView1.Visible = false;
+            this.dataGridReservations.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridReservations.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridReservations.Size = new System.Drawing.Size(1210, 217);
+            this.dataGridReservations.TabIndex = 13;
+            this.dataGridReservations.Visible = false;
             // 
             // book
             // 
@@ -281,17 +293,122 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Gray;
-            this.label4.Location = new System.Drawing.Point(429, 166);
+            this.label4.Location = new System.Drawing.Point(431, 114);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(353, 23);
             this.label4.TabIndex = 11;
             this.label4.Text = "Вы еще ни разу не бронировали книги";
+            // 
+            // panel3
+            // 
+            this.panel3.AutoScroll = true;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.dataGridRentals);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Location = new System.Drawing.Point(20, 580);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1210, 219);
+            this.panel3.TabIndex = 13;
+            // 
+            // dataGridRentals
+            // 
+            this.dataGridRentals.AllowUserToAddRows = false;
+            this.dataGridRentals.AllowUserToDeleteRows = false;
+            this.dataGridRentals.AllowUserToResizeColumns = false;
+            this.dataGridRentals.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.dataGridRentals.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridRentals.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridRentals.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.dataGridRentals.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridRentals.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(86)))), ((int)(((byte)(92)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridRentals.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridRentals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridRentals.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.rentalDate,
+            this.returnDate});
+            this.dataGridRentals.EnableHeadersVisualStyles = false;
+            this.dataGridRentals.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(74)))), ((int)(((byte)(79)))));
+            this.dataGridRentals.Location = new System.Drawing.Point(-4, -1);
+            this.dataGridRentals.Margin = new System.Windows.Forms.Padding(0);
+            this.dataGridRentals.Name = "dataGridRentals";
+            this.dataGridRentals.ReadOnly = true;
+            this.dataGridRentals.RowHeadersVisible = false;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.dataGridRentals.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridRentals.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridRentals.Size = new System.Drawing.Size(1210, 217);
+            this.dataGridRentals.TabIndex = 13;
+            this.dataGridRentals.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.FillWeight = 1F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Книга";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // rentalDate
+            // 
+            this.rentalDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rentalDate.FillWeight = 0.5F;
+            this.rentalDate.HeaderText = "Дата начала аенды";
+            this.rentalDate.Name = "rentalDate";
+            this.rentalDate.ReadOnly = true;
+            // 
+            // returnDate
+            // 
+            this.returnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.returnDate.FillWeight = 0.5F;
+            this.returnDate.HeaderText = "Дата конца аренды";
+            this.returnDate.Name = "returnDate";
+            this.returnDate.ReadOnly = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Gray;
+            this.label5.Location = new System.Drawing.Point(431, 114);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(342, 23);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Вы еще ни разу не арендовали книги";
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label6.Location = new System.Drawing.Point(23, 557);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(1210, 23);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "История аренд";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MyBooks
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
@@ -299,13 +416,16 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MyBooks";
-            this.Size = new System.Drawing.Size(1269, 647);
+            this.Size = new System.Drawing.Size(1252, 851);
             this.Load += new System.EventHandler(this.MyBooks_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridReservations)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRentals)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,8 +447,15 @@
         private System.Windows.Forms.Label textReservationDate;
         private System.Windows.Forms.Label textReservationDateLabel;
         private System.Windows.Forms.Button btnCancelReservation;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridReservations;
         private System.Windows.Forms.DataGridViewTextBoxColumn book;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridView dataGridRentals;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rentalDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn returnDate;
     }
 }

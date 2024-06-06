@@ -1,5 +1,6 @@
 ﻿using Library.Admin.UserControls;
 using Library.Book;
+using Library.User.UserControls;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -15,7 +16,12 @@ namespace Library
             this.Load += AdminMainWindow_Load;
 
         }
+
         private void AdminMainWindow_Load(object sender, EventArgs e)
+        {
+            btnGiveBook.PerformClick();
+        }
+        private void RefreshGiveBook(object sender, EventArgs e)
         {
             btnGiveBook.PerformClick();
         }
@@ -28,7 +34,6 @@ namespace Library
                 currentButton.BackColor = Color.FromArgb(102, 108, 118);
             }
         }
-
         private void DisableButton()
         {
             foreach (Control previousBtn in panel1.Controls)
@@ -127,12 +132,28 @@ namespace Library
                 flowLayoutPanel1.Controls.Clear();
                 currentControl.Dispose(); 
             }
-            GiveBook GiveBook = new GiveBook();
-            flowLayoutPanel1 .Controls.Add(GiveBook);
-            GiveBook.Focus();
+            GiveBook giveBook = new GiveBook();
+            giveBook.RefreshRequest += RefreshGiveBook;
+            flowLayoutPanel1.Controls.Add(giveBook);
+            giveBook.Focus();
 
 
 
+        }
+
+        private void btnTakeBook_Click(object sender, EventArgs e)
+        {
+            ActivateButton(btnTakeBook);
+            if (flowLayoutPanel1.Controls.Count > 0)
+            {
+                Control currentControl = flowLayoutPanel1.Controls[0];
+                flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
+                currentControl.Dispose();
+            }
+            TakeBook takeBook = new TakeBook();
+            flowLayoutPanel1.Controls.Add(takeBook);
+            takeBook.Focus();
         }
     }
 }

@@ -34,17 +34,17 @@ namespace Library.Admin.UserControls
             this.textReservationCode = new System.Windows.Forms.MaskedTextBox();
             this.btnCheckReservation = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textUserId = new System.Windows.Forms.Label();
+            this.textUserIdLael = new System.Windows.Forms.Label();
+            this.textBookId = new System.Windows.Forms.Label();
+            this.textUserName = new System.Windows.Forms.Label();
+            this.textBookIdLabel = new System.Windows.Forms.Label();
+            this.textUserNameLabel = new System.Windows.Forms.Label();
+            this.btnGiveBook = new System.Windows.Forms.Button();
             this.textReservationDate = new System.Windows.Forms.Label();
             this.textReservationDateLabel = new System.Windows.Forms.Label();
             this.textRentedBookTitle = new System.Windows.Forms.Label();
             this.textRentedBookLabel = new System.Windows.Forms.Label();
-            this.btnGiveBook = new System.Windows.Forms.Button();
-            this.textUserName = new System.Windows.Forms.Label();
-            this.textUserNameLabel = new System.Windows.Forms.Label();
-            this.textBookId = new System.Windows.Forms.Label();
-            this.textBookIdLabel = new System.Windows.Forms.Label();
-            this.textUserId = new System.Windows.Forms.Label();
-            this.textUserIdLael = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,7 +61,6 @@ namespace Library.Admin.UserControls
             this.textReservationCode.Size = new System.Drawing.Size(151, 43);
             this.textReservationCode.TabIndex = 0;
             this.textReservationCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textReservationCode.Click += new EventHandler(textReservationCode_Click);
             // 
             // btnCheckReservation
             // 
@@ -101,49 +100,71 @@ namespace Library.Admin.UserControls
             this.panel1.TabIndex = 12;
             this.panel1.Visible = false;
             // 
-            // textReservationDate
+            // textUserId
             // 
-            this.textReservationDate.AutoSize = true;
-            this.textReservationDate.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textReservationDate.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textReservationDate.Location = new System.Drawing.Point(501, 263);
-            this.textReservationDate.Name = "textReservationDate";
-            this.textReservationDate.Size = new System.Drawing.Size(179, 23);
-            this.textReservationDate.TabIndex = 23;
-            this.textReservationDate.Text = "10.10.2024 17:15";
+            this.textUserId.AutoSize = true;
+            this.textUserId.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textUserId.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textUserId.Location = new System.Drawing.Point(479, 233);
+            this.textUserId.Name = "textUserId";
+            this.textUserId.Size = new System.Drawing.Size(82, 23);
+            this.textUserId.TabIndex = 30;
+            this.textUserId.Text = "313131";
             // 
-            // textReservationDateLabel
+            // textUserIdLael
             // 
-            this.textReservationDateLabel.AutoSize = true;
-            this.textReservationDateLabel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textReservationDateLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textReservationDateLabel.Location = new System.Drawing.Point(194, 263);
-            this.textReservationDateLabel.Name = "textReservationDateLabel";
-            this.textReservationDateLabel.Size = new System.Drawing.Size(191, 23);
-            this.textReservationDateLabel.TabIndex = 22;
-            this.textReservationDateLabel.Text = "Дата бронирования:";
+            this.textUserIdLael.AutoSize = true;
+            this.textUserIdLael.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textUserIdLael.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textUserIdLael.Location = new System.Drawing.Point(103, 233);
+            this.textUserIdLael.Name = "textUserIdLael";
+            this.textUserIdLael.Size = new System.Drawing.Size(170, 23);
+            this.textUserIdLael.TabIndex = 29;
+            this.textUserIdLael.Text = "ID пользователя: ";
             // 
-            // textRentedBookTitle
+            // textBookId
             // 
-            this.textRentedBookTitle.AutoSize = true;
-            this.textRentedBookTitle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textRentedBookTitle.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textRentedBookTitle.Location = new System.Drawing.Point(501, 59);
-            this.textRentedBookTitle.Name = "textRentedBookTitle";
-            this.textRentedBookTitle.Size = new System.Drawing.Size(135, 23);
-            this.textRentedBookTitle.TabIndex = 19;
-            this.textRentedBookTitle.Text = "Война и Мир";
+            this.textBookId.AutoSize = true;
+            this.textBookId.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBookId.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textBookId.Location = new System.Drawing.Point(479, 117);
+            this.textBookId.Name = "textBookId";
+            this.textBookId.Size = new System.Drawing.Size(82, 23);
+            this.textBookId.TabIndex = 28;
+            this.textBookId.Text = "313131";
             // 
-            // textRentedBookLabel
+            // textUserName
             // 
-            this.textRentedBookLabel.AutoSize = true;
-            this.textRentedBookLabel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textRentedBookLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textRentedBookLabel.Location = new System.Drawing.Point(194, 59);
-            this.textRentedBookLabel.Name = "textRentedBookLabel";
-            this.textRentedBookLabel.Size = new System.Drawing.Size(74, 23);
-            this.textRentedBookLabel.TabIndex = 18;
-            this.textRentedBookLabel.Text = "Книга: ";
+            this.textUserName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textUserName.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textUserName.Location = new System.Drawing.Point(479, 175);
+            this.textUserName.Name = "textUserName";
+            this.textUserName.Size = new System.Drawing.Size(359, 43);
+            this.textUserName.TabIndex = 26;
+            this.textUserName.Text = "Иванов Иван Иванович";
+            this.textUserName.Click += new System.EventHandler(this.textUserName_Click);
+            // 
+            // textBookIdLabel
+            // 
+            this.textBookIdLabel.AutoSize = true;
+            this.textBookIdLabel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBookIdLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textBookIdLabel.Location = new System.Drawing.Point(103, 117);
+            this.textBookIdLabel.Name = "textBookIdLabel";
+            this.textBookIdLabel.Size = new System.Drawing.Size(99, 23);
+            this.textBookIdLabel.TabIndex = 27;
+            this.textBookIdLabel.Text = "ID книги: ";
+            // 
+            // textUserNameLabel
+            // 
+            this.textUserNameLabel.AutoSize = true;
+            this.textUserNameLabel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textUserNameLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textUserNameLabel.Location = new System.Drawing.Point(103, 175);
+            this.textUserNameLabel.Name = "textUserNameLabel";
+            this.textUserNameLabel.Size = new System.Drawing.Size(146, 23);
+            this.textUserNameLabel.TabIndex = 25;
+            this.textUserNameLabel.Text = "Пользователь: ";
             // 
             // btnGiveBook
             // 
@@ -161,72 +182,50 @@ namespace Library.Admin.UserControls
             this.btnGiveBook.TabIndex = 24;
             this.btnGiveBook.Text = "Выдать";
             this.btnGiveBook.UseVisualStyleBackColor = false;
+            this.btnGiveBook.Click += new System.EventHandler(this.btnGiveBook_Click);
             // 
-            // textUserName
+            // textReservationDate
             // 
-            this.textUserName.AutoSize = true;
-            this.textUserName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textUserName.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textUserName.Location = new System.Drawing.Point(501, 161);
-            this.textUserName.Name = "textUserName";
-            this.textUserName.Size = new System.Drawing.Size(244, 23);
-            this.textUserName.TabIndex = 26;
-            this.textUserName.Text = "Иванов Иван Иванович";
+            this.textReservationDate.AutoSize = true;
+            this.textReservationDate.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textReservationDate.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textReservationDate.Location = new System.Drawing.Point(479, 291);
+            this.textReservationDate.Name = "textReservationDate";
+            this.textReservationDate.Size = new System.Drawing.Size(179, 23);
+            this.textReservationDate.TabIndex = 23;
+            this.textReservationDate.Text = "10.10.2024 17:15";
             // 
-            // textUserNameLabel
+            // textReservationDateLabel
             // 
-            this.textUserNameLabel.AutoSize = true;
-            this.textUserNameLabel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textUserNameLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textUserNameLabel.Location = new System.Drawing.Point(194, 161);
-            this.textUserNameLabel.Name = "textUserNameLabel";
-            this.textUserNameLabel.Size = new System.Drawing.Size(146, 23);
-            this.textUserNameLabel.TabIndex = 25;
-            this.textUserNameLabel.Text = "Пользователь: ";
+            this.textReservationDateLabel.AutoSize = true;
+            this.textReservationDateLabel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textReservationDateLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textReservationDateLabel.Location = new System.Drawing.Point(103, 291);
+            this.textReservationDateLabel.Name = "textReservationDateLabel";
+            this.textReservationDateLabel.Size = new System.Drawing.Size(191, 23);
+            this.textReservationDateLabel.TabIndex = 22;
+            this.textReservationDateLabel.Text = "Дата бронирования:";
             // 
-            // textBookId
+            // textRentedBookTitle
             // 
-            this.textBookId.AutoSize = true;
-            this.textBookId.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBookId.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textBookId.Location = new System.Drawing.Point(501, 110);
-            this.textBookId.Name = "textBookId";
-            this.textBookId.Size = new System.Drawing.Size(82, 23);
-            this.textBookId.TabIndex = 28;
-            this.textBookId.Text = "313131";
+            this.textRentedBookTitle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textRentedBookTitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textRentedBookTitle.Location = new System.Drawing.Point(479, 59);
+            this.textRentedBookTitle.Name = "textRentedBookTitle";
+            this.textRentedBookTitle.Size = new System.Drawing.Size(359, 51);
+            this.textRentedBookTitle.TabIndex = 19;
+            this.textRentedBookTitle.Text = "Гарри Поттер и Философский камень";
             // 
-            // textBookIdLabel
+            // textRentedBookLabel
             // 
-            this.textBookIdLabel.AutoSize = true;
-            this.textBookIdLabel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBookIdLabel.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textBookIdLabel.Location = new System.Drawing.Point(194, 110);
-            this.textBookIdLabel.Name = "textBookIdLabel";
-            this.textBookIdLabel.Size = new System.Drawing.Size(99, 23);
-            this.textBookIdLabel.TabIndex = 27;
-            this.textBookIdLabel.Text = "ID книги: ";
-            // 
-            // textUserId
-            // 
-            this.textUserId.AutoSize = true;
-            this.textUserId.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textUserId.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textUserId.Location = new System.Drawing.Point(501, 212);
-            this.textUserId.Name = "textUserId";
-            this.textUserId.Size = new System.Drawing.Size(82, 23);
-            this.textUserId.TabIndex = 30;
-            this.textUserId.Text = "313131";
-            // 
-            // textUserIdLael
-            // 
-            this.textUserIdLael.AutoSize = true;
-            this.textUserIdLael.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textUserIdLael.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textUserIdLael.Location = new System.Drawing.Point(194, 212);
-            this.textUserIdLael.Name = "textUserIdLael";
-            this.textUserIdLael.Size = new System.Drawing.Size(170, 23);
-            this.textUserIdLael.TabIndex = 29;
-            this.textUserIdLael.Text = "ID пользователя: ";
+            this.textRentedBookLabel.AutoSize = true;
+            this.textRentedBookLabel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textRentedBookLabel.ForeColor = System.Drawing.Color.Gainsboro;
+            this.textRentedBookLabel.Location = new System.Drawing.Point(103, 59);
+            this.textRentedBookLabel.Name = "textRentedBookLabel";
+            this.textRentedBookLabel.Size = new System.Drawing.Size(74, 23);
+            this.textRentedBookLabel.TabIndex = 18;
+            this.textRentedBookLabel.Text = "Книга: ";
             // 
             // contextMenuStrip1
             // 

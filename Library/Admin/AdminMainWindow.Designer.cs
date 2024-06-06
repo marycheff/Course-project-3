@@ -31,20 +31,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainWindow));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
+            this.btnTakeBook = new System.Windows.Forms.Button();
             this.btnGiveBook = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnAddBooks = new System.Windows.Forms.Button();
             this.btnAllBooks = new System.Windows.Forms.Button();
             this.btnAddUsers = new System.Windows.Forms.Button();
             this.btnAllUsers = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.panel1.Controls.Add(this.btnTakeBook);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnGiveBook);
             this.panel1.Controls.Add(this.btnLogout);
@@ -65,6 +67,43 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 1);
             this.label1.TabIndex = 6;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.flowLayoutPanel1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(195, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1070, 684);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // mySqlCommand1
+            // 
+            this.mySqlCommand1.CacheAge = 0;
+            this.mySqlCommand1.Connection = null;
+            this.mySqlCommand1.EnableCaching = false;
+            this.mySqlCommand1.Transaction = null;
+            // 
+            // btnTakeBook
+            // 
+            this.btnTakeBook.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTakeBook.FlatAppearance.BorderSize = 0;
+            this.btnTakeBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTakeBook.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnTakeBook.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnTakeBook.Image = global::Library.Properties.Resources.takeBook;
+            this.btnTakeBook.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTakeBook.Location = new System.Drawing.Point(0, 316);
+            this.btnTakeBook.Margin = new System.Windows.Forms.Padding(0);
+            this.btnTakeBook.Name = "btnTakeBook";
+            this.btnTakeBook.Size = new System.Drawing.Size(200, 63);
+            this.btnTakeBook.TabIndex = 7;
+            this.btnTakeBook.Text = "   Принять книгу";
+            this.btnTakeBook.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTakeBook.UseVisualStyleBackColor = true;
+            this.btnTakeBook.Click += new System.EventHandler(this.btnTakeBook_Click);
             // 
             // btnGiveBook
             // 
@@ -174,24 +213,6 @@
             this.btnAllUsers.UseVisualStyleBackColor = true;
             this.btnAllUsers.Click += new System.EventHandler(this.btnAllUsers_Click);
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
-            this.flowLayoutPanel1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(195, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1070, 684);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // mySqlCommand1
-            // 
-            this.mySqlCommand1.CacheAge = 0;
-            this.mySqlCommand1.Connection = null;
-            this.mySqlCommand1.EnableCaching = false;
-            this.mySqlCommand1.Transaction = null;
-            // 
             // AdminMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -225,5 +246,6 @@
         private System.Windows.Forms.Button btnGiveBook;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnTakeBook;
     }
 }

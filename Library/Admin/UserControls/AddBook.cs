@@ -160,6 +160,16 @@ namespace Library.Admin.UserControls
             return true;
         }
 
+        private void btnAddAuthor_Click(object sender, EventArgs e)
+        {
+            AddAuthor addAuthor = new AddAuthor();
+            addAuthor.ShowDialog();
+        }
 
+        private void btnAddGenre_Click(object sender, EventArgs e)
+        {
+            AddGenre addGenre = new AddGenre();
+            addGenre.ShowDialog();
+        }
     }
 }
