@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Library.DB;
+using System;
 using System.Windows.Forms;
 
 namespace Library.Admin
 {
     public partial class AddGenre : Form
     {
+        public event EventHandler GenreAdded;
         public AddGenre()
         {
             InitializeComponent();
@@ -16,7 +18,13 @@ namespace Library.Admin
 
             if (Validation.ValidGenreName(genreName))
             {
-                MessageBox.Show("YES");
+                if (DbBook.AddGenre(Validation.Capitalize(genreName)))
+                {
+                    MessageBox.Show("Жанр добавлен", "Добавление жанра", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GenreAdded?.Invoke(this, e);
+                    this.Close();
+                }
+               
             }
         }
     }
