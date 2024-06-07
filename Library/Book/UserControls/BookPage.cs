@@ -10,9 +10,9 @@ namespace Library.Book.UserControls
 {
     public partial class BookPage : UserControl
     {
-        BookInfo book;
-        UserInfo userInfo = Registration.UserInfo;
-        public BookPage(BookInfo book)
+        global::Book book;
+        UserClass userInfo = Registration.UserInfo;
+        public BookPage(global::Book book)
         {
             this.book = book;
             InitializeComponent();

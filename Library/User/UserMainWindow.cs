@@ -66,7 +66,7 @@ namespace Library
                 flowLayoutPanel1.Controls.Clear();
                 currentControl.Dispose(); 
             }
-            UserInfo userInfo = Registration.UserInfo;
+            UserClass userInfo = Registration.UserInfo;
             UserProfile userProfile = new UserProfile(userInfo.Name, userInfo.Login, userInfo.Email);
             userProfile.RefreshRequest += RefreshProfile;
             flowLayoutPanel1.Controls.Add(userProfile);
@@ -83,8 +83,8 @@ namespace Library
                 flowLayoutPanel1.Controls.Remove(currentControl);
                 flowLayoutPanel1.Controls.Clear();
                 currentControl.Dispose();   
-            } 
-            List<BookInfo> allBooks = DbBook.GetAllBooks();
+            }
+            List<global::Book> allBooks = DbBook.GetAllBooks();
             foreach (var book in allBooks)
             {
                 BookCatalog bookControl = new BookCatalog(book, flowLayoutPanel1);
@@ -102,7 +102,7 @@ namespace Library
                 flowLayoutPanel1.Controls.Clear();
                 currentControl.Dispose();
             }
-            UserInfo userInfo = Registration.UserInfo;
+            UserClass userInfo = Registration.UserInfo;
             MyBooks myBooks = new MyBooks(userInfo.Id);
             myBooks.RefreshRequest += RefreshMyBooks;
             flowLayoutPanel1.Controls.Add(myBooks);

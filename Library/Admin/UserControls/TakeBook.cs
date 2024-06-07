@@ -1,7 +1,6 @@
 ﻿using Library.DB;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -22,12 +21,12 @@ namespace Library.Admin.UserControls
             dataGridView1.Rows.Clear();
             foreach (Rental rental in allRentals)
             {
-                object[] rowData = new object[dataGridView1.ColumnCount];
-                rowData[1] = DbUser.GetUserNameById(rental.UserId);
-                rowData[2] = DbBook.GetBookTitleById(rental.BookId);
-                rowData[3] = rental.RentalDate.ToString("dd.MM.yyyy HH:mm");
-                rowData[0] = rental.Id;
-                dataGridView1.Rows.Add(rowData);
+                int rentalId = rental.Id;
+                string userName = DbUser.GetUserNameById(rental.UserId);
+                string bookTitle = DbBook.GetBookTitleById(rental.BookId);
+                string rentalDate = rental.RentalDate.ToString("dd.MM.yyyy HH:mm");
+
+                dataGridView1.Rows.Add(rentalId, userName, bookTitle, rentalDate);
             }
         }
 

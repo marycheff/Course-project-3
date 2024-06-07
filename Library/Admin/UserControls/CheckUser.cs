@@ -16,19 +16,17 @@ namespace Library
 
         private void LoadUserData()
         {
-            Dictionary<int, Dictionary<string, object>> usersDict = DbUser.GetAllUsers();
-            foreach (var userData in usersDict.Values)
+            List<UserClass> users = DbUser.GetAllUsers();
+            dataGridView1.Rows.Clear(); 
+            foreach (var user in users)
             {
-                object[] rowData = new object[dataGridView1.ColumnCount];
-                rowData[0] = userData["id"];
-                rowData[1] = userData["name"];
-                rowData[2] = userData["login"];
-                rowData[3] = userData["email"];
-                rowData[4] = userData["role"];
-                dataGridView1.Rows.Add(rowData);
-                dataGridView1.Sort(dataGridView1.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+                dataGridView1.Rows.Add(user.Id, user.Name, user.Login, user.Email, DbUser.GetRoleName(user.RoleId));
             }
+
+            dataGridView1.Sort(dataGridView1.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
+
+
 
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)

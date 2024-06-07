@@ -9,7 +9,7 @@ namespace Library
 {
     internal class DbUser
     {
-        //Регистрация
+        //registration
         public static int Login(string login, string password)
         {
             MySqlConnection conn = GetConnection();
@@ -160,7 +160,8 @@ namespace Library
                 conn.Close();
             }
         }
-        //Редактирование и удаление
+        
+        //edit & delete
         public static bool DeleteUser(int userId)
         {
             MySqlConnection conn = GetConnection();
@@ -432,8 +433,6 @@ namespace Library
                 conn.Close();
             }
         }
-
-
         public static bool EditUserName(int id, string name)
         {
 
@@ -470,7 +469,6 @@ namespace Library
 
 
         }
-
         public static bool EditUserRole(int id, int roleId)
         {
 
@@ -503,7 +501,8 @@ namespace Library
                 conn.Close();
             }
         }
-        //Проверка
+        
+        //check
         public static bool CheckEmail(string email)
         {
             MySqlConnection conn = GetConnection();
@@ -548,7 +547,6 @@ namespace Library
                 conn.Close();
             }
         }
-
         public static bool EmailAssociatedWithLogin(string email, string login)
         {
             MySqlConnection conn = GetConnection();
@@ -572,7 +570,7 @@ namespace Library
             }
         }
 
-        //Get
+        //get
         public static MySqlConnection GetConnection()
         {
             string sql = "datasource=localhost;port=3306;Username=root;password=root;database=library;";
@@ -587,35 +585,29 @@ namespace Library
             }
             return conn;
         }
-        public static Dictionary<int, Dictionary<string, object>> GetAllUsers()
+        public static List<UserClass> GetAllUsers()
         {
-            Dictionary<int, Dictionary<string, object>> usersDict = new Dictionary<int, Dictionary<string, object>>();
+            List<UserClass> users = new List<UserClass>();
 
             MySqlConnection conn = GetConnection();
             try
             {
-                string query = "SELECT users.id, users.name, users.login, users.email, roles.name AS role FROM users INNER JOIN roles ON users.role_id = roles.id";
+                string query = "SELECT users.id, users.name, users.login, users.email, users.role_id FROM users";
                 MySqlCommand command = new MySqlCommand(query, conn);
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int id = reader.GetInt32("id");
-                        string name = reader.GetString("name");
-                        string login = reader.GetString("login");
-                        string email = reader.GetString("email");
-                        string role = reader.GetString("role");
+                        UserClass user = new UserClass
+                        {
+                            Id = reader.GetInt32("id"),
+                            Name = reader.GetString("name"),
+                            Login = reader.GetString("login"),
+                            Email = reader.GetString("email"),
+                            RoleId = reader.GetInt32("role_id")
+                        };
 
-                        Dictionary<string, object> userData = new Dictionary<string, object>
-                            {
-                                { "id", id },
-                                { "name", name },
-                                { "login", login },
-                                { "email", email },
-                                { "role", role }
-                            };
-
-                        usersDict.Add(id, userData);
+                        users.Add(user);
                     }
                 }
             }
@@ -628,11 +620,55 @@ namespace Library
                 conn.Close();
             }
 
-            return usersDict;
+            return users;
         }
-        public static UserInfo GetUserInfoByLogin(string login)
+
+        //public static Dictionary<int, Dictionary<string, object>> GetAllUsers()
+        //{
+        //    Dictionary<int, Dictionary<string, object>> usersDict = new Dictionary<int, Dictionary<string, object>>();
+
+        //    MySqlConnection conn = GetConnection();
+        //    try
+        //    {
+        //        string query = "SELECT users.id, users.name, users.login, users.email, roles.name AS role FROM users INNER JOIN roles ON users.role_id = roles.id";
+        //        MySqlCommand command = new MySqlCommand(query, conn);
+        //        using (MySqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                int id = reader.GetInt32("id");
+        //                string name = reader.GetString("name");
+        //                string login = reader.GetString("login");
+        //                string email = reader.GetString("email");
+        //                string role = reader.GetString("role");
+
+        //                Dictionary<string, object> userData = new Dictionary<string, object>
+        //                    {
+        //                        { "id", id },
+        //                        { "name", name },
+        //                        { "login", login },
+        //                        { "email", email },
+        //                        { "role", role }
+        //                    };
+
+        //                usersDict.Add(id, userData);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Ошибка при получении пользователей: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
+
+        //    return usersDict;
+        //}
+        public static UserClass GetUserInfoByLogin(string login)
         {
-            UserInfo userInfo = new UserInfo();
+            UserClass userInfo = new UserClass();
             MySqlConnection conn = GetConnection();
             try
             {

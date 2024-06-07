@@ -1,18 +1,17 @@
 ﻿using Library.DB;
-using Library.Book;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+
 
 namespace Library.Book.UserControls
 {
     public partial class BookCatalog : UserControl
     {
-        BookInfo bookInfo;
-        FlowLayoutPanel parentPanel;
-        public BookCatalog(BookInfo book, FlowLayoutPanel parent)
+        readonly global::Book bookInfo;
+        readonly FlowLayoutPanel parentPanel;
+        public BookCatalog(global::Book book, FlowLayoutPanel parent)
         {
             InitializeComponent();
             bookInfo = book;

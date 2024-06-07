@@ -37,7 +37,7 @@ namespace Library
                     {
                         smtpClient.Send(mailMessage);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         MessageBox.Show("Ошибка отправки письма");
                     }

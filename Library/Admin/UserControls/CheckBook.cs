@@ -18,21 +18,19 @@ namespace Library.Admin.UserControls
         }
         private void LoadBookData()
         {
-            List<BookInfo> allBooks = DbBook.GetAllBooks();
-       
-            foreach (BookInfo book in allBooks)
+            List<global::Book> allBooks = DbBook.GetAllBooks();
+            dataGridView1.Rows.Clear();
+            foreach (global::Book book in allBooks)
             {
-                object[] rowData = new object[dataGridView1.ColumnCount];
-                rowData[0] = book.Id;
-                rowData[1] = book.Title;
-                rowData[2] = DbBook.GetAuthorById(book.AuthorId);
-                rowData[3] = DbBook.GetGenreById(book.GenreId);
-                rowData[4] = book.Description;
-                rowData[5] = book.Available ? "Да" : "Нет";
-                dataGridView1.Rows.Add(rowData);
+                string authorName = DbBook.GetAuthorById(book.AuthorId);
+                string genreName = DbBook.GetGenreById(book.GenreId);
+                string availability = book.Available ? "Да" : "Нет";
+
+                dataGridView1.Rows.Add(book.Id, book.Title, authorName, genreName, book.Description, availability);
             }
             dataGridView1.Sort(dataGridView1.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
+
 
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

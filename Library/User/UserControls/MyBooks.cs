@@ -12,12 +12,9 @@ namespace Library.User.UserControls
         public MyBooks(int userId)
         {
             InitializeComponent();
-            
             FillCurrentReservation(userId);
             FillReservationsHistory(userId);
             FillRentalsHistory(userId);
-
-
         }
 
         private void FillCurrentReservation(int userId)
@@ -36,8 +33,8 @@ namespace Library.User.UserControls
                 textReservationDate.Visible = true;
                 btnCancelReservation.Visible = true;
 
-                Reservation currentReservation = DbBook.GetCurrentReservationInfo(userId);
-                BookInfo book = DbBook.GetBook(currentReservation.BookId);
+                Reservation currentReservation = DbBook.GetCurrentReservationFromUser(userId);
+                global::Book book = DbBook.GetBook(currentReservation.BookId);
                 textRentedBookTitle.Text = book.Title;
                 textReservationCode.Text = currentReservation.ReservationCode.Insert(2, "-");
                 textReservationDate.Text = currentReservation.ReservationDate.ToString("dd.MM.yyyy HH:mm");
@@ -47,21 +44,19 @@ namespace Library.User.UserControls
         }
         private void FillReservationsHistory(int userId)
         {
-            List<Reservation> reservationsList = DbBook.GetReservationsHistory(userId);
+            List<Reservation> reservationsList = DbBook.GetAllReservationsFromUser(userId);
             if (reservationsList.Count > 0)
             {
                 dataGridReservations.Visible = true;
                 foreach (Reservation reservation in reservationsList)
                 {
-                    object[] rowData = new object[dataGridReservations.ColumnCount];
-                    rowData[0] = DbBook.GetBookTitleById(reservation.BookId);
-                    rowData[1] = reservation.ReservationDate.ToString("dd.MM.yyyy HH:mm");
-                    dataGridReservations.Rows.Add(rowData);
+                    string bookTitle = DbBook.GetBookTitleById(reservation.BookId);
+                    string reservationDate = reservation.ReservationDate.ToString("dd.MM.yyyy HH:mm");
+                    dataGridReservations.Rows.Add(bookTitle, reservationDate);
                 }
                 dataGridReservations.Sort(dataGridReservations.Columns[1], System.ComponentModel.ListSortDirection.Descending);
             }
         }
-
         private void FillRentalsHistory(int userId)
         {
             List<Rental> rentalList = DbBook.GetRentalsHistory(userId);
@@ -70,21 +65,14 @@ namespace Library.User.UserControls
                 dataGridRentals.Visible = true;
                 foreach (Rental rental in rentalList)
                 {
-                    object[] rowData = new object[dataGridRentals.ColumnCount];
-                    rowData[0] = DbBook.GetBookTitleById(rental.BookId);
-                    rowData[1] = rental.RentalDate.ToString("dd.MM.yyyy HH:mm");
-                    rowData[2] = rental.ReturnDate.ToString("dd.MM.yyyy HH:mm");
-                    dataGridRentals.Rows.Add(rowData);
+                    string bookTitle = DbBook.GetBookTitleById(rental.BookId);
+                    string rentalDate = rental.RentalDate.ToString("dd.MM.yyyy HH:mm");
+                    string returnDate = rental.ReturnDate.ToString("dd.MM.yyyy HH:mm");
+                    dataGridRentals.Rows.Add(bookTitle, rentalDate, returnDate);
 
                 }
-                //dataGridView1.Sort(dataGridView1.Columns[2], System.ComponentModel.ListSortDirection.Descending);
-
             }
         }
-        
-
-
-        
         private void btnCancelReservation_Click(object sender, System.EventArgs e)
         {
             DialogResult result = MessageBox.Show("Отменить бронирование?", "Отмена бронирования", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -98,19 +86,8 @@ namespace Library.User.UserControls
             }
         }
 
-        private void MyBooks_Load(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

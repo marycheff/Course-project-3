@@ -15,12 +15,11 @@ namespace Library.Admin.UserControls
         public bool Available;
         public bool SaveClicked;
 
-
-
         private string temporaryImagePath;
+
+        public event EventHandler RefreshRequest;
         public AddBook()
         {
-
             InitializeComponent();
             string[] authors = DbBook.GetAllAuthors();
             Array.Sort(authors);
@@ -30,15 +29,7 @@ namespace Library.Admin.UserControls
             Array.Sort(genres);
             comboGenre.Items.AddRange(genres);
             comboAvailable.SelectedIndex = 0;
-
-
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             Title = textTitle.Text.Trim();
@@ -103,7 +94,6 @@ namespace Library.Admin.UserControls
             }
         }
 
-
         private bool SaveImage(string title)
         {
             string rootDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\"));
@@ -163,13 +153,21 @@ namespace Library.Admin.UserControls
         private void btnAddAuthor_Click(object sender, EventArgs e)
         {
             AddAuthor addAuthor = new AddAuthor();
+            addAuthor.AuthorAdded += AddAuthorForm_AuthorOrGenreAdded;
             addAuthor.ShowDialog();
         }
+        private void AddAuthorForm_AuthorOrGenreAdded(object sender, EventArgs e)
+        {
+            RefreshRequest?.Invoke(this, e);
+        }
+
 
         private void btnAddGenre_Click(object sender, EventArgs e)
         {
             AddGenre addGenre = new AddGenre();
+            addGenre.GenreAdded += AddAuthorForm_AuthorOrGenreAdded;
             addGenre.ShowDialog();
         }
+
     }
 }

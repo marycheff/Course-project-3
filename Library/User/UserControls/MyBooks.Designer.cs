@@ -86,7 +86,6 @@
             this.label2.Size = new System.Drawing.Size(166, 23);
             this.label2.TabIndex = 9;
             this.label2.Text = "Забронированная";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -417,7 +416,6 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "MyBooks";
             this.Size = new System.Drawing.Size(1252, 851);
-            this.Load += new System.EventHandler(this.MyBooks_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

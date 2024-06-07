@@ -36,7 +36,7 @@ namespace Library.User.UserControls
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            UserInfo userInfo = Registration.UserInfo;
+            UserClass userInfo = Registration.UserInfo;
             bool updated = false;
 
             string inputedLogin = textLogin.Text.Trim();

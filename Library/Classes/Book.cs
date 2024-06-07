@@ -1,4 +1,4 @@
-﻿public class BookInfo
+﻿public class Book
 {
     private int id;
     private string title;

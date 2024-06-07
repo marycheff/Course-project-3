@@ -25,6 +25,10 @@ namespace Library
         {
             btnGiveBook.PerformClick();
         }
+        private void RefreshAddBooks(object sender, EventArgs e)
+        {
+            btnAddBooks.PerformClick();
+        }
         private void ActivateButton(Button btnSender)
         {
             if (currentButton != btnSender)
@@ -104,7 +108,7 @@ namespace Library
             checkBook.Focus();
         }
 
-        private void btnAddBooks_Click(object sender, EventArgs e)
+        public void btnAddBooks_Click(object sender, EventArgs e)
         {
             ActivateButton(btnAddBooks);
             if (flowLayoutPanel1.Controls.Count > 0)
@@ -116,9 +120,9 @@ namespace Library
             }
 
             AddBook addBook = new AddBook();
+            addBook.RefreshRequest += RefreshAddBooks;
             flowLayoutPanel1.Controls.Add(addBook);
             addBook.Focus();
-     
         }
 
         private void btnGiveBook_Click(object sender, EventArgs e)

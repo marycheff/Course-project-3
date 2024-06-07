@@ -1,5 +1,4 @@
-﻿using Library;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -23,10 +22,11 @@ namespace Library.DB
             return conn;
         }
 
-        public static List<BookInfo> GetAllBooks()
+        //BOOK
+        //get
+        public static List<global::Book> GetAllBooks()
         {
-            List<BookInfo> books = new List<BookInfo>();
-
+            List<global::Book> books = new List<global::Book>();
             MySqlConnection conn = GetConnection();
             string query = "SELECT * FROM books";
             MySqlCommand command = new MySqlCommand(query, conn);
@@ -37,14 +37,16 @@ namespace Library.DB
                 {
                     while (reader.Read())
                     {
-                        BookInfo book = new BookInfo();
-                        book.Id = reader.GetInt32("id");
-                        book.Title = reader.GetString("title");
-                        book.AuthorId = reader.GetInt32("author_id");
-                        book.GenreId = reader.GetInt32("genre_id");
-                        book.Description = reader.GetString("description");
-                        book.Available = reader.GetBoolean("available");
-                        book.CoverImagePath = reader.GetString("cover_image_path");
+                        global::Book book = new global::Book
+                        {
+                            Id = reader.GetInt32("id"),
+                            Title = reader.GetString("title"),
+                            AuthorId = reader.GetInt32("author_id"),
+                            GenreId = reader.GetInt32("genre_id"),
+                            Description = reader.GetString("description"),
+                            Available = reader.GetBoolean("available"),
+                            CoverImagePath = reader.GetString("cover_image_path")
+                        };
                         books.Add(book);
                     }
                 }
@@ -60,9 +62,9 @@ namespace Library.DB
 
             return books;
         }
-        public static BookInfo GetBook(int id)
+        public static global::Book GetBook(int id)
         {
-            BookInfo book = null;
+            global::Book book = null;
             MySqlConnection conn = GetConnection();
             try
             {
@@ -74,14 +76,16 @@ namespace Library.DB
                 {
                     if (reader.Read())
                     {
-                        book = new BookInfo();
-                        book.Id = reader.GetInt32("id");
-                        book.Title = reader.GetString("title");
-                        book.AuthorId = reader.GetInt32("author_id");
-                        book.GenreId = reader.GetInt32("genre_id");
-                        book.Description = reader.GetString("description");
-                        book.Available = reader.GetBoolean("available");
-                        book.CoverImagePath = reader.GetString("cover_image_path");
+                        book = new global::Book
+                        {
+                            Id = reader.GetInt32("id"),
+                            Title = reader.GetString("title"),
+                            AuthorId = reader.GetInt32("author_id"),
+                            GenreId = reader.GetInt32("genre_id"),
+                            Description = reader.GetString("description"),
+                            Available = reader.GetBoolean("available"),
+                            CoverImagePath = reader.GetString("cover_image_path")
+                        };
                     }
                 }
             }
@@ -381,6 +385,35 @@ namespace Library.DB
 
             return available;
         }
+        public static int GetBookIdByUserId(int userId)
+        {
+            int bookId = -1;
+            MySqlConnection conn = GetConnection();
+
+            string query = "SELECT book_id FROM reservations WHERE user_id = @userId AND rented = 0";
+            MySqlCommand command = new MySqlCommand(query, conn);
+            command.Parameters.AddWithValue("@userId", userId);
+
+            try
+            {
+                object result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    bookId = Convert.ToInt32(result);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Ошибка при получении ID книги: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return bookId;
+        }
+        //other
         public static bool DeleteBook(int id)
         {
             MySqlConnection conn = GetConnection();
@@ -405,7 +438,7 @@ namespace Library.DB
         public static bool EditBookInfo(int bookId, string title, int authorId, int genreId, string description, bool available)
         {
             MySqlConnection conn = GetConnection();
-           
+
             try
             {
                 string query = "UPDATE books SET title = @title, author_id = @authorId, genre_id = @genreId, description = @description, available = @available WHERE id = @bookId";
@@ -464,33 +497,410 @@ namespace Library.DB
                 conn.Close();
             }
         }
-        public static int GetBookIdByUserId(int userId)
+        public static bool GiveBook(Reservation reservation)
         {
-            int bookId = -1;
-            MySqlConnection conn = GetConnection();
+            bool success = false;
 
-            string query = "SELECT book_id FROM reservations WHERE user_id = @userId AND rented = 0";
-            MySqlCommand command = new MySqlCommand(query, conn);
-            command.Parameters.AddWithValue("@userId", userId);
-
-            try
+            using (MySqlConnection conn = GetConnection())
             {
-                object result = command.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
+                MySqlTransaction transaction = conn.BeginTransaction();
+
+                try
                 {
-                    bookId = Convert.ToInt32(result);
+
+                    string updateQuery = "UPDATE reservations SET rented = 1 WHERE id = @reservationId";
+                    MySqlCommand updateCommand = new MySqlCommand(updateQuery, conn, transaction);
+                    updateCommand.Parameters.AddWithValue("@reservationId", reservation.Id);
+                    int rowsAffected = updateCommand.ExecuteNonQuery();
+
+                    if (rowsAffected == 1)
+                    {
+                        string insertQuery = "INSERT INTO rentals (user_id, book_id, rental_date, reservation_id) VALUES (@userId, @bookId, @rentalDate, @reservationId)";
+                        MySqlCommand insertCommand = new MySqlCommand(insertQuery, conn, transaction);
+                        insertCommand.Parameters.AddWithValue("@userId", reservation.UserId);
+                        insertCommand.Parameters.AddWithValue("@bookId", reservation.BookId);
+                        insertCommand.Parameters.AddWithValue("@rentalDate", DateTime.Now);
+                        insertCommand.Parameters.AddWithValue("@reservationId", reservation.Id);
+
+                        insertCommand.ExecuteNonQuery();
+                        transaction.Commit();
+                        success = true;
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("Ошибка при обновлении бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (MySqlException ex)
+
+            return success;
+        }
+        public static bool TakeBook(int rentalId)
+        {
+            bool success = false;
+
+            using (MySqlConnection conn = GetConnection())
             {
-                MessageBox.Show("Ошибка при получении ID книги: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conn.Close();
+                string query = "UPDATE rentals SET return_date = @currentDate WHERE id = @rentalId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@currentDate", DateTime.Now);
+                command.Parameters.AddWithValue("@rentalId", rentalId);
+
+                try
+                {
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        success = true;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при обновлении данных: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
-            return bookId;
+            return success;
+        }
+        public static bool AddAuthor(string authorName)
+        {
+            bool isAuthorAdded = false;
+            using (MySqlConnection conn = GetConnection())
+            {
+                string checkQuery = "SELECT COUNT(*) FROM authors WHERE name = @name";
+                MySqlCommand checkCommand = new MySqlCommand(checkQuery, conn);
+                checkCommand.Parameters.AddWithValue("@name", authorName);
+                int authorCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                if (authorCount == 0)
+                {
+                    // Если автор не существует, добавляем его
+                    string insertQuery = "INSERT INTO authors (name) VALUES (@name)";
+                    MySqlCommand insertCommand = new MySqlCommand(insertQuery, conn);
+                    insertCommand.Parameters.AddWithValue("@name", authorName);
+
+                    try
+                    {
+                        insertCommand.ExecuteNonQuery();
+                        isAuthorAdded = true;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Ошибка при добавлении автора: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Такой автор уже есть в базе", "Ошибка добавления автора", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return isAuthorAdded;
+        }
+        public static bool AddGenre(string genreName)
+        {
+            bool isGenreAdded = false;
+            using (MySqlConnection conn = GetConnection())
+            {
+                string checkQuery = "SELECT COUNT(*) FROM genres WHERE name = @name";
+                MySqlCommand checkCommand = new MySqlCommand(checkQuery, conn);
+                checkCommand.Parameters.AddWithValue("@name", genreName);
+                int genreCount = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                if (genreCount == 0)
+                {
+                    string insertQuery = "INSERT INTO genres (name) VALUES (@name)";
+                    MySqlCommand insertCommand = new MySqlCommand(insertQuery, conn);
+                    insertCommand.Parameters.AddWithValue("@name", genreName);
+
+                    try
+                    {
+                        insertCommand.ExecuteNonQuery();
+                        isGenreAdded = true;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show("Ошибка при добавлении жанра: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Такой жанр уже есть в базе", "Ошибка добавления жанра", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return isGenreAdded;
+        }
+
+
+
+
+
+        //RESERVATION
+        //get
+        public static int GetReservationIdByDate(DateTime reservationDate)
+        {
+            int reservationId = -1;
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT id FROM reservations WHERE reservation_date = @reservationDate LIMIT 1";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@reservationDate", reservationDate);
+
+                try
+                {
+                    object result = command.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        reservationId = Convert.ToInt32(result);
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении ID бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return reservationId;
+        }
+        public static List<Reservation> GetAllReservations()
+        {
+            List<Reservation> reservations = new List<Reservation>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations";
+                MySqlCommand command = new MySqlCommand(query, conn);
+
+                try
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Reservation reservation = new Reservation
+                            {
+                                Id = reader.GetInt32("id"),
+                                UserId = reader.GetInt32("user_id"),
+                                BookId = reader.GetInt32("book_id"),
+                                ReservationCode = reader.GetString("reservation_code"),
+                                ReservationDate = reader.GetDateTime("reservation_date"),
+                                Rented = reader.GetBoolean("rented")
+                            };
+
+                            reservations.Add(reservation);
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении списка бронирований: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return reservations;
+        }
+        //public static List<Reservation> GetAllReservations(int userId)
+        //{
+        //    List<Reservation> reservations = new List<Reservation>();
+
+        //    using (MySqlConnection conn = GetConnection())
+        //    {
+        //        string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations WHERE user_id = @userId";
+        //        MySqlCommand command = new MySqlCommand(query, conn);
+        //        command.Parameters.AddWithValue("@userId", userId);
+
+        //        try
+        //        {
+        //            using (MySqlDataReader reader = command.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    Reservation reservation = new Reservation
+        //                    {
+        //                        Id = reader.GetInt32("id"),
+        //                        UserId = reader.GetInt32("user_id"),
+        //                        BookId = reader.GetInt32("book_id"),
+        //                        ReservationCode = reader.GetString("reservation_code"),
+        //                        ReservationDate = reader.GetDateTime("reservation_date"),
+        //                        Rented = reader.GetBoolean("rented")
+        //                    };
+
+        //                    reservations.Add(reservation);
+        //                }
+        //            }
+        //        }
+        //        catch (MySqlException ex)
+        //        {
+        //            MessageBox.Show("Ошибка при получении списка бронирований: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        }
+        //    }
+
+        //    return reservations;
+        //}
+        public static List<Reservation> GetAllReservationsFromUser(int userId)
+        {
+            List<Reservation> reservations = new List<Reservation>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations WHERE user_id = @userId AND rented = 1";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@userId", userId);
+
+                try
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Reservation reservation = new Reservation
+                            {
+                                Id = reader.GetInt32("id"),
+                                UserId = reader.GetInt32("user_id"),
+                                BookId = reader.GetInt32("book_id"),
+                                ReservationCode = reader.GetString("reservation_code"),
+                                ReservationDate = reader.GetDateTime("reservation_date"),
+                                Rented = reader.GetBoolean("rented")
+                            };
+
+                            reservations.Add(reservation);
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении списка бронирований: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return reservations;
+        }
+        public static Reservation GetCurrentReservationFromUser(int userId)
+        {
+            Reservation reservation = null;
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations WHERE user_id = @userId AND rented = 0 LIMIT 1";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@userId", userId);
+
+                try
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            reservation = new Reservation
+                            {
+                                Id = reader.GetInt32("id"),
+                                UserId = reader.GetInt32("user_id"),
+                                BookId = reader.GetInt32("book_id"),
+                                ReservationCode = reader.GetString("reservation_code"),
+                                ReservationDate = reader.GetDateTime("reservation_date"),
+                                Rented = reader.GetBoolean("rented")
+                            };
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении информации о бронировании: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return reservation;
+        }
+        public static Reservation GetReservationByCode(string reservationCode)
+        {
+            Reservation reservation = null;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations WHERE reservation_code = @reservationCode AND rented = 0 LIMIT 1";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@reservationCode", reservationCode);
+
+                try
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            reservation = new Reservation
+                            {
+                                Id = reader.GetInt32("id"),
+                                UserId = reader.GetInt32("user_id"),
+                                BookId = reader.GetInt32("book_id"),
+                                ReservationCode = reader.GetString("reservation_code"),
+                                ReservationDate = reader.GetDateTime("reservation_date"),
+                                Rented = reader.GetBoolean("rented")
+                            };
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении информации о бронировании: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return reservation;
+        }
+        
+        //other
+        public static bool DeleteReservation(int reservationId)
+        {
+            bool isDeleted = false;
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "DELETE FROM reservations WHERE id = @reservationId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@reservationId", reservationId);
+
+                try
+                {
+                    int affectedRows = command.ExecuteNonQuery();
+                    isDeleted = affectedRows > 0;
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при удалении бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return isDeleted;
+        }
+        public static bool IsReservationCodeUnique(string reservationCode)
+        {
+            bool isUnique = true;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT COUNT(*) FROM reservations WHERE reservation_code = @reservationCode";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@reservationCode", reservationCode);
+
+                try
+                {
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        isUnique = false;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при проверке уникальности кода бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return isUnique;
         }
         public static bool ReserveBook(int bookId, int userId, string reservationCode)
         {
@@ -547,309 +957,9 @@ namespace Library.DB
 
             return hasReservedBook;
         }
-        public static List<Reservation> GetAllReservations()
-        {
-            List<Reservation> reservations = new List<Reservation>();
 
-            using (MySqlConnection conn = GetConnection())
-            {
-                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations";
-                MySqlCommand command = new MySqlCommand(query, conn);
-
-                try
-                {
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Reservation reservation = new Reservation
-                            {
-                                Id = reader.GetInt32("id"),
-                                UserId = reader.GetInt32("user_id"),
-                                BookId = reader.GetInt32("book_id"),
-                                ReservationCode = reader.GetString("reservation_code"),
-                                ReservationDate = reader.GetDateTime("reservation_date"),
-                                Rented = reader.GetBoolean("rented")
-                            };
-
-                            reservations.Add(reservation);
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Ошибка при получении списка бронирований: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return reservations;
-        }
-        public static List<Reservation> GetAllReservations(int userId)
-        {
-            List<Reservation> reservations = new List<Reservation>();
-
-            using (MySqlConnection conn = GetConnection())
-            {
-                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations WHERE user_id = @userId";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@userId", userId);
-
-                try
-                {
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Reservation reservation = new Reservation
-                            {
-                                Id = reader.GetInt32("id"),
-                                UserId = reader.GetInt32("user_id"),
-                                BookId = reader.GetInt32("book_id"),
-                                ReservationCode = reader.GetString("reservation_code"),
-                                ReservationDate = reader.GetDateTime("reservation_date"),
-                                Rented = reader.GetBoolean("rented")
-                            };
-
-                            reservations.Add(reservation);
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Ошибка при получении списка бронирований: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return reservations;
-        }
-        public static List<Reservation> GetReservationsHistory(int userId)
-        {
-            List<Reservation> reservations = new List<Reservation>();
-
-            using (MySqlConnection conn = GetConnection())
-            {
-                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations WHERE user_id = @userId AND rented = 1";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@userId", userId);
-
-                try
-                {
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Reservation reservation = new Reservation
-                            {
-                                Id = reader.GetInt32("id"),
-                                UserId = reader.GetInt32("user_id"),
-                                BookId = reader.GetInt32("book_id"),
-                                ReservationCode = reader.GetString("reservation_code"),
-                                ReservationDate = reader.GetDateTime("reservation_date"),
-                                Rented = reader.GetBoolean("rented")
-                            };
-
-                            reservations.Add(reservation);
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Ошибка при получении списка бронирований: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return reservations;
-        }
-        public static Reservation GetCurrentReservationInfo(int userId)
-        {
-            Reservation reservation = null;
-            using (MySqlConnection conn = GetConnection())
-            {
-                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations WHERE user_id = @userId AND rented = 0 LIMIT 1";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@userId", userId);
-
-                try
-                {
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            reservation = new Reservation
-                            {
-                                Id = reader.GetInt32("id"),
-                                UserId = reader.GetInt32("user_id"),
-                                BookId = reader.GetInt32("book_id"),
-                                ReservationCode = reader.GetString("reservation_code"),
-                                ReservationDate = reader.GetDateTime("reservation_date"),
-                                Rented = reader.GetBoolean("rented")
-                            };
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Ошибка при получении информации о бронировании: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return reservation;
-        }
-        public static int GetReservationIdByDate(DateTime reservationDate)
-        {
-            int reservationId = -1;
-            using (MySqlConnection conn = GetConnection())
-            {
-                string query = "SELECT id FROM reservations WHERE reservation_date = @reservationDate LIMIT 1";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@reservationDate", reservationDate);
-
-                try
-                {
-                    object result = command.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        reservationId = Convert.ToInt32(result);
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Ошибка при получении ID бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return reservationId;
-        }
-        public static bool DeleteReservation(int reservationId)
-        {
-            bool isDeleted = false;
-            using (MySqlConnection conn = GetConnection())
-            {
-                string query = "DELETE FROM reservations WHERE id = @reservationId";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@reservationId", reservationId);
-
-                try
-                {
-                    int affectedRows = command.ExecuteNonQuery();
-                    isDeleted = affectedRows > 0;
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Ошибка при удалении бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return isDeleted;
-        }
-        public static Reservation GetReservationByCode(string reservationCode)
-        {
-            Reservation reservation = null;
-
-            using (MySqlConnection conn = GetConnection())
-            {
-                string query = "SELECT id, user_id, book_id, reservation_code, reservation_date, rented FROM reservations WHERE reservation_code = @reservationCode AND rented = 0 LIMIT 1";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@reservationCode", reservationCode);
-
-                try
-                {
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            reservation = new Reservation
-                            {
-                                Id = reader.GetInt32("id"),
-                                UserId = reader.GetInt32("user_id"),
-                                BookId = reader.GetInt32("book_id"),
-                                ReservationCode = reader.GetString("reservation_code"),
-                                ReservationDate = reader.GetDateTime("reservation_date"),
-                                Rented = reader.GetBoolean("rented")
-                            };
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Ошибка при получении информации о бронировании: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return reservation;
-        }
-        public static bool IsReservationCodeUnique(string reservationCode)
-        {
-            bool isUnique = true;
-
-            using (MySqlConnection conn = GetConnection())
-            {
-                string query = "SELECT COUNT(*) FROM reservations WHERE reservation_code = @reservationCode";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@reservationCode", reservationCode);
-
-                try
-                {
-                    int count = Convert.ToInt32(command.ExecuteScalar());
-                    if (count > 0)
-                    {
-                        isUnique = false;
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Ошибка при проверке уникальности кода бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return isUnique;
-        }
-
-        public static bool GiveBook(Reservation reservation)
-        {
-            bool success = false;
-
-            using (MySqlConnection conn = GetConnection())
-            {
-                MySqlTransaction transaction = conn.BeginTransaction();
-
-                try
-                {
-
-                    string updateQuery = "UPDATE reservations SET rented = 1 WHERE id = @reservationId";
-                    MySqlCommand updateCommand = new MySqlCommand(updateQuery, conn, transaction);
-                    updateCommand.Parameters.AddWithValue("@reservationId", reservation.Id);
-                    int rowsAffected = updateCommand.ExecuteNonQuery();
-
-                    if (rowsAffected == 1)
-                    {
-                        string insertQuery = "INSERT INTO rentals (user_id, book_id, rental_date, reservation_id) VALUES (@userId, @bookId, @rentalDate, @reservationId)";
-                        MySqlCommand insertCommand = new MySqlCommand(insertQuery, conn, transaction);
-                        insertCommand.Parameters.AddWithValue("@userId", reservation.UserId);
-                        insertCommand.Parameters.AddWithValue("@bookId", reservation.BookId);
-                        insertCommand.Parameters.AddWithValue("@rentalDate", DateTime.Now);
-                        insertCommand.Parameters.AddWithValue("@reservationId", reservation.Id);
-
-                        insertCommand.ExecuteNonQuery();
-                        transaction.Commit();
-                        success = true;
-                    }
-                    else
-                    {
-                        transaction.Rollback();
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    transaction.Rollback();
-                    MessageBox.Show("Ошибка при обновлении бронирования: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return success;
-        }
-
-
+        //RENTAL
+        //get
         public static List<Rental> GetAllRentals()
         {
             List<Rental> rentals = new List<Rental>();
@@ -885,35 +995,6 @@ namespace Library.DB
 
             return rentals;
         }
-
-        public static bool TakeBook(int rentalId)
-        {
-            bool success = false;
-
-            using (MySqlConnection conn = GetConnection())
-            {
-                string query = "UPDATE rentals SET return_date = @currentDate WHERE id = @rentalId";
-                MySqlCommand command = new MySqlCommand(query, conn);
-                command.Parameters.AddWithValue("@currentDate", DateTime.Now);
-                command.Parameters.AddWithValue("@rentalId", rentalId);
-
-                try
-                {
-                    int rowsAffected = command.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        success = true;
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Ошибка при обновлении данных: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            return success;
-        }
-
         public static List<Rental> GetRentalsHistory(int userId)
         {
             List<Rental> rentals = new List<Rental>();
@@ -952,7 +1033,8 @@ namespace Library.DB
 
             return rentals;
         }
-
+       
+       
+        
     }
-
 }

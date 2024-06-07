@@ -5,7 +5,7 @@ namespace Library
 {
     public partial class Registration : Form
     {
-        internal static UserInfo UserInfo;
+        internal static UserClass UserInfo;
         public Registration()
         {
             InitializeComponent();

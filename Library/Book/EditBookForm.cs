@@ -21,8 +21,9 @@ namespace Library.Book
         public int GenreId { get; private set; }
         public string Description { get; private set; }
         public bool Available { get; private set; }
-        
         public bool SaveClicked { get; private set; }
+
+
 
         private string temporaryImagePath;
         private string imageFileName;
@@ -30,7 +31,7 @@ namespace Library.Book
         public EditBookForm(int id)
         {
             InitializeComponent();
-            BookInfo book = DbBook.GetBook(id);
+            global::Book book = DbBook.GetBook(id);
             this.Text = $"Библиотека - Правка книги \"{book.Title}\"";
 
             textTitle.Text = book.Title;
@@ -68,8 +69,6 @@ namespace Library.Book
                     }
                 }
             }
-
-
             imageFileName = Path.GetFileName(imagePath);
         }
 
@@ -146,7 +145,7 @@ namespace Library.Book
             }
             SaveClicked = true;
             MessageBox.Show("Изменения сохранены", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close ();
+            this.Close();
 
         }
 
