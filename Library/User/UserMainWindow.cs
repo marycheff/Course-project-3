@@ -28,25 +28,6 @@ namespace Library
         {
             btnMyBooks.PerformClick();
         }
-        private void ActivateButton(Button btnSender)
-        {
-            if (currentButton != btnSender)
-            {
-                DisableButton();
-                currentButton = btnSender;
-                currentButton.BackColor = Color.FromArgb(138, 146, 161);
-            }
-        }
-        private void DisableButton()
-        {
-            foreach (Control previousBtn in panel1.Controls)
-            {
-                if (previousBtn is Button)
-                {
-                    previousBtn.BackColor = Color.FromArgb(99, 105, 115);
-                }
-            }
-        }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {

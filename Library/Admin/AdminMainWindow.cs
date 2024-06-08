@@ -159,5 +159,20 @@ namespace Library
             flowLayoutPanel1.Controls.Add(takeBook);
             takeBook.Focus();
         }
+
+        private void btnAuthorsAndGenres_Click(object sender, EventArgs e)
+        {
+            ActivateButton(btnAuthorsAndGenres);
+            if (flowLayoutPanel1.Controls.Count > 0)
+            {
+                Control currentControl = flowLayoutPanel1.Controls[0];
+                flowLayoutPanel1.Controls.Remove(currentControl);
+                flowLayoutPanel1.Controls.Clear();
+                currentControl.Dispose();
+            }
+            CheckAuthorsAndGenres checkAuthors = new CheckAuthorsAndGenres();
+            flowLayoutPanel1.Controls.Add (checkAuthors);
+            checkAuthors.Focus();
+        }
     }
 }

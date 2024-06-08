@@ -31,7 +31,6 @@ namespace Library.Admin.UserControls
             dataGridView1.Sort(dataGridView1.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
         }
 
-
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Проверяем, что клик был по колонке с ссылками

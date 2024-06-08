@@ -119,6 +119,12 @@
     <Compile Include="Admin\AdminMainWindow.Designer.cs">
       <DependentUpon>AdminMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControls\CheckAuthorsAndGenres.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControls\CheckAuthorsAndGenres.Designer.cs">
+      <DependentUpon>CheckAuthorsAndGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserControls\CheckBook.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -143,6 +149,7 @@
     <Compile Include="Book\BookImageForm.Designer.cs">
       <DependentUpon>BookImageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Author.cs" />
     <Compile Include="Classes\Book.cs" />
     <Compile Include="Book\EditBookForm.cs">
       <SubType>Form</SubType>
@@ -156,6 +163,7 @@
     <Compile Include="Book\UserControls\BookPage.Designer.cs">
       <DependentUpon>BookPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Genre.cs" />
     <Compile Include="Classes\Rental.cs" />
     <Compile Include="Classes\Reservation.cs" />
     <Compile Include="User\UserControls\BookCatalog.cs">
@@ -245,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\AdminMainWindow.resx">
       <DependentUpon>AdminMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\UserControls\CheckAuthorsAndGenres.resx">
+      <DependentUpon>CheckAuthorsAndGenres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\UserControls\CheckBook.resx">
       <DependentUpon>CheckBook.cs</DependentUpon>
@@ -343,6 +354,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\authorsAndGenres.png" />
     <None Include="Resources\takeBook.png" />
     <None Include="Resources\DEFAULT_ADD.png" />
     <None Include="Resources\BookCover.bmp" />

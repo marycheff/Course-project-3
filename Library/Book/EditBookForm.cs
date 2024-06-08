@@ -1,15 +1,11 @@
-﻿using Library.DB;
+﻿using Library.Classes;
+using Library.DB;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Library.Book
@@ -26,26 +22,36 @@ namespace Library.Book
 
 
         private string temporaryImagePath;
-        private string imageFileName;
+        private readonly string imageFileName;
 
         public EditBookForm(int id)
         {
             InitializeComponent();
             global::Book book = DbBook.GetBook(id);
             this.Text = $"Библиотека - Правка книги \"{book.Title}\"";
-
             textTitle.Text = book.Title;
 
-            string[] authors = DbBook.GetAllAuthors();
-            Array.Sort(authors);
-            comboAuthor.Items.AddRange(authors);
+            List<Author> authors = DbBook.GetAllAuthors();
+            authors = authors.OrderBy(a => a.Name).ToList();
+            comboAuthor.Items.Clear();
+
+            foreach (Author author in authors)
+            {
+                comboAuthor.Items.Add(author.Name);
+            }
             comboAuthor.SelectedItem = DbBook.GetAuthorById(book.AuthorId);
 
-            string[] genres = DbBook.GetAllGenres();
-            Array.Sort(genres);
-            comboGenre.Items.AddRange(genres);
+
+            List<Genre> genres = DbBook.GetAllGenres();
+            genres = genres.OrderBy(g => g.Name).ToList(); 
+            comboGenre.Items.Clear(); 
+            foreach (var genre in genres)
+            {
+                comboGenre.Items.Add(genre.Name); 
+            }
             comboGenre.SelectedItem = DbBook.GetGenreById(book.GenreId);
-            
+
+
             if (DbBook.GetAvailabilityId(id))
             {
                 comboAvailable.SelectedIndex = 0;

@@ -573,7 +573,7 @@ namespace Library
         //get
         public static MySqlConnection GetConnection()
         {
-            string sql = "datasource=localhost;port=3306;Username=root;password=root;database=library;";
+            string sql = "datasource=localhost;port=3306;Username=root;password=;database=library;";
             MySqlConnection conn = new MySqlConnection(sql);
             try
             {

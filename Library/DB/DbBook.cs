@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Library.Classes;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -9,7 +10,7 @@ namespace Library.DB
     {
         public static MySqlConnection GetConnection()
         {
-            string sql = "datasource=localhost;port=3306;Username=root;password=root;database=library;";
+            string sql = "datasource=localhost;port=3306;Username=root;password=;database=library;";
             MySqlConnection conn = new MySqlConnection(sql);
             try
             {
@@ -297,21 +298,26 @@ namespace Library.DB
             }
             return genreId;
         }
-        public static string[] GetAllAuthors()
+
+        public static List<Author> GetAllAuthors()
         {
-            List<string> authors = new List<string>();
+            List<Author> authors = new List<Author>();
             MySqlConnection conn = GetConnection();
             try
             {
-                string query = "SELECT name FROM authors";
+                string query = "SELECT id, name FROM authors";
                 MySqlCommand command = new MySqlCommand(query, conn);
 
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        string authorName = reader.GetString("name");
-                        authors.Add(authorName);
+                        Author author = new Author
+                        {
+                            Id = reader.GetInt32("id"),
+                            Name = reader.GetString("name")
+                        };
+                        authors.Add(author);
                     }
                 }
             }
@@ -324,37 +330,41 @@ namespace Library.DB
                 conn.Close();
             }
 
-            return authors.ToArray();
+            return authors;
         }
-        public static string[] GetAllGenres()
-        {
-            List<string> genres = new List<string>();
-            MySqlConnection conn = GetConnection();
-            try
-            {
-                string query = "SELECT name FROM genres";
-                MySqlCommand command = new MySqlCommand(query, conn);
 
-                using (MySqlDataReader reader = command.ExecuteReader())
+        public static List<Genre> GetAllGenres()
+        {
+            List<Genre> genres = new List<Genre>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                try
                 {
-                    while (reader.Read())
+                    string query = "SELECT id, name FROM genres";
+                    MySqlCommand command = new MySqlCommand(query, conn);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        string genreName = reader.GetString("name");
-                        genres.Add(genreName);
+                        while (reader.Read())
+                        {
+                            Genre genre = new Genre
+                            {
+                                Id = reader.GetInt32("id"),
+                                Name = reader.GetString("name")
+                            };
+                            genres.Add(genre);
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при получении списка авторов: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                conn.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при получении списка жанров: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
-            return genres.ToArray();
+            return genres;
         }
+
         public static bool GetAvailabilityId(int id)
         {
             bool available = false;
@@ -636,8 +646,48 @@ namespace Library.DB
 
             return isGenreAdded;
         }
-
-
+        public static bool DeleteGenre(int id)
+        {
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "DELETE FROM genres WHERE id = @id";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@id", id);
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении жанра: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public static bool DeleteAuthor(int id)
+        {
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "DELETE FROM authors WHERE id = @id";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@id", id);
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении автора: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
 
 

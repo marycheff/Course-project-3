@@ -1,7 +1,10 @@
-﻿using Library.DB;
+﻿using Library.Classes;
+using Library.DB;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Library.Admin.UserControls
@@ -21,13 +24,22 @@ namespace Library.Admin.UserControls
         public AddBook()
         {
             InitializeComponent();
-            string[] authors = DbBook.GetAllAuthors();
-            Array.Sort(authors);
-            comboAuthor.Items.AddRange(authors);
+            List<Author> authors = DbBook.GetAllAuthors();
+            authors = authors.OrderBy(a => a.Name).ToList();
+            comboAuthor.Items.Clear();
+            foreach (var author in authors)
+            {
+                comboAuthor.Items.Add(author.Name);
+            }
 
-            string[] genres = DbBook.GetAllGenres();
-            Array.Sort(genres);
-            comboGenre.Items.AddRange(genres);
+
+            List<Genre> genres = DbBook.GetAllGenres();
+            genres = genres.OrderBy(g => g.Name).ToList(); 
+            comboGenre.Items.Clear();  
+            foreach (var genre in genres)
+            {
+                comboGenre.Items.Add(genre.Name);  
+            }
             comboAvailable.SelectedIndex = 0;
         }
         private void btnSave_Click(object sender, EventArgs e)

@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
+            this.btnAuthorsAndGenres = new System.Windows.Forms.Button();
             this.btnTakeBook = new System.Windows.Forms.Button();
             this.btnGiveBook = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -40,12 +41,17 @@
             this.btnAllBooks = new System.Windows.Forms.Button();
             this.btnAddUsers = new System.Windows.Forms.Button();
             this.btnAllUsers = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(82)))), ((int)(((byte)(87)))));
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnAuthorsAndGenres);
             this.panel1.Controls.Add(this.btnTakeBook);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnGiveBook);
@@ -85,6 +91,25 @@
             this.mySqlCommand1.Connection = null;
             this.mySqlCommand1.EnableCaching = false;
             this.mySqlCommand1.Transaction = null;
+            // 
+            // btnAuthorsAndGenres
+            // 
+            this.btnAuthorsAndGenres.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAuthorsAndGenres.FlatAppearance.BorderSize = 0;
+            this.btnAuthorsAndGenres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAuthorsAndGenres.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnAuthorsAndGenres.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnAuthorsAndGenres.Image = ((System.Drawing.Image)(resources.GetObject("btnAuthorsAndGenres.Image")));
+            this.btnAuthorsAndGenres.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAuthorsAndGenres.Location = new System.Drawing.Point(0, 379);
+            this.btnAuthorsAndGenres.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAuthorsAndGenres.Name = "btnAuthorsAndGenres";
+            this.btnAuthorsAndGenres.Size = new System.Drawing.Size(200, 63);
+            this.btnAuthorsAndGenres.TabIndex = 8;
+            this.btnAuthorsAndGenres.Text = "  Авторы и жанры";
+            this.btnAuthorsAndGenres.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAuthorsAndGenres.UseVisualStyleBackColor = true;
+            this.btnAuthorsAndGenres.Click += new System.EventHandler(this.btnAuthorsAndGenres_Click);
             // 
             // btnTakeBook
             // 
@@ -213,6 +238,24 @@
             this.btnAllUsers.UseVisualStyleBackColor = true;
             this.btnAllUsers.Click += new System.EventHandler(this.btnAllUsers_Click);
             // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Gainsboro;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Location = new System.Drawing.Point(0, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(200, 1);
+            this.label2.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.Gainsboro;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Location = new System.Drawing.Point(0, 379);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(200, 1);
+            this.label3.TabIndex = 7;
+            // 
             // AdminMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
@@ -247,5 +290,8 @@
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTakeBook;
+        private System.Windows.Forms.Button btnAuthorsAndGenres;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
