@@ -74,7 +74,17 @@ namespace Library.Admin.UserControls
                     DialogResult result = MessageBox.Show("Изображение не выбрано, все равно продолжить?", "", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
-                        MessageBox.Show("Успех");
+                        bool bookAdded = DbBook.AddBook(Title, AuthorId, GenreId, Description, Available);
+                        if (bookAdded)
+                        {
+                            MessageBox.Show("Книга успешно добавлена");
+                            textTitle.Text = string.Empty;
+                            textDescription.Text = string.Empty;
+                            comboAvailable.SelectedIndex = -1;
+                            comboAuthor.SelectedIndex = -1;
+                            comboGenre.SelectedIndex = -1;
+
+                        }
                     }
                 }
             }

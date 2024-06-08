@@ -507,6 +507,36 @@ namespace Library.DB
                 conn.Close();
             }
         }
+        public static bool AddBook(string title, int authorId, int genreId, string description, bool available)
+        {
+            MySqlConnection conn = GetConnection();
+
+            try
+            {
+
+                string query = @"INSERT INTO books (title, author_id, genre_id, description, available)
+                         VALUES (@title,@author_id, @genre_id, @description, @available)";
+
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@title", title);
+                command.Parameters.AddWithValue("@author_id", authorId);
+                command.Parameters.AddWithValue("@genre_id", genreId);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@available", available);
+
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected > 0;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Ошибка при добавлении книги: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         public static bool GiveBook(Reservation reservation)
         {
             bool success = false;
@@ -689,6 +719,30 @@ namespace Library.DB
             }
         }
 
+        public static bool UpdateCoverImagePath(int bookId, string coverImagePath)
+        {
+            bool isUpdated = false;
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "UPDATE books SET cover_image_path = @coverImagePath WHERE id = @bookId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@coverImagePath", coverImagePath);
+                command.Parameters.AddWithValue("@bookId", bookId);
+
+                try
+                {
+                    int rowsAffected = command.ExecuteNonQuery();
+                    isUpdated = rowsAffected > 0;
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при обновлении пути к обложке: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally { conn.Close(); }
+            }
+
+            return isUpdated;
+        }
 
 
         //RESERVATION
@@ -902,7 +956,7 @@ namespace Library.DB
 
             return reservation;
         }
-        
+
         //other
         public static bool DeleteReservation(int reservationId)
         {
@@ -1083,8 +1137,8 @@ namespace Library.DB
 
             return rentals;
         }
-       
-       
-        
+
+
+
     }
 }

@@ -41,7 +41,7 @@
             this.textTitle.Name = "textTitle";
             this.textTitle.Size = new System.Drawing.Size(1269, 40);
             this.textTitle.TabIndex = 0;
-            this.textTitle.Text = "label1";
+            this.textTitle.Text = "Название книги";
             this.textTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textDescription
@@ -53,10 +53,11 @@
             this.textDescription.Padding = new System.Windows.Forms.Padding(10);
             this.textDescription.Size = new System.Drawing.Size(788, 337);
             this.textDescription.TabIndex = 1;
-            this.textDescription.Text = "label2";
+            this.textDescription.Text = "Описание книги";
             // 
             // panel1
             // 
+            this.panel1.BackgroundImage = global::Library.Properties.Resources.DEFAULT;
             this.panel1.Location = new System.Drawing.Point(133, 96);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 300);

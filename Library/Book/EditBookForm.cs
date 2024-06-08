@@ -23,11 +23,12 @@ namespace Library.Book
 
         private string temporaryImagePath;
         private readonly string imageFileName;
+        private readonly global::Book book;
 
         public EditBookForm(int id)
         {
             InitializeComponent();
-            global::Book book = DbBook.GetBook(id);
+            book = DbBook.GetBook(id);
             this.Text = $"Библиотека - Правка книги \"{book.Title}\"";
             textTitle.Text = book.Title;
 
@@ -101,6 +102,11 @@ namespace Library.Book
             Available = (comboAvailable.SelectedItem.ToString() == "Да");
 
 
+
+
+
+
+
             if (!string.IsNullOrEmpty(temporaryImagePath))
             {
                 string rootDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\"));
@@ -118,6 +124,11 @@ namespace Library.Book
                 }
 
                 string fileName = imageFileName;
+                if (fileName == string.Empty)
+                {
+                    fileName = Title + Path.GetExtension(temporaryImagePath);
+                    DbBook.UpdateCoverImagePath(book.Id, $"\\Resources\\Covers\\{fileName}");
+                }
                 string saveFilePath = Path.Combine(saveDirectory, fileName);
 
                 if (File.Exists(saveFilePath))
@@ -138,11 +149,9 @@ namespace Library.Book
                         return;
                     }
                 }
-
                 try
                 {
                     File.Copy(temporaryImagePath, saveFilePath);
-                    MessageBox.Show("Изображение успешно сохранено.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {

@@ -40,7 +40,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label4.Location = new System.Drawing.Point(196, 35);
+            this.label4.Location = new System.Drawing.Point(142, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(201, 25);
             this.label4.TabIndex = 35;
@@ -55,7 +55,7 @@
             this.btnAddGenre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddGenre.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddGenre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(207)))));
-            this.btnAddGenre.Location = new System.Drawing.Point(199, 340);
+            this.btnAddGenre.Location = new System.Drawing.Point(135, 309);
             this.btnAddGenre.Name = "btnAddGenre";
             this.btnAddGenre.Size = new System.Drawing.Size(215, 40);
             this.btnAddGenre.TabIndex = 34;
@@ -68,16 +68,17 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label1.Location = new System.Drawing.Point(93, 163);
+            this.label1.Location = new System.Drawing.Point(28, 138);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 23);
             this.label1.TabIndex = 33;
             this.label1.Text = "Название жанра";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textGenreName
             // 
             this.textGenreName.Font = new System.Drawing.Font("Tahoma", 12.75F);
-            this.textGenreName.Location = new System.Drawing.Point(96, 191);
+            this.textGenreName.Location = new System.Drawing.Point(32, 166);
             this.textGenreName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textGenreName.Name = "textGenreName";
             this.textGenreName.Size = new System.Drawing.Size(424, 28);
@@ -87,7 +88,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
-            this.ClientSize = new System.Drawing.Size(612, 458);
+            this.ClientSize = new System.Drawing.Size(484, 361);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnAddGenre);
             this.Controls.Add(this.label1);

@@ -40,7 +40,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label1.Location = new System.Drawing.Point(93, 160);
+            this.label1.Location = new System.Drawing.Point(28, 138);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 23);
             this.label1.TabIndex = 18;
@@ -49,7 +49,7 @@
             // textAuthorName
             // 
             this.textAuthorName.Font = new System.Drawing.Font("Tahoma", 12.75F);
-            this.textAuthorName.Location = new System.Drawing.Point(96, 188);
+            this.textAuthorName.Location = new System.Drawing.Point(32, 166);
             this.textAuthorName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textAuthorName.Name = "textAuthorName";
             this.textAuthorName.Size = new System.Drawing.Size(424, 28);
@@ -64,7 +64,7 @@
             this.btnAddAuthor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAuthor.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddAuthor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(207)))), ((int)(((byte)(207)))));
-            this.btnAddAuthor.Location = new System.Drawing.Point(199, 337);
+            this.btnAddAuthor.Location = new System.Drawing.Point(135, 309);
             this.btnAddAuthor.Name = "btnAddAuthor";
             this.btnAddAuthor.Size = new System.Drawing.Size(215, 40);
             this.btnAddAuthor.TabIndex = 30;
@@ -77,7 +77,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label4.Location = new System.Drawing.Point(196, 32);
+            this.label4.Location = new System.Drawing.Point(130, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(220, 25);
             this.label4.TabIndex = 31;
@@ -87,7 +87,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
-            this.ClientSize = new System.Drawing.Size(612, 458);
+            this.ClientSize = new System.Drawing.Size(484, 361);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnAddAuthor);
             this.Controls.Add(this.label1);
