@@ -61,7 +61,8 @@ namespace Library.Admin.UserControls
             }
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridAuthors.Columns["authorEdit"].Index)
             {
-
+                Book.EditAuthor editAuthor = new Book.EditAuthor();
+                editAuthor.ShowDialog();
             }
         }
 
@@ -83,6 +84,8 @@ namespace Library.Admin.UserControls
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridGenres.Columns["genreEdit"].Index)
             {
+                Book.EditGenre editGenre = new Book.EditGenre();
+                editGenre.ShowDialog();
             }
         }
 
