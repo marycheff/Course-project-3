@@ -118,22 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnAuthorsAndGenres.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAI7SURBVFhH7ZdNiI1hFMcvViRpIomm2ViZzSzslNVEUspC
-        Iws2siJFFkpsrXwshGShNGaUko+dmsxgYWQhpJgi8hULkW+v3/95/tOdO3feeb/cu+FXv+bec85zTve9
-        5733Tu0/VUmSZD6uwh14FC/ibXyET/E5frC/cQx7fbwcNOjBQ3gXf2FRxtwqPxyaiRvxnjpU5K3b5oMD
-        3ahXOxUv8Qxux17cj1lccetsKN6CX8KxOt/wLK7AGair04cPMA873X56KNRiaXEmchU7XaKadfhQiZz8
-        xCU+ng5Fa3Dign3HbU4rvwDPKVGQfrdIh6IOfBfKI59xrdPKaxnfKFEQvZXL3CYdio6F8jp9js/Cybki
-        7AoDpoOihfg1lEeOOD4Pr4VIOQ6HAVlQuDfWB17gXOzE+wqUQHfMbrfPhuI74VhkK+qKPA7PiqG7R1es
-        262zoXgRjm/+K9Smj4Zn+dF3wAHsctv8cGiDOpgTeD0+DOhSjn+pPEN9Ml7G07gPV2OHW5WDBgdxMh9x
-        uUtaC4POh5F19Hasd7r1MGw4jG3kNQ7hAJ7E4/6rT8FbqPwlt6gGjZ5gGUbcoho0eh/7paJF1C8cvfJB
-        3IM9Pl4dmukzX4w61F4Y/CPOTzY71D4YujjOTj7hbIcbIH4zVJRn2K2aIbkp1iQXHGqC3FR3SRFuuFUz
-        JE/Fmpw/l/42DB6J85OVDrUXBuufCLHUofbCYC2fmOOQYlWXLo3mZSSot6BhSVSo6haQvoz/GLXaH6BX
-        r/PTkZ1LAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="btnGiveBook.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1

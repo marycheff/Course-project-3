@@ -738,10 +738,38 @@ namespace Library.DB
                 {
                     MessageBox.Show("Ошибка при обновлении пути к обложке: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                finally { conn.Close(); }
+                finally 
+                { 
+                    conn.Close(); 
+                }
             }
 
             return isUpdated;
+        }
+
+        public static bool HasBooksByAuthor(int authorId)
+        {
+            bool hasBooks = false;
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                string query = "SELECT COUNT(*) FROM books WHERE author_id = @AuthorId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@AuthorId", authorId);
+
+                int bookCount = Convert.ToInt32(command.ExecuteScalar());
+                hasBooks = bookCount > 0;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Ошибка при проверке наличия книг у автора: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return hasBooks;
         }
 
 

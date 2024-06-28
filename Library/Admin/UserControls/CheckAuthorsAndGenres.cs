@@ -41,19 +41,27 @@ namespace Library.Admin.UserControls
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridAuthors.Columns["authorDelete"].Index)
             {
                 int authorId = Convert.ToInt32(dataGridAuthors.Rows[e.RowIndex].Cells["authorId"].Value);
-                DialogResult result = MessageBox.Show($"Вы уверены, что хотите удалить этого автора\n{dataGridAuthors.Rows[e.RowIndex].Cells["authorName"].Value}", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Вы уверены, что хотите удалить этого автора?\n{dataGridAuthors.Rows[e.RowIndex].Cells["authorName"].Value}", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-
-                    if (DbBook.DeleteAuthor(authorId))
+                    if (DbBook.HasBooksByAuthor(authorId))
                     {
-                        dataGridAuthors.Rows.RemoveAt(e.RowIndex);
-                        MessageBox.Show("Автор удален успешно", "Удаление автора", MessageBoxButtons.OK);
+                        MessageBox.Show("Автора нельзя удалить, так как есть минимум одна книга с ним", "Удаление автора", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    else
+                    {
+                        if (DbBook.DeleteAuthor(authorId))
+                        {
+                            dataGridAuthors.Rows.RemoveAt(e.RowIndex);
+                            MessageBox.Show("Автор удален успешно", "Удаление автора", MessageBoxButtons.OK);
+                        }
+                    }
+                    
                 }
             }
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridAuthors.Columns["authorEdit"].Index)
             {
+
             }
         }
 

@@ -30,19 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainWindow));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnAuthorsAndGenres = new System.Windows.Forms.Button();
             this.btnTakeBook = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnGiveBook = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnAddBooks = new System.Windows.Forms.Button();
             this.btnAllBooks = new System.Windows.Forms.Button();
             this.btnAddUsers = new System.Windows.Forms.Button();
             this.btnAllUsers = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,32 +65,23 @@
             this.panel1.Size = new System.Drawing.Size(200, 684);
             this.panel1.TabIndex = 1;
             // 
-            // label1
+            // label3
             // 
-            this.label1.BackColor = System.Drawing.Color.Gainsboro;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(-3, 621);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 1);
-            this.label1.TabIndex = 6;
+            this.label3.BackColor = System.Drawing.Color.Gainsboro;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Location = new System.Drawing.Point(0, 379);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(200, 1);
+            this.label3.TabIndex = 7;
             // 
-            // flowLayoutPanel1
+            // label2
             // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
-            this.flowLayoutPanel1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(195, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1070, 684);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // mySqlCommand1
-            // 
-            this.mySqlCommand1.CacheAge = 0;
-            this.mySqlCommand1.Connection = null;
-            this.mySqlCommand1.EnableCaching = false;
-            this.mySqlCommand1.Transaction = null;
+            this.label2.BackColor = System.Drawing.Color.Gainsboro;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Location = new System.Drawing.Point(0, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(200, 1);
+            this.label2.TabIndex = 9;
             // 
             // btnAuthorsAndGenres
             // 
@@ -99,7 +90,7 @@
             this.btnAuthorsAndGenres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAuthorsAndGenres.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnAuthorsAndGenres.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAuthorsAndGenres.Image = ((System.Drawing.Image)(resources.GetObject("btnAuthorsAndGenres.Image")));
+            this.btnAuthorsAndGenres.Image = global::Library.Properties.Resources.authorsAndGenres;
             this.btnAuthorsAndGenres.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAuthorsAndGenres.Location = new System.Drawing.Point(0, 379);
             this.btnAuthorsAndGenres.Margin = new System.Windows.Forms.Padding(0);
@@ -129,6 +120,15 @@
             this.btnTakeBook.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTakeBook.UseVisualStyleBackColor = true;
             this.btnTakeBook.Click += new System.EventHandler(this.btnTakeBook_Click);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Location = new System.Drawing.Point(-3, 621);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 1);
+            this.label1.TabIndex = 6;
             // 
             // btnGiveBook
             // 
@@ -238,23 +238,23 @@
             this.btnAllUsers.UseVisualStyleBackColor = true;
             this.btnAllUsers.Click += new System.EventHandler(this.btnAllUsers_Click);
             // 
-            // label2
+            // flowLayoutPanel1
             // 
-            this.label2.BackColor = System.Drawing.Color.Gainsboro;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Location = new System.Drawing.Point(0, 127);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(200, 1);
-            this.label2.TabIndex = 9;
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(65)))), ((int)(((byte)(69)))));
+            this.flowLayoutPanel1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(195, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1070, 684);
+            this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // label3
+            // mySqlCommand1
             // 
-            this.label3.BackColor = System.Drawing.Color.Gainsboro;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Location = new System.Drawing.Point(0, 379);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 1);
-            this.label3.TabIndex = 7;
+            this.mySqlCommand1.CacheAge = 0;
+            this.mySqlCommand1.Connection = null;
+            this.mySqlCommand1.EnableCaching = false;
+            this.mySqlCommand1.Transaction = null;
             // 
             // AdminMainWindow
             // 

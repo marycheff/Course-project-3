@@ -149,6 +149,12 @@
     <Compile Include="Book\BookImageForm.Designer.cs">
       <DependentUpon>BookImageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Book\EditAuthor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Book\EditAuthor.Designer.cs">
+      <DependentUpon>EditAuthor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Author.cs" />
     <Compile Include="Classes\Book.cs" />
     <Compile Include="Book\EditBookForm.cs">
@@ -354,6 +360,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\takeBook1.png" />
+    <None Include="Resources\authorsAndGenres1.png" />
     <None Include="Resources\authorsAndGenres.png" />
     <None Include="Resources\takeBook.png" />
     <None Include="Resources\DEFAULT_ADD.png" />
