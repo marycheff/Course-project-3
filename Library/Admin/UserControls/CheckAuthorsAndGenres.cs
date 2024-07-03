@@ -16,8 +16,23 @@ namespace Library.Admin.UserControls
             LoadGenresData();
             dataGridAuthors.ColumnHeadersDefaultCellStyle.Font = new Font("tahoma", 12, FontStyle.Bold);
             dataGridGenres.ColumnHeadersDefaultCellStyle.Font = new Font("tahoma", 12, FontStyle.Bold);
+
+
+            if (Registration.UserInfo.RoleId == 2)
+            {
+                DisableAdminButtons();
+            }
         }
 
+        private void DisableAdminButtons()
+        {
+            dataGridAuthors.Columns["authorEdit"].Visible = false;
+            dataGridAuthors.Columns["authorDelete"].Visible = false;
+            dataGridGenres.Columns["genreEdit"].Visible = false;
+            dataGridGenres.Columns["genreDelete"].Visible = false;
+            btnAddAuthor.Visible = false;
+            btnAddGenre.Visible = false;
+        }
         private void LoadAuthorsData()
         {
             List<Classes.Author> authors = DbBook.GetAllAuthors();

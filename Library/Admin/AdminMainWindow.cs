@@ -14,9 +14,20 @@ namespace Library
         {
             InitializeComponent();
             this.Load += AdminMainWindow_Load;
+            if(Registration.UserInfo.RoleId == 2)
+            {
+                DisableAdminButtons();
+            }
 
         }
 
+        private void DisableAdminButtons() { 
+            btnAllUsers.Visible = false;
+            btnAddUsers.Visible = false;
+            btnAddBooks.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+        }
         private void AdminMainWindow_Load(object sender, EventArgs e)
         {
             btnGiveBook.PerformClick();

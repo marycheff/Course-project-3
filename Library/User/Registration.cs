@@ -19,17 +19,19 @@ namespace Library
             string login = tabAuthTextLogin.Text;
             string password = tabAuthTextPassword.Text;
             int loggedIn = DbUser.Login(login, password);
+
             if (loggedIn == 3)
             {
+                UserInfo = DbUser.GetUserInfoByLogin(login);
                 UserMainWindow userMainWindow = new UserMainWindow();
                 userMainWindow.Closed += (s, args) => this.Close();
                 Hide();
-                UserInfo = DbUser.GetUserInfoByLogin(login);
                 userMainWindow.Show();
 
             }
             else if (loggedIn == 2 || loggedIn == 1)
             {
+                UserInfo = DbUser.GetUserInfoByLogin(login);
                 AdminMainWindow adminMainWindow = new AdminMainWindow();
                 adminMainWindow.Closed += (s, args) => this.Close();
                 Hide();

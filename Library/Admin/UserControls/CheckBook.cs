@@ -15,6 +15,12 @@ namespace Library.Admin.UserControls
             InitializeComponent();
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("tahoma", 11, FontStyle.Bold);
             LoadBookData();
+
+            if (Registration.UserInfo.RoleId == 2)
+            {
+                dataGridView1.Columns["edit"].Visible = false;
+                dataGridView1.Columns["delete"].Visible = false;
+            }
         }
         private void LoadBookData()
         {

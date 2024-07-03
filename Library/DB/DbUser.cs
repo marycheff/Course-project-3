@@ -672,7 +672,7 @@ namespace Library
             MySqlConnection conn = GetConnection();
             try
             {
-                string query = "SELECT id, name, email, password FROM users WHERE login = @login";
+                string query = "SELECT id, name, email, password, role_id FROM users WHERE login = @login";
                 MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.AddWithValue("@login", login);
                 using (MySqlDataReader reader = command.ExecuteReader())
@@ -683,11 +683,13 @@ namespace Library
                         string name = reader.GetString("name");
                         string email = reader.GetString("email");
                         string password = reader.GetString("password");
+                        int roleId = reader.GetInt32("role_id");
                         userInfo.Id = id;
                         userInfo.Name = name;
                         userInfo.Login = login;
                         userInfo.Email = email;
                         userInfo.Password = password;
+                        userInfo.RoleId = roleId;
                     }
                 };
 
