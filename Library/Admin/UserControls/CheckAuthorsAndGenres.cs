@@ -8,6 +8,7 @@ namespace Library.Admin.UserControls
 {
     public partial class CheckAuthorsAndGenres : UserControl
     {
+        public event EventHandler UpdateRequare;
         public CheckAuthorsAndGenres()
         {
             InitializeComponent();
@@ -56,13 +57,33 @@ namespace Library.Admin.UserControls
                             MessageBox.Show("Автор удален успешно", "Удаление автора", MessageBoxButtons.OK);
                         }
                     }
-                    
+
                 }
             }
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridAuthors.Columns["authorEdit"].Index)
             {
-                Book.EditAuthor editAuthor = new Book.EditAuthor();
+                int authorId = Convert.ToInt32(dataGridAuthors.Rows[e.RowIndex].Cells["authorId"].Value);
+                string authorName = dataGridAuthors.Rows[e.RowIndex].Cells["authorName"].Value.ToString();
+                Book.EditAuthor editAuthor = new Book.EditAuthor(authorName);
                 editAuthor.ShowDialog();
+
+                if (editAuthor.SaveClicked)
+                {
+                    string newAuthorName = editAuthor.NewAuthor;
+                    if (newAuthorName == authorName)
+                    {
+                        MessageBox.Show("Вы ничего не поменяли", "Правка автора", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    if (Validation.ValidAuthorName(newAuthorName))
+                    {
+                        if (DbBook.EditAuthor(authorId, newAuthorName))
+                        {
+                            MessageBox.Show("Имя автора успешно изменено", "Правка автора", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dataGridAuthors.Rows[e.RowIndex].Cells["authorName"].Value = newAuthorName;
+                        }
+                    }
+                }
             }
         }
 
@@ -84,10 +105,31 @@ namespace Library.Admin.UserControls
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridGenres.Columns["genreEdit"].Index)
             {
-                Book.EditGenre editGenre = new Book.EditGenre();
+                int genreId = Convert.ToInt32(dataGridGenres.Rows[e.RowIndex].Cells["genreId"].Value);
+                string genreName = dataGridGenres.Rows[e.RowIndex].Cells["genreName"].Value.ToString();
+                Book.EditGenre editGenre = new Book.EditGenre(genreName);
                 editGenre.ShowDialog();
+                if (editGenre.SaveClicked)
+                {
+                    string newGenre = editGenre.NewGenre;
+                    if (newGenre == genreName)
+                    {
+                        MessageBox.Show("Вы ничего не поменяли", "Правка жанра", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    if (Validation.ValidGenreName(newGenre))
+                    {
+                        if (DbBook.EditGenre(genreId, newGenre))
+                        {
+                            MessageBox.Show("Жанр успешно изменен", "Правка жанра", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            dataGridGenres.Rows[e.RowIndex].Cells["genreName"].Value = newGenre;
+
+                        }
+                    }
+                }
             }
         }
+
 
         private void btnAddAuthor_Click(object sender, EventArgs e)
         {

@@ -746,7 +746,6 @@ namespace Library.DB
 
             return isUpdated;
         }
-
         public static bool HasBooksByAuthor(int authorId)
         {
             bool hasBooks = false;
@@ -770,6 +769,68 @@ namespace Library.DB
             }
 
             return hasBooks;
+        }
+
+        public static bool EditGenre(int genreId, string newGenre)
+        {
+            bool isGenreUpdated = false;
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "UPDATE genres SET name = @newGenre WHERE id = @genreId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@newGenre", newGenre);
+                command.Parameters.AddWithValue("@genreId", genreId);
+
+                try
+                {
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        isGenreUpdated = true;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при обновлении жанра: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+            return isGenreUpdated;
+        }
+
+        public static bool EditAuthor(int authorId, string newAuthorName)
+        {
+            bool isAuthorUpdated = false;
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "UPDATE authors SET name = @newAuthorName WHERE id = @authorId";
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@newAuthorName", newAuthorName);
+                command.Parameters.AddWithValue("@authorId", authorId);
+
+                try
+                {
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        isAuthorUpdated = true;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при правке имени автора: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+            return isAuthorUpdated;
         }
 
 

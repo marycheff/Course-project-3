@@ -1,20 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Library.Book
 {
     public partial class EditGenre : Form
     {
-        public EditGenre()
+        public bool SaveClicked;
+        public string NewGenre;
+        public EditGenre(string oldGenre)
         {
             InitializeComponent();
+            textGenreName.Text = oldGenre;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            NewGenre = textGenreName.Text.Trim();
+            SaveClicked = true;
+            Close();
         }
     }
 }

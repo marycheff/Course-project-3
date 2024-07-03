@@ -33,7 +33,6 @@ namespace Library.Admin.UserControls
 
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Проверяем, что клик был по колонке с ссылками
             if (dataGridView1.Columns[e.ColumnIndex].Name == "coverImage" && e.RowIndex >= 0)
             {
                 int bookId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id"].Value);

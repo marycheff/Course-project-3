@@ -170,9 +170,16 @@ namespace Library
                 flowLayoutPanel1.Controls.Clear();
                 currentControl.Dispose();
             }
-            CheckAuthorsAndGenres checkAuthors = new CheckAuthorsAndGenres();
-            flowLayoutPanel1.Controls.Add (checkAuthors);
-            checkAuthors.Focus();
+            CheckAuthorsAndGenres checkAuthorsAndGenres = new CheckAuthorsAndGenres();
+            checkAuthorsAndGenres.UpdateRequare += RefreshAuthorsAndGenres;
+            flowLayoutPanel1.Controls.Add (checkAuthorsAndGenres);
+            checkAuthorsAndGenres.Focus();
+        }
+
+        private void RefreshAuthorsAndGenres(object sender, EventArgs e)
+        {
+            btnAuthorsAndGenres.PerformClick();
+            
         }
     }
 }
