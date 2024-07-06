@@ -622,6 +622,52 @@ namespace Library
 
             return users;
         }
+        public static List<UserClass> GetUsersBySurname(string surname)
+        {
+            List<UserClass> users = new List<UserClass>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = @"
+            SELECT users.id, users.name, users.login, users.email, users.password, users.role_id 
+            FROM users
+            WHERE LOWER(SUBSTRING_INDEX(users.name, ' ', 1)) LIKE LOWER(@surname)";
+
+                MySqlCommand command = new MySqlCommand(query, conn);
+                command.Parameters.AddWithValue("@surname", surname + "%");
+
+                try
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            UserClass user = new UserClass
+                            {
+                                Id = reader.GetInt32("id"),
+                                Name = reader.GetString("name"),
+                                Login = reader.GetString("login"),
+                                Password = reader.GetString("password"),
+                                Email = reader.GetString("email"),
+                                RoleId = reader.GetInt32("role_id")
+                            };
+
+                            users.Add(user);
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Ошибка при получении списка пользователей: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+            return users;
+        }
+
 
         //public static Dictionary<int, Dictionary<string, object>> GetAllUsers()
         //{

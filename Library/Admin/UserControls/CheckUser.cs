@@ -17,8 +17,8 @@ namespace Library
         private void LoadUserData()
         {
             List<UserClass> users = DbUser.GetAllUsers();
-            dataGridView1.Rows.Clear(); 
-            foreach (var user in users)
+            dataGridView1.Rows.Clear();
+            foreach (UserClass user in users)
             {
                 dataGridView1.Rows.Add(user.Id, user.Name, user.Login, user.Email, DbUser.GetRoleName(user.RoleId));
             }
@@ -27,7 +27,22 @@ namespace Library
         }
 
 
-
+        private void SearchText_Enter(object sender, EventArgs e)
+        {
+            if (textSearch.Text == "Поиск по фамилии")
+            {
+                textSearch.Text = string.Empty;
+                textSearch.ForeColor = Color.Gainsboro;
+            }
+        }
+        private void SearchText_Leave(object sender, EventArgs e)
+        {
+            if (textSearch.Text == "")
+            {
+                textSearch.Text = "Поиск по фамилии";
+                textSearch.ForeColor = Color.Silver;
+            }
+        }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
@@ -86,7 +101,7 @@ namespace Library
                     }
                     else if (roleId != editForm.RoleId)
                     {
-                        edited = DbUser.EditUserRole(id, editedRoleId);  
+                        edited = DbUser.EditUserRole(id, editedRoleId);
                     }
                     else
                     {
@@ -109,5 +124,21 @@ namespace Library
 
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<UserClass> searchedUsers = DbUser.GetUsersBySurname(textSearch.Text.Trim());
+            if (searchedUsers.Count == 0)
+            {
+                MessageBox.Show("Пользователей с такой фамилией не найдено");
+                return;
+            }
+            dataGridView1.Rows.Clear();
+            foreach (UserClass user in searchedUsers)
+            {
+                dataGridView1.Rows.Add(user.Id, user.Name, user.Login, user.Email, DbUser.GetRoleName(user.RoleId));
+            }
+
+            dataGridView1.Sort(dataGridView1.Columns[0], System.ComponentModel.ListSortDirection.Ascending);
+        }
     }
 }
